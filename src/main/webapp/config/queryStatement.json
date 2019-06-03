@@ -1,0 +1,524 @@
+[
+	{
+		"hql":"select count(*) from QueryStatement queryStatement",
+		"isSQL":false,
+		"keyString":"count.operation4QueryStatement.查询配置",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from QueryStatement queryStatement order by keyString",
+		"isSQL":false,
+		"keyString":"list.operation4QueryStatement.查询配置",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listQueryStatement"
+	},
+	{
+		"hql":"select count(*) from SystemAttribute systemAttribute where upAttribute is null",
+		"isSQL":false,
+		"keyString":"count.operation4SystemAttribute.系统属性",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from SystemAttribute systemAttribute where upAttribute is null",
+		"isSQL":false,
+		"keyString":"list.operation4SystemAttribute.系统属性",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listSystemAttribute"
+	},
+	{
+		"hql":"select count(*) from SystemUser systemUser",
+		"isSQL":false,
+		"keyString":"count.operation4SystemUser.系统用户",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from SystemUser systemUser",
+		"isSQL":false,
+		"keyString":"list.operation4SystemUser.系统用户",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listSystemUser"
+	},
+	{
+		"hql":"select count(*) from SystemMenu systemMenu where upMenuItem is null",
+		"isSQL":false,
+		"keyString":"count.operation4SystemMenu.系统菜单",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from SystemMenu systemMenu where upMenuItem is null",
+		"isSQL":false,
+		"keyString":"list.operation4SystemMenu.系统菜单",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listSystemMenu"
+	},
+	{
+		"hql":"select count(*) from SystemLog systemLog",
+		"isSQL":false,
+		"keyString":"count.operation4SystemLog.系统日志",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from SystemLog systemLog",
+		"isSQL":false,
+		"keyString":"list.operation4SystemLog.系统日志",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listSystemLog"
+	},
+	{
+		"hql":"from Teacher teacher",
+		"isSQL":false,
+		"keyString":"list.operation4Person.教师",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listTeacher"
+	},
+	{
+		"hql":"from Student student order by personTitle, supervisor, gradeName,  major, code",
+		"isSQL":false,
+		"keyString":"list.operation4Person.学生",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listStudent"
+	},
+	{
+		"hql":"from Major major order by name",
+		"isSQL":false,
+		"keyString":"list.operation4Person.专业",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listMajor"
+	},
+	{
+		"hql":"select count(*) from Teacher teacher",
+		"isSQL":false,
+		"keyString":"count.operation4Person.教师",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"select count(*) from Student student",
+		"isSQL":false,
+		"keyString":"count.operation4Person.学生",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"select count(*) from Major major",
+		"isSQL":false,
+		"keyString":"count.operation4Person.专业",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"select count(*) from ThingType thingType where upType is null",
+		"isSQL":false,
+		"keyString":"count.operation4ThingType.项目类型",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"select count(*) from PersonTitle personTitle where upTitle is null",
+		"isSQL":false,
+		"keyString":"count.operation4PersonTitle.人员类型",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from Project project order by name",
+		"isSQL":false,
+		"keyString":"list.operation4Thing.科研",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listProject"
+	},
+	{
+		"hql":"select count(*) from Project project",
+		"isSQL":false,
+		"keyString":"count.operation4Thing.科研",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from Course course order by name",
+		"isSQL":false,
+		"keyString":"list.operation4Thing.教学",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listCourse"
+	},
+	{
+		"hql":"select count(*) from Course course",
+		"isSQL":false,
+		"keyString":"count.operation4Thing.教学",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"select count(*) from ThingTypeCircle thingTypeCircle",
+		"isSQL":false,
+		"keyString":"count.operation4ThingTypeCircle.任务分配",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from ThingTypeCircle thingTypeCircle order by thingType",
+		"isSQL":false,
+		"keyString":"list.operation4ThingTypeCircle.任务分配",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listThingTypeCircle"
+	},
+	{
+		"hql":"from Thing thing where thing.thingType in :thingTypeList",
+		"isSQL":false,
+		"keyString":"list.operation4Team.可选题目.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0,
+		"viewName":"listThing"
+	},
+	{
+		"hql":"select count(*) from Thing thing where thing.thingType in :thingTypeList",
+		"isSQL":false,
+		"keyString":"count.operation4Team.可选题目.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0
+	},
+	{
+		"hql":"select count(*) from QueryStatement queryStatement where queryStatement.hql is null",
+		"id":29,
+		"isSQL":false,
+		"keyString":"count.operation4QueryStatement.filter.查询配置",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"from QueryStatement queryStatement where queryStatement.hql is null  order by keyString",
+		"id":30,
+		"isSQL":false,
+		"keyString":"list.operation4QueryStatement.filter.查询配置",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listQueryStatement"
+	},
+	{
+		"hql":"from Team team where team.thing=:currentThing",
+		"id":31,
+		"isSQL":false,
+		"keyString":"list.operation4Team.currentThing.相关团队",
+		"needToQuery":true,
+		"paramsList":"currentThing",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select count(*) from Team team where team.thing=:currentThing",
+		"id":32,
+		"isSQL":false,
+		"keyString":"count.operation4Team.currentThing.相关团队",
+		"needToQuery":true,
+		"paramsList":"currentThing",
+		"version":0
+	},
+	{
+		"hql":"from Team team where team.leader=:myself",
+		"id":33,
+		"isSQL":false,
+		"keyString":"list.operation4Progress.我领导的.myself",
+		"needToQuery":true,
+		"paramsList":"myself",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select count(*) from Team team where team.leader=:myself",
+		"id":34,
+		"isSQL":false,
+		"keyString":"count.operation4Progress.我领导的.myself",
+		"needToQuery":true,
+		"paramsList":"myself",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select team_members_id  from team_person where person_id=:myself",
+		"id":35,
+		"isSQL":true,
+		"keyString":"list.operation4Progress.我参与的.myself",
+		"needToQuery":true,
+		"paramsList":"myself",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select count(*) from team_person where person_id=:myself",
+		"id":36,
+		"isSQL":true,
+		"keyString":"count.operation4Progress.我参与的.myself",
+		"needToQuery":true,
+		"paramsList":"myself",
+		"version":0
+	},
+	{
+		"hql":"from Progress progress where progress.team=:currentTeam order by progress.regDate desc",
+		"id":37,
+		"isSQL":false,
+		"keyString":"list.operation4Progress.currentTeam.进度查看",
+		"needToQuery":true,
+		"paramsList":"currentTeam",
+		"version":0,
+		"viewName":"listProgress"
+	},
+	{
+		"hql":"select count(*) from Progress progress where progress.team=:currentTeam",
+		"id":38,
+		"isSQL":false,
+		"keyString":"count.operation4Progress.currentTeam.进度查看",
+		"needToQuery":true,
+		"paramsList":"currentTeam",
+		"version":0,
+		"viewName":"listProgress"
+	},
+	{
+		"hql":"from Evaluate evaluate where evaluate.progress=:currentProgress",
+		"id":39,
+		"isSQL":false,
+		"keyString":"list.operation4Progress.currentProgress.反馈信息",
+		"needToQuery":true,
+		"paramsList":"currentProgress",
+		"version":0,
+		"viewName":"listEvaluate"
+	},
+	{
+		"hql":"select count(*) from Evaluate evaluate where evaluate.progress=:currentProgress",
+		"id":40,
+		"isSQL":false,
+		"keyString":"count.operation4Progress.currentProgress.反馈信息",
+		"needToQuery":true,
+		"paramsList":"currentProgress",
+		"version":0
+	},
+	{
+		"hql":"SELECT Count(DISTINCT person.grade_name) FROM person WHERE person.grade_name IS NOT NULL",
+		"id":41,
+		"isSQL":true,
+		"keyString":"count.operation4Person.年级",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"hql":"SELECT DISTINCT person.grade_name FROM person WHERE person.grade_name IS NOT NULL limit %d,%d",
+		"id":42,
+		"isSQL":true,
+		"keyString":"list.operation4Person.年级",
+		"needToQuery":true,
+		"version":0,
+		"viewName":"listGradeName"
+	},
+	{
+		"hql":"from Team team where team.thing in :thingTypeList order by team.thing",
+		"id":43,
+		"isSQL":false,
+		"keyString":"list.operation4Progress.我管理的.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select count(*) from Team team where team.thing in :thingTypeList",
+		"id":44,
+		"isSQL":false,
+		"keyString":"count.operation4Progress.我管理的.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0
+	},
+	{
+		"hql":"select count(*) from QueryStatement queryStatement where queryStatement.keyString like :keyString",
+		"id":47,
+		"isSQL":false,
+		"keyString":"count.operation4QueryStatement.查询配置.keyString",
+		"needToQuery":true,
+		"paramsList":"keyString",
+		"version":0
+	},
+	{
+		"hql":"from QueryStatement queryStatement where queryStatement.keyString like :keyString",
+		"id":48,
+		"isSQL":false,
+		"keyString":"list.operation4QueryStatement.查询配置.keyString",
+		"needToQuery":true,
+		"paramsList":"keyString",
+		"version":0,
+		"viewName":"listQueryStatement"
+	},
+	{
+		"hql":"from Plan plan  where plan.thingType.id=cast(:thingTypeId as integer) order by updateDate desc",
+		"id":49,
+		"isSQL":false,
+		"keyString":"list.operation4Plan.通用计划.thingTypeId",
+		"needToQuery":true,
+		"paramsList":"thingTypeId",
+		"version":0,
+		"viewName":"listPlan"
+	},
+	{
+		"hql":"select count(*) from Plan plan where plan.thingType.id=cast(:thingTypeId as integer)",
+		"id":50,
+		"isSQL":false,
+		"keyString":"count.operation4Plan.通用计划.thingTypeId",
+		"needToQuery":true,
+		"paramsList":"thingTypeId",
+		"version":0
+	},
+	{
+		"hql":"select count(*) from Team team where team.thing in :thingTypeList",
+		"id":51,
+		"isSQL":false,
+		"keyString":"count.operation4ProjectPlan.进度归档.myself",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0
+	},
+	{
+		"hql":"from Team team where team.thing in :thingTypeList order by team.thing",
+		"id":52,
+		"isSQL":false,
+		"keyString":"list.operation4ProjectPlan.进度归档.myself",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select count(*) from Team team where team.thing in :thingTypeList",
+		"id":53,
+		"isSQL":false,
+		"keyString":"count.operation4ProjectPlan.进度归档.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0
+	},
+	{
+		"hql":"from Team team where team.thing in :thingTypeList order by team.thing",
+		"id":54,
+		"isSQL":false,
+		"keyString":"list.operation4ProjectPlan.进度归档.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":0,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"from Progress progress where progress.team=:currentTeam order by progress.regDate desc",
+		"id":55,
+		"isSQL":false,
+		"keyString":"list.operation4ProjectPlan.currentTeam.进度列表",
+		"needToQuery":true,
+		"paramsList":"currentTeam",
+		"version":0,
+		"viewName":"listProgress"
+	},
+	{
+		"hql":"select count(*) from Progress progress where progress.team=:currentTeam",
+		"id":56,
+		"isSQL":false,
+		"keyString":"count.operation4ProjectPlan.currentTeam.进度列表",
+		"needToQuery":true,
+		"paramsList":"currentTeam",
+		"version":0
+	},
+	{
+		"hql":"from Thing thing where thing.thingType in :thingTypeList",
+		"id":57,
+		"isSQL":false,
+		"keyString":"index.Operation4Team.currentTask.可选题目.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":3,
+		"viewName":"listThing"
+	},
+	{
+		"hql":"from Thing thing where thing.thingType in :thingTypeList",
+		"id":58,
+		"isSQL":false,
+		"keyString":"list.Operation4Team.currentTask.可选题目.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":1,
+		"viewName":"listTeam"
+	},
+	{
+		"hql":"select count(*) from Thing thing where thing.thingType in :thingTypeList",
+		"id":59,
+		"isSQL":false,
+		"keyString":"count.Operation4Team.currentTask.可选题目.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList",
+		"version":1
+	},
+	{
+		"hql":"select count(*) from Team team where team.leader=:myself and team.thing.thingType in :thingTypeList",
+		"id":60,
+		"isSQL":false,
+		"keyString":"count.operation4Team.我领导的.myself.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList,myself",
+		"version":2
+	},
+	{
+		"hql":"from Team team where team.thing.thingType in :thingTypeList and team.leader=:myself",
+		"id":61,
+		"isSQL":false,
+		"keyString":"list.operation4Team.我领导的.myself.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList,myself",
+		"version":1,
+		"viewName":"listTeamRight"
+	},
+	{
+		"hql":"from Team team where team.thing in :thingTypeList and :myself in team.members",
+		"id":62,
+		"isSQL":false,
+		"keyString":"list.operation4Team.我参与的.myself.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList,myself",
+		"version":6,
+		"viewName":"listTeamRight"
+	},
+	{
+		"hql":"select count(*) from Team team where team.thing.thingType in :thingTypeList and :myself in team.members",
+		"id":63,
+		"isSQL":false,
+		"keyString":"count.operation4Team.我参与的.myself.thingTypeList",
+		"needToQuery":true,
+		"paramsList":"thingTypeList,myself",
+		"version":2
+	},
+	{
+		"id":64,
+		"isSQL":false,
+		"keyString":"list.operation4Team.currentTeam.队员列表",
+		"needToQuery":true,
+		"version":0
+	},
+	{
+		"id":65,
+		"isSQL":false,
+		"keyString":"count.operation4Team.currentTeam.队员列表",
+		"needToQuery":true,
+		"version":0
+	}
+]

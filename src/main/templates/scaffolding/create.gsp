@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
+    <!-- 实现可定制的布局 -->
+        <g:if test="\${layout}">
+            <meta name="layout" content="\${layout}"/>
+        </g:if>
+        <g:else>
+            <g:if test="\${session.layout}">
+                <meta name="layout" content="\${session.layout}"/>
+            </g:if>
+            <g:else>
+                <meta name="layout" content="main"/>
+            </g:else>
+        </g:else>
+    <!-- end 实现可定制的布局 -->
         <g:set var="entityName" value="\${message(code: '${propertyName}.label', default: '${className}')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
     </head>
@@ -25,9 +37,12 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="\${this.${propertyName}}" method="POST">
+            <g:form id="\${this.${propertyName}.id}" action="save" controller="\${params.controller}" method="POST">
                 <fieldset class="form">
                     <f:all bean="${propertyName}"/>
+                    <g:hiddenField name="nextController" value="\${params.nextController}"/>
+                    <g:hiddenField name="nextAction" value="\${params.nextAction}"/>
+                    <g:hiddenField name="url" value=""/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="\${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -1,0 +1,43 @@
+body {
+  background: url("../cup/img_bg_haven.jpg");
+  background-position: center;
+  background-size: cover;
+  /*这个是正确的*/
+}
+body .welcomePanel {
+  background: url("../cup/login_001.jpg") no-repeat;
+  background-size: 100%;
+  justify-content: center;
+  width: 699px;
+  height: 408px;
+  margin: auto;
+  margin-top: 20%;
+  border: 0px;
+}
+body .welcomePanel .login_title {
+  padding-left: 120px;
+  padding-top: 45px;
+  font-size: 2.1em;
+  width: 800px;
+}
+body .welcomePanel .changepassword {
+  padding-left: 120px;
+  font-size: 1em;
+  width: 800px;
+  color: red;
+}
+body .welcomePanel .welcomeForm {
+  padding-top: 80px;
+  padding-left: 100px;
+}
+body .welcomePanel .welcomeForm ul {
+  list-style: none;
+  font-size: 1.5em;
+}
+body .welcomePanel .welcomeForm ul li {
+  padding: 6px;
+}
+body .welcomePanel .welcomeForm .login-button {
+  width: 60px;
+}
+/*# sourceMappingURL=welcome.css.map */

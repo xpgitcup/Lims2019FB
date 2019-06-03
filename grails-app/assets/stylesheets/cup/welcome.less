@@ -1,0 +1,52 @@
+body {
+    //先定义背景
+    background: url("../cup/img_bg_haven.jpg"); //这个是正确的
+    background-position: center;
+    background-size: cover; /*这个是正确的*/
+
+    .welcomePanel {
+        background: url("../cup/login_001.jpg") no-repeat;
+        background-size: 100%;
+
+        justify-content: center;
+        //align-items:center;
+        //display: -webkit-flex; //这个影响文字的位置
+
+        width: 699px;
+        height: 408px;
+        margin: auto;
+        margin-top: 20%;
+        border: 0px;
+
+        .login_title {
+            padding-left: 120px;
+            padding-top: 45px;
+            font-size: 2.1em;
+            width: 800px;
+        }
+
+        .changepassword {
+            padding-left: 120px;
+            font-size: 1em;
+            width: 800px;
+            color: red;
+        }
+
+        .welcomeForm {
+            padding-top: 80px;
+            padding-left: 100px;
+            ul {
+                list-style: none;
+                font-size: 1.5em;
+                li {
+                    padding: 6px;
+                }
+            }
+
+            .login-button {
+                width: 60px;
+            }
+        }
+
+    }
+}

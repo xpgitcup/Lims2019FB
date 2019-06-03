@@ -1,0 +1,156 @@
+[
+  {
+    "menuContext": "系统维护",
+    "menuAction": "#",
+    "menuDescription": "对系统的菜单结构进行用户友好的维护",
+    "menuOrder": 0,
+    "menuItems": [
+      {
+        "menuContext": "权限维护",
+        "menuAction": "Operation4SystemAttribute/index",
+        "menuDescription": "对系统的用户属性进行用户友好的维护",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "菜单维护",
+        "menuAction": "Operation4SystemMenu/index",
+        "menuDescription": "对系统的菜单进行维护",
+        "menuOrder": 10
+      },
+      {
+        "menuContext": "用户维护",
+        "menuAction": "Operation4SystemUser/index",
+        "menuDescription": "对系统的用户进行用户友好的维护",
+        "menuOrder": 10
+      },
+      {
+        "menuContext": "查询维护A",
+        "menuAction": "operation4QueryStatementA/index",
+        "menuDescription": "对系统底层的查询语句进行维护",
+        "menuOrder": 40
+      },
+      {
+        "menuContext": "路径维护",
+        "menuAction": "operation4DataRootPath/index",
+        "menuDescription": "对系统底层的数据路径进行维护",
+        "menuOrder": 40
+      },
+      {
+        "menuContext": "底层维护",
+        "menuAction": "basic/index",
+        "menuDescription": "底层的数据维护",
+        "menuOrder": 40
+      }
+    ]
+  },
+  {
+    "menuContext": "基础维护",
+    "menuAction": "#",
+    "menuDescription": "维护基础数据",
+    "menuOrder": 0,
+    "menuItems": [
+      {
+        "menuContext": "人员类型",
+        "menuAction": "Operation4PersonTitle/index",
+        "menuDescription": "维护人员的各种类型数据",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "项目类型",
+        "menuAction": "Operation4ThingType/index",
+        "menuDescription": "维护各种项目的类型数据",
+        "menuOrder": 2
+      },
+      {
+        "menuContext": "任务圈维护",
+        "menuAction": "Operation4ThingTypeCircle/index",
+        "menuDescription": "任务与人员类别之间建立联系",
+        "menuOrder": 4
+      },
+      {
+        "menuContext": "人员数据",
+        "menuAction": "Operation4Person/index",
+        "menuDescription": "各种人员的基础数据",
+        "menuOrder": 1
+      },
+      {
+        "menuContext": "项目数据",
+        "menuAction": "Operation4Thing/index",
+        "menuDescription": "各种项目的基础数据",
+        "menuOrder": 3
+      },
+      {
+        "menuContext": "通用计划",
+        "menuAction": "Operation4Plan/index",
+        "menuDescription": "通用计划管理",
+        "menuOrder": 3
+      }
+    ]
+  },
+  {
+    "menuContext": "用户服务",
+    "menuAction": "#",
+    "menuDescription": "所有用户统一的",
+    "menuOrder": 0,
+    "menuItems": [
+      {
+        "menuContext": "动态菜单",
+        "menuAction": "userDefinedFunction/index",
+        "menuDescription": "动态的菜单",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "科研任务",
+        "menuAction": "Operation4Team/index?currentTask=科研任务",
+        "menuDescription": "各种项目的基础数据",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "教学任务",
+        "menuAction": "Operation4Team/index?currentTask=教学任务",
+        "menuDescription": "各种项目的基础数据",
+        "menuOrder": 0
+      }
+    ]
+  },
+  {
+    "menuContext": "教师服务",
+    "menuAction": "#",
+    "menuDescription": "所有用户统一的",
+    "menuOrder": 0,
+    "menuItems": [
+      {
+        "menuContext": "科研任务",
+        "menuAction": "Operation4TeamTeacherProject/index",
+        "menuDescription": "教师处理各种科研项目",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "教学任务",
+        "menuAction": "Operation4TeamTeacherCourse/index",
+        "menuDescription": "教室处理各种教学任务",
+        "menuOrder": 0
+      }
+    ]
+  },
+  {
+    "menuContext": "学生服务",
+    "menuAction": "#",
+    "menuDescription": "用户为学生的时候",
+    "menuOrder": 0,
+    "menuItems": [
+      {
+        "menuContext": "科研任务",
+        "menuAction": "Operation4TeamStudentProject/index",
+        "menuDescription": "教师处理各种科研项目",
+        "menuOrder": 0
+      },
+      {
+        "menuContext": "教学任务",
+        "menuAction": "Operation4TeamStudentCourse/index",
+        "menuDescription": "教室处理各种教学任务",
+        "menuOrder": 0
+      }
+    ]
+  }
+]
