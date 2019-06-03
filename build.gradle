@@ -23,6 +23,7 @@ apply plugin:"org.grails.grails-gsp"
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }  //增加阿里云镜像, 李晓平
 }
 
 dependencies {
@@ -59,6 +60,22 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     testRuntime "org.seleniumhq.selenium:selenium-chrome-driver:2.47.1"
+    //------------------------------------------------------------------------------------------------------------------
+    //增加对Cookie的支持
+    compile 'org.grails.plugins:cookie:2.0.5'
+    //增加对jxl的支持
+    //compile "org.grails.plugins:jxl:0.54" //--这个不行了
+    compile "net.sourceforge.jexcelapi:jxl:2.6.12"
+
+    //阿里巴巴的JSON
+    // https://mvnrepository.com/artifact/com.alibaba/fastjson
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.58'
+
+    //引用commons-math
+    compile "org.apache.commons:commons-math3:3.6.1"
+
+    //runtime "mysql:mysql-connector-java:5.1.35" //原来5.1.29，升级到5.1.35
+    runtime "mysql:mysql-connector-java:8.0.15" //升级到8.0.12, 8.0.15
 }
 
 bootRun {

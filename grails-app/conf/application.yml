@@ -8,6 +8,13 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
+    #--------------------------------------------
+    #上传文件大小的限制--李晓平--20181128
+    controllers:
+        upload:
+            maxFileSize: 200000000
+            maxRequestSize: 200000000
+
 info:
     app:
         name: '@info.app.name@'
@@ -19,6 +26,11 @@ spring:
     groovy:
         template:
             check-template-location: false
+
+#设置会话超时时间---李晓平--20181128
+server:
+    session:
+        timeout: 1800 #1800 #应该是分钟？
 
 # Spring Actuator Endpoints are Disabled by Default
 endpoints:
@@ -91,23 +103,30 @@ hibernate:
 dataSource:
     pooled: true
     jmxExport: true
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
+    #driverClassName: org.h2.Driver
+    #username: sa
+    #password: ''
+    driverClassName: com.mysql.cj.jdbc.Driver   #升级到这个版本是为了适应MySQL 8.X
+    username: sample
+    password: sample@chuyun
+    #logSql: true
 
 environments:
     development:
         dataSource:
             dbCreate: create-drop
-            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            #url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:mysql://localhost:3306/lims2019dba?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
     test:
         dataSource:
             dbCreate: update
-            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            #url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:mysql://localhost:3306/lims2019dba?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            #url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:mysql://localhost:3306/lims2019dba?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai
             properties:
                 jmxEnabled: true
                 initialSize: 5
