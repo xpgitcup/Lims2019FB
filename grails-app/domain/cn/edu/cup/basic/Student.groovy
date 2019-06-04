@@ -12,7 +12,7 @@ class Student extends Person {
         code()
         name()
         personTitle()
-        studentClass()
+        studentClass(nullable: true)
         supervisor(nullable: true)
     }
 

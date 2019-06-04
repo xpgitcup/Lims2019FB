@@ -6,6 +6,7 @@ import cn.edu.cup.system.SystemMenu
 import cn.edu.cup.system.SystemStatus
 import cn.edu.cup.system.SystemUser
 import grails.converters.JSON
+import groovy.sql.Sql
 
 import java.text.SimpleDateFormat
 
@@ -16,6 +17,28 @@ class HomeController extends CommonController {
     def systemUserService
 
     def basic() {}
+
+    def integration() {
+        def driverClassName = "com.mysql.cj.jdbc.Driver";//    #升级到这个版本是为了适应MySQL 8.X
+        def username = "sample";
+        def password = "sample@chuyun";
+        def url = "jdbc:mysql://localhost:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+        def sql = Sql.newInstance(url, username, password, driverClassName);
+        def persons = []
+        sql.eachRow("select * from person limit 0,20") { row ->
+            println("${row}")
+            def p = [:]
+            p.name = row.name
+            p.code = row.code
+            persons.add(p)
+        }
+
+        model:
+        [
+                sql: "${sql}",
+                persons: persons
+        ]
+    }
 
     protected void prepareParams() {
         if (session.systemUser) {

@@ -40,6 +40,12 @@
         "menuAction": "home/basic",
         "menuDescription": "底层的数据维护",
         "menuOrder": 40
+      },
+      {
+        "menuContext": "数据整合",
+        "menuAction": "home/integration",
+        "menuDescription": "整合其他数据库",
+        "menuOrder": 40
       }
     ]
   },
