@@ -4,8 +4,7 @@ import cn.edu.cup.common.DataExchangeInterface
 
 class Student extends Person {
 
-    String gradeName            //年级
-    Major major                //专业
+    StudentClass studentClass  //年级
 
     static belongsTo = [supervisor: Teacher]
 
@@ -13,8 +12,7 @@ class Student extends Person {
         code()
         name()
         personTitle()
-        gradeName()
-        major()
+        studentClass()
         supervisor(nullable: true)
     }
 
