@@ -2,6 +2,9 @@ package cn.edu.cup.lims
 
 import cn.edu.cup.basic.Person
 
+/*
+团队，队长也加入到成员中。
+* */
 class Team {
 
     Person leader

@@ -30,12 +30,14 @@
         <h2>${sql}</h2>
         <table class="table table-striped m-0 p-0">
             <thead>
+            <th>id</th>
             <th>编号</th>
             <th>用户名</th>
             </thead>
             <tbody>
             <g:each in="${persons}" var="item" status="i">
                 <tr class="${i % 2 == 0 ? 'odd' : 'even'}">
+                    <td>${item.id}</td>
                     <td>${item.code}</td>
                     <td>${item.name}</td>
                 </tr>

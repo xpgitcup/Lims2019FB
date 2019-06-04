@@ -28,6 +28,7 @@ class HomeController extends CommonController {
         sql.eachRow("select * from person limit 0,20") { row ->
             println("${row}")
             def p = [:]
+            p.id = row.id
             p.name = row.name
             p.code = row.code
             persons.add(p)

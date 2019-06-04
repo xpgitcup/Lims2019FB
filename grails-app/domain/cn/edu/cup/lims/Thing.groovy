@@ -1,10 +1,11 @@
 package cn.edu.cup.lims
 
-import cn.edu.cup.common.DataExchangeInterface
+import cn.edu.cup.basic.Person
 
-class Thing implements DataExchangeInterface{
+class Thing {
 
     String name
+    Person sponsor
 
     static belongsTo = [thingType: ThingType]
 
@@ -12,24 +13,11 @@ class Thing implements DataExchangeInterface{
 
     static constraints = {
         name(unique: true)
+        sponsor()
     }
 
     String toString() {
         return "${name}"
     }
 
-    @Override
-    List<String> dataSheetTitles() {
-        return null
-    }
-
-    @Override
-    Map importFromDataSheet(Object dataSheet) {
-        return null
-    }
-
-    @Override
-    List exportToDataSheet() {
-        return null
-    }
 }
