@@ -15,6 +15,8 @@ class HomeController extends CommonController {
     def systemMenuService
     def systemUserService
 
+    def basic() {}
+
     protected void prepareParams() {
         if (session.systemUser) {
             switch (params.key) {

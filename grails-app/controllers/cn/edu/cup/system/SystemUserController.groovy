@@ -4,10 +4,9 @@ import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class SystemUserController {
+class SystemUserController extends cn.edu.cup.common.CommonController {
 
     SystemUserService systemUserService
-    def commonQueryService
     def commonService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -164,37 +163,6 @@ class SystemUserController {
         } else {
             redirect(controller: controller, action: action)
         }
-    }
-
-    def list() {
-        prepareParams()
-        def result = commonQueryService.listFunction(params)
-        result = processResult(result, params)
-        def view = result.view
-        flash.message = result.message
-        if (request.xhr) {
-            render(template: view, model: [objectList: result.objectList, flash: flash])
-        } else {
-            respond result.objectList
-        }
-    }
-
-    def count() {
-        prepareParams()
-        def count = commonQueryService.countFunction(params)
-        def result = [count: count]
-
-        if (request.xhr) {
-            render result as JSON
-        } else {
-            result
-        }
-    }
-
-    protected void prepareParams() {}
-
-    protected def processResult(result, params) {
-        return result
     }
 
     protected void notFound() {

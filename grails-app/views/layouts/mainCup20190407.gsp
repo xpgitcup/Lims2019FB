@@ -5,8 +5,8 @@
   Time: 20:18
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -51,7 +51,6 @@
 
     <!-- 加载石油大学的设置-->
     <asset:javascript src="cn/edu/cup/common.js"/>
-    <asset:javascript src="cn/edu/cup/commonUI20190429.js"/>
     <asset:javascript src="cn/edu/cup/commonUI20190601.js"/>
     <asset:javascript src="cn/edu/cup/os/homeUI.js"/>
 

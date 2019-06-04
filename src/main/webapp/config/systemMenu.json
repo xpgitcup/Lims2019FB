@@ -37,7 +37,7 @@
       },
       {
         "menuContext": "底层维护",
-        "menuAction": "basic/index",
+        "menuAction": "home/basic",
         "menuDescription": "底层的数据维护",
         "menuOrder": 40
       }

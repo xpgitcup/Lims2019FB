@@ -1,7 +1,7 @@
 <nav class="breadcrumb m-0 p-0 bg-light">
     <g:if test="${currentMenuItem}">
         <div class="card">
-            当前菜单：${currentMenuItem.menuContext}
+            上级菜单：${currentMenuItem.menuContext}
         </div>
         <div class="pr-4"></div>
     </g:if>
