@@ -11,7 +11,7 @@
  Target Server Version : 50627
  File Encoding         : 65001
 
- Date: 20/05/2019 15:36:43
+ Date: 05/06/2019 19:12:31
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `progress`  (
   CONSTRAINT `FK3gfg3qw93o00sgybjd3nuy1v0` FOREIGN KEY (`contributor_id`) REFERENCES `person` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FK9rdflrh05eu15ao9mldbr2eqg` FOREIGN KEY (`team_id`) REFERENCES `team` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FKaegt6dto4gjcsiy0xhfy491dx` FOREIGN KEY (`prev_progress_id`) REFERENCES `progress` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 442 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 497 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of progress
@@ -141,8 +141,8 @@ INSERT INTO `progress` VALUES (95, 0, '报告、ppt、计算文档', 45, NULL, N
 INSERT INTO `progress` VALUES (96, 0, '完成课程设计', 32, NULL, 'LPS水力计算模拟摩阻计算偏大', '12组成品油长输管道课程设计.rar', 120, '2019-03-12 10:24:00');
 INSERT INTO `progress` VALUES (97, 1, '“油气储运数字化”应用场景设想—第二次作业', 53, NULL, NULL, '陌上人潮.rar', 66, '2019-03-12 22:30:00');
 INSERT INTO `progress` VALUES (98, 1, '第二次设想', 51, NULL, NULL, '智慧化设想2.0.docx', 82, '2019-03-12 23:24:00');
-INSERT INTO `progress` VALUES (99, 0, '管道安全助手', 50, 55, NULL, '管道.pptx', 95, '2019-03-13 09:59:00');
-INSERT INTO `progress` VALUES (100, 0, '故事上传', 50, NULL, NULL, '管道安全助手.docx', 95, '2019-03-13 10:00:00');
+INSERT INTO `progress` VALUES (99, 2, '第二次作业-管道安全助手', 50, 55, NULL, '管道安全助手.pptx', 95, '2019-03-13 09:59:00');
+INSERT INTO `progress` VALUES (100, 1, '第二次作业-故事上传', 50, NULL, NULL, '管道安全助手.docx', 95, '2019-03-13 10:00:00');
 INSERT INTO `progress` VALUES (101, 0, '综述已完成90%；整理最终版数据排版', 26, NULL, NULL, NULL, 238, '2019-03-13 13:23:00');
 INSERT INTO `progress` VALUES (102, 0, '第二周作业', 52, 30, NULL, '第二周小说.docx', 84, '2019-03-13 15:20:00');
 INSERT INTO `progress` VALUES (103, 0, '第二周汇报PPT', 52, NULL, NULL, 'to be，or not to be？.pptx', 84, '2019-03-13 15:22:00');
@@ -169,8 +169,8 @@ INSERT INTO `progress` VALUES (123, 0, '完成所有任务', 31, NULL, NULL, '�
 INSERT INTO `progress` VALUES (124, 0, '完成所有任务', 31, NULL, NULL, '软件台总账作业部分2019.3.21.xls', 257, '2019-03-27 10:22:00');
 INSERT INTO `progress` VALUES (125, 0, '完成软件的调研报告和不同软件实际应用的对比报告', 24, 20, '软件应用不熟练，不同软件的模拟效果相差较大', '软件概要.zip', 252, '2019-03-27 12:33:00');
 INSERT INTO `progress` VALUES (126, 0, '液体管道模拟', 18, NULL, NULL, '液体管道模拟.docx', 95, '2019-03-27 13:07:00');
-INSERT INTO `progress` VALUES (127, 0, '投标', 50, NULL, NULL, '起源.pptx', 95, '2019-03-27 13:08:00');
-INSERT INTO `progress` VALUES (128, 0, 'GIS', 50, NULL, NULL, '起源.pptx', 95, '2019-03-27 13:14:00');
+INSERT INTO `progress` VALUES (127, 3, '第三次作业-投标', 50, NULL, NULL, '原油辅助生产系统.pptx', 95, '2019-03-20 13:08:00');
+INSERT INTO `progress` VALUES (128, 1, '第四次作业-GIS', 50, NULL, NULL, '起源.pptx', 95, '2019-03-27 13:14:00');
 INSERT INTO `progress` VALUES (129, 0, '完成LPS和TLNET对一条原油管道的稳态和瞬态模拟计算，并对计算结果进行对比分析，完成软件概要报告初稿', 19, 24, NULL, '软件概要报告.docx', 240, '2019-03-27 13:38:00');
 INSERT INTO `progress` VALUES (130, 0, '完成了两个软件的模拟并且分析了误差以及数字双生软件查询，最后完成了两个报告的撰写。', 25, NULL, NULL, '软件概论作业.docx', 90, '2019-03-27 14:01:00');
 INSERT INTO `progress` VALUES (131, 0, '软件对比初稿', 33, NULL, NULL, '软件报告.docx', 258, '2019-03-27 14:05:00');
@@ -339,10 +339,10 @@ INSERT INTO `progress` VALUES (293, 0, '实验数据', 60, NULL, NULL, '冲蚀�
 INSERT INTO `progress` VALUES (294, 0, '终期报告', 20, 279, NULL, 'ledaflow-钟思源2018214573.docx', 255, '2019-05-10 00:52:00');
 INSERT INTO `progress` VALUES (295, 0, '终期报告', 20, 294, NULL, 'PIPEPHASE-钟思源2018214573.docx', 255, '2019-05-10 00:53:00');
 INSERT INTO `progress` VALUES (296, 0, '终期报告', 20, 295, NULL, 'tgnet-钟思源2018214573.docx', 255, '2019-05-10 00:54:00');
-INSERT INTO `progress` VALUES (297, 0, 'GIS辅助', 50, 128, NULL, '起源20190403.pptx', 94, '2019-05-10 04:03:00');
+INSERT INTO `progress` VALUES (297, 2, '第五次作业-GIS辅助', 50, 128, NULL, '起源20190403.pptx', 94, '2019-04-03 04:03:00');
 INSERT INTO `progress` VALUES (298, 0, 'WEB开发', 50, 297, NULL, '起源20190410.pptx', 94, '2019-05-10 04:10:00');
-INSERT INTO `progress` VALUES (299, 0, 'final', 50, 298, NULL, '起源final.pptx', 94, '2019-05-10 04:17:00');
-INSERT INTO `progress` VALUES (300, 0, 'WEB开发', 50, 297, NULL, '起源20190410.pptx', 94, '2019-05-10 04:10:00');
+INSERT INTO `progress` VALUES (299, 1, '第七次作业-final', 50, 298, NULL, '起源final.pptx', 94, '2019-05-10 04:17:00');
+INSERT INTO `progress` VALUES (300, 1, '第六次作业-WEB开发', 50, 297, NULL, '起源20190410.pptx', 94, '2019-05-10 04:10:00');
 INSERT INTO `progress` VALUES (301, 0, '结题研究报告', 4, NULL, NULL, '长治管网项目结题研究报告.docx', 61, '2019-05-10 11:28:00');
 INSERT INTO `progress` VALUES (302, 0, '结题工作报告', 4, NULL, NULL, '长治管网项目结题工作报告.docx', 61, '2019-05-10 11:29:00');
 INSERT INTO `progress` VALUES (303, 0, '结题实验报告', 4, NULL, NULL, '长治管网项目结题实验报告.docx', 61, '2019-05-10 11:30:00');
@@ -484,5 +484,60 @@ INSERT INTO `progress` VALUES (438, 0, '论文初稿', 60, 350, NULL, '毕业论
 INSERT INTO `progress` VALUES (439, 0, '论文初稿', 56, 357, NULL, '毕业论文.docx', 151, '2019-05-20 14:09:00');
 INSERT INTO `progress` VALUES (440, 0, '耗能计算及方案比选', 61, 402, NULL, '耗能计算及方案比选.docx', 185, '2019-05-20 14:40:00');
 INSERT INTO `progress` VALUES (441, 0, '内容补充', 57, 344, NULL, '毕业论文-邰昊.docx', 162, '2019-05-20 14:41:00');
+INSERT INTO `progress` VALUES (442, 0, 'sps学习', 13, NULL, NULL, '陈影-20170601-SPS学习.pptx', 34, '2017-05-20 16:07:00');
+INSERT INTO `progress` VALUES (443, 0, '工况模拟', 13, 442, NULL, '陈影-20170620-工况模拟.pptx', 34, '2017-06-20 16:08:00');
+INSERT INTO `progress` VALUES (444, 0, '二十周周报', 13, 443, NULL, '陈影—第二十周周汇报.pptx', 34, '2017-07-03 16:09:00');
+INSERT INTO `progress` VALUES (445, 0, '华南销售进展汇报', 13, 444, NULL, '华南销售进展汇报.ppt', 34, '2017-07-12 16:10:00');
+INSERT INTO `progress` VALUES (446, 0, '二十六周周报', 13, 445, NULL, '第二十六周周汇报.pptx', 34, '2017-08-14 16:10:00');
+INSERT INTO `progress` VALUES (447, 0, '汇报', 13, 446, NULL, '汇报.pptx', 34, '2017-08-20 16:11:00');
+INSERT INTO `progress` VALUES (448, 0, '周报', 13, 447, NULL, '陈影—第二十四周周汇报.pptx', 34, '2017-11-21 16:12:00');
+INSERT INTO `progress` VALUES (449, 0, '周报', 13, 448, NULL, '陈影—周汇报.pptx', 34, '2017-11-22 16:13:00');
+INSERT INTO `progress` VALUES (450, 0, '周报', 13, 449, NULL, '陈影—19周汇报.pptx', 34, '2018-01-09 16:13:00');
+INSERT INTO `progress` VALUES (451, 0, '周报', 13, 450, NULL, '周汇报+陈影+20180513.pptx', 34, '2018-05-06 16:13:00');
+INSERT INTO `progress` VALUES (452, 0, '周报', 13, 451, NULL, '汇报20180801-陈影.pptx', 34, '2018-07-31 16:14:00');
+INSERT INTO `progress` VALUES (453, 0, '周报', 13, 452, NULL, '汇报20180806-陈影.pptx', 34, '2018-08-06 16:14:00');
+INSERT INTO `progress` VALUES (454, 0, '周报', 13, 453, NULL, '陈影-20170615-工况模拟.pptx', 34, '2019-04-23 16:15:00');
+INSERT INTO `progress` VALUES (455, 0, '百昆模型', 13, NULL, NULL, 'BAIKUN.intran', 34, '2018-05-20 16:15:00');
+INSERT INTO `progress` VALUES (456, 0, '川渝模型', 13, 455, NULL, 'CHUANYU.intran', 34, '2018-05-20 16:16:00');
+INSERT INTO `progress` VALUES (457, 0, '百昆', 13, NULL, NULL, 'BAIKUN.intran', 34, '2018-04-20 16:17:00');
+INSERT INTO `progress` VALUES (458, 0, '川渝', 13, 457, NULL, 'CHUANYU.intran', 34, '2019-01-20 16:18:00');
+INSERT INTO `progress` VALUES (459, 0, '模型', 13, 456, NULL, 'BAIKUN.inprep', 34, '2019-05-20 16:18:00');
+INSERT INTO `progress` VALUES (460, 0, '模型', 13, 459, NULL, 'CHUANYU.inprep', 34, '2019-05-20 16:19:00');
+INSERT INTO `progress` VALUES (461, 0, '华南项目安全运行报告', 13, 454, NULL, '华南项目管道安全运行部分+陈影.pptx', 34, '2019-05-20 16:20:00');
+INSERT INTO `progress` VALUES (462, 0, '汇报', 13, 461, NULL, '汇报-陈影.pptx', 34, '2019-05-20 16:23:00');
+INSERT INTO `progress` VALUES (463, 0, '项目进展', 13, 462, NULL, '项目进展-陈影.pptx', 34, '2019-05-20 16:24:00');
+INSERT INTO `progress` VALUES (464, 0, '华南项目管道和设备压力分级建议报告', 6, NULL, NULL, '华南项目管道和设备压力分级建议报告.docx', 34, '2018-12-20 16:29:00');
+INSERT INTO `progress` VALUES (465, 0, '华南项目管道不同输量操作控制方案报告', 6, 464, NULL, '华南项目管道不同输量操作控制方案报告.docx', 34, '2018-12-20 16:31:00');
+INSERT INTO `progress` VALUES (466, 0, '华南管道水击超前保护逻辑完善建议报告', 6, 465, NULL, '华南管道水击超前保护逻辑完善建议报告.docx', 34, '2018-12-20 16:31:00');
+INSERT INTO `progress` VALUES (467, 2, '第一次作业-智慧管道', 50, 298, NULL, '设想2019.pptx', 95, '2019-03-06 03:06:00');
+INSERT INTO `progress` VALUES (468, 0, '汇报PPT', 87, NULL, NULL, '研究生三年汇报PPT.rar', 35, '2019-05-21 21:56:00');
+INSERT INTO `progress` VALUES (469, 0, '毕设论文', 72, NULL, NULL, '崔可心-纳米催化剂辅助微波加热降粘实验研究.pdf', 35, '2019-05-21 21:59:00');
+INSERT INTO `progress` VALUES (470, 0, '论文终稿', 58, 311, NULL, '论文康迪终稿.doc', 211, '2019-05-27 01:22:00');
+INSERT INTO `progress` VALUES (471, 0, '工艺计算', 58, 470, NULL, '输油管道计算1.xls', 211, '2019-05-27 01:23:00');
+INSERT INTO `progress` VALUES (472, 0, '毕业论文（修改版）', 56, 439, NULL, '毕业论文.docx', 151, '2019-05-27 12:27:00');
+INSERT INTO `progress` VALUES (473, 0, '论文初稿', 60, 438, NULL, '毕业论文初稿 .docx', 165, '2019-05-27 12:30:00');
+INSERT INTO `progress` VALUES (474, 0, '综述补充', 57, 441, '设计部分有纰漏', '毕业论文-邰昊.docx', 162, '2019-05-27 14:19:00');
+INSERT INTO `progress` VALUES (475, 0, '如何与大软件的结合？？？', 56, 472, NULL, NULL, 2, '2019-05-27 14:54:00');
+INSERT INTO `progress` VALUES (476, 0, '论文终稿1', 61, NULL, NULL, '终稿1.docx', 185, '2019-05-27 15:01:00');
+INSERT INTO `progress` VALUES (477, 0, '修改版', 56, NULL, '对于如何与大软件进行结合？待与康琦师兄讨论后完善', '毕业论文.docx', 151, '2019-05-30 13:55:00');
+INSERT INTO `progress` VALUES (478, 0, '论文最终版', 69, 393, NULL, '2016214557.pdf', 49, '2019-06-01 13:24:00');
+INSERT INTO `progress` VALUES (479, 0, '华南程序', 69, 392, NULL, 'EasyPipe2017B.zip', 49, '2019-06-01 13:27:00');
+INSERT INTO `progress` VALUES (480, 0, '差软件部分，其它部分修改完成', 56, NULL, NULL, '毕业论文.docx', 151, '2019-06-02 13:34:00');
+INSERT INTO `progress` VALUES (481, 0, '当前进展如何？', 78, NULL, NULL, NULL, 2, '2019-06-03 08:32:00');
+INSERT INTO `progress` VALUES (482, 0, '把算例上传到这里', 94, NULL, NULL, NULL, 2, '2019-06-03 08:41:00');
+INSERT INTO `progress` VALUES (483, 0, '文献看了哪些？', 94, 482, NULL, NULL, 2, '2019-06-03 08:50:00');
+INSERT INTO `progress` VALUES (484, 0, '所刊文章上传到这里', 92, NULL, NULL, NULL, 2, '2019-06-03 08:56:00');
+INSERT INTO `progress` VALUES (485, 0, '学习瞬变流', 92, 484, NULL, NULL, 2, '2019-06-03 08:57:00');
+INSERT INTO `progress` VALUES (486, 0, '算例上传到这里', 92, NULL, NULL, NULL, 2, '2019-06-03 08:57:00');
+INSERT INTO `progress` VALUES (487, 0, '接近完成', 57, 474, '还差最后一项加热炉', '毕业论文-邰昊.docx', 162, '2019-06-03 09:31:00');
+INSERT INTO `progress` VALUES (488, 0, '计算程序', 57, NULL, NULL, 'c.py', 162, '2019-06-03 09:31:00');
+INSERT INTO `progress` VALUES (489, 1, '结题工作报告', 4, NULL, NULL, '长治管网项目结题工作报告.docx', 61, '2019-06-03 09:47:00');
+INSERT INTO `progress` VALUES (490, 0, '结题研究报告', 4, NULL, NULL, '长治管网项目结题研究报告.docx', 61, '2019-06-03 09:48:00');
+INSERT INTO `progress` VALUES (491, 0, '论文', 60, 473, NULL, '毕业论文初稿 .docx', 165, '2019-06-03 09:48:00');
+INSERT INTO `progress` VALUES (492, 0, '结题实验报告', 4, NULL, NULL, '长治管网项目结题实验报告.docx', 61, '2019-06-03 09:49:00');
+INSERT INTO `progress` VALUES (493, 0, '环网算例', 92, 486, NULL, 'suanli.rar', 94, '2019-06-03 10:27:00');
+INSERT INTO `progress` VALUES (494, 0, '预答辩论文', 61, 476, NULL, '终稿.docx', 185, '2019-06-05 15:51:00');
+INSERT INTO `progress` VALUES (495, 0, '6.6号答辩版论文', 56, 480, NULL, '毕业论文.docx', 151, '2019-06-05 18:28:00');
+INSERT INTO `progress` VALUES (496, 0, '论文完成', 57, NULL, NULL, '毕业论文-邰昊.docx', 162, '2019-06-05 18:37:00');
 
 SET FOREIGN_KEY_CHECKS = 1;

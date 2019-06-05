@@ -1,9 +1,17 @@
 package cn.edu.cup.lims
 
-class Course {
+class Course extends Thing {
 
-    Date startDate
+    String code
+    String school_year
 
     static constraints = {
+        name()
+        code()
+        school_year()
+    }
+
+    String toString() {
+        return "${name}.${code}"
     }
 }

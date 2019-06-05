@@ -9,7 +9,7 @@ class Operation4QueryStatementAController extends QueryStatementAController {
     def backup2file() {
         def now = new Date()
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm")
-        def fileName = ">f:/LiXiaopingData/归档/02开发/实验室管理-基础数据/debug/query_statementa${df.format(now)}.sql"
+        def fileName = ">f:/LiXiaopingData/归档/02开发/实验室管理-基础数据/debug/query_statementa${df.format(now)}.theSQL"
         def myCommandString = ["cmd",
                                "/C",
                                "C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump",
@@ -17,7 +17,7 @@ class Operation4QueryStatementAController extends QueryStatementAController {
                                "-psample@chuyun",
                                "lims2019db",
                                "query_statementa",
-                               //">f:/b.sql"
+                               //">f:/b.theSQL"
                                fileName
                                //"F:\\LiXiaopingData\\归档\\02开发\\实验室管理-基础数据\\debug\\${fileName}"
         ]

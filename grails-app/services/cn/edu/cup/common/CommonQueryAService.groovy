@@ -160,7 +160,7 @@ class CommonQueryAService {
         }
         // 剔除分页控制后
         if (leftParams.size() > 0) {
-            //objectList = db.rows(ps, sql)
+            //objectList = db.rows(ps, theSQL)
             def realSql
             leftParams.keySet().each { e ->
                 def v = "${leftParams.get(e)}"

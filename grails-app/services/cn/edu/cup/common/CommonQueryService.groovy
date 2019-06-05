@@ -58,7 +58,7 @@ class CommonQueryService {
         }
         // 剔除分页控制后
         if (ps.size() > 0) {
-            //objectList = db.rows(ps, sql)
+            //objectList = db.rows(ps, theSQL)
             def realSql
             ps.keySet().each { e ->
                 def v = "${ps.get(e)}"

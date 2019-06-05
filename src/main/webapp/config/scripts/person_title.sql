@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 10.1.16.50
+ Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 50627
- Source Host           : 10.1.16.50:3306
- Source Schema         : lims2019db
+ Source Server Version : 50725
+ Source Host           : localhost:3306
+ Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 50627
+ Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 29/04/2019 08:44:46
+ Date: 05/06/2019 14:38:23
 */
 
 SET NAMES utf8mb4;
@@ -49,7 +49,6 @@ INSERT INTO `person_title` VALUES (11, 0, 2, '助理工程师');
 INSERT INTO `person_title` VALUES (12, 0, 2, '技术员');
 INSERT INTO `person_title` VALUES (13, 0, 3, '本科生');
 INSERT INTO `person_title` VALUES (14, 0, 3, '研究生');
-INSERT INTO `person_title` VALUES (15, 0, 13, '2015级');
 INSERT INTO `person_title` VALUES (16, 0, 14, '博士');
 INSERT INTO `person_title` VALUES (17, 0, 14, '硕士');
 INSERT INTO `person_title` VALUES (18, 0, 14, '博士后');

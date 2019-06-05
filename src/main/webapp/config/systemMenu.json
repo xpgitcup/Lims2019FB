@@ -43,7 +43,7 @@
       },
       {
         "menuContext": "数据整合",
-        "menuAction": "home/integration",
+        "menuAction": "database/index",
         "menuDescription": "整合其他数据库",
         "menuOrder": 40
       }
@@ -66,12 +66,6 @@
         "menuAction": "Operation4ThingType/index",
         "menuDescription": "维护各种项目的类型数据",
         "menuOrder": 2
-      },
-      {
-        "menuContext": "任务圈维护",
-        "menuAction": "Operation4ThingTypeCircle/index",
-        "menuDescription": "任务与人员类别之间建立联系",
-        "menuOrder": 4
       },
       {
         "menuContext": "人员数据",

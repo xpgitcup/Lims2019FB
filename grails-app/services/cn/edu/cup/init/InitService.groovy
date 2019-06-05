@@ -2,7 +2,6 @@ package cn.edu.cup.init
 
 import cn.edu.cup.basic.Caption
 import cn.edu.cup.basic.PersonTitle
-import cn.edu.cup.basic.Teacher
 import cn.edu.cup.lims.Plan
 import cn.edu.cup.lims.ThingType
 import cn.edu.cup.system.DataRootPath
@@ -122,15 +121,6 @@ class InitService {
         def attributeFileName = "${webRootDir}/config/systemAttribute.json"
         if (systemAttributeService.count() < 1) {
             importObjects(attributeFileName, SystemAttribute.class, "selfCheck")
-        }
-
-        // 处理人员
-        def teacherFileName = "${webRootDir}/config/teacher.json"
-        if (teacherService.count() < 1) {
-            def teachers = importObjects(teacherFileName, Teacher.class, "selfCheck")
-            teachers.each { e ->
-                systemCommonService.addPersonToUser(e)
-            }
         }
 
         // 处理数据路径
@@ -262,7 +252,7 @@ class InitService {
             def db
             def sql = sf.text
             db = new groovy.sql.Sql(dataSource)
-            //println "init - ${sql}"
+            //println "init - ${theSQL}"
             def lines = sql.split(";")
             lines.each() { it ->
                 //println "line: ${it}"
