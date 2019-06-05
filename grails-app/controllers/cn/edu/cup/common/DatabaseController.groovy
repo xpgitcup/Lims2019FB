@@ -3,6 +3,7 @@ package cn.edu.cup.common
 import cn.edu.cup.basic.Person
 import cn.edu.cup.basic.PersonTitle
 import cn.edu.cup.lims.Course
+import cn.edu.cup.lims.Progress
 import cn.edu.cup.lims.Project
 import cn.edu.cup.lims.Team
 import cn.edu.cup.lims.Thing
@@ -17,6 +18,49 @@ class DatabaseController {
     def projectService
     def courseService
     def teamService
+    def progressService
+    def dataSource
+
+    def driverClassName = "com.mysql.cj.jdbc.Driver";//    #升级到这个版本是为了适应MySQL 8.X
+    def username = "sample";
+    def password = "sample@chuyun";
+    //def url = "jdbc:mysql://10.1.16.50:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+    def url = "jdbc:mysql://localhost:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+
+    def updateProgress() {
+        def qstring = ""
+        def otherSql = new Sql(dataSource)
+        def updateSql = new Sql(dataSource)
+        //def plist = []
+        otherSql.eachRow("select id, team_id, current_status, contributor_id from progress order by id") { e ->
+            println("新数据库：${e}")
+
+            def progress = Progress.get(e.id)
+
+            qstring = "select a.thing_id, a.leader_id, b.name as thingName, c.code, c.name from team a, thing b, person c where a.id=${e.team_id} and b.id=a.thing_id and c.id=a.leader_id"
+            theSQL.eachRow(qstring) { ee ->
+                println("老数据库：${ee}")
+                def person = Person.findByCode(ee.code)
+                def thing = Thing.findByName(ee.thingName)
+                def team = Team.findByThingAndLeader(thing, person)
+                println("新库：${team.id} ${team}")
+                //progress.team = team
+                updateSql.executeUpdate("update progress set team_id=${team.id} where id=${e.id}")
+            }
+
+            qstring = "select a.code, a.name from person a where a.id=${e.contributor_id}"
+            theSQL.eachRow(qstring) { ee ->
+                println("${ee}")
+                def cperson = Person.findByCode(ee.code)
+                println("贡献者 ${cperson.id} ${cperson}")
+                progress.contributor = cperson
+            }
+            println("=================================================================================================")
+            progressService.save(progress)
+        }
+
+        redirect(action: "index")
+    }
 
     def importThing() {
         def myself = session.systemUser.person()
@@ -71,9 +115,9 @@ class DatabaseController {
             //println("${m}")
         }
         println("----------------------------------------")
-        mlist.each { e->
+        mlist.each { e ->
             qstring = "select a.id, b.name AS thingName, c.name, c.code  from team a, thing b, person c where a.id=${e.id} and a.thing_id=b.id and a.leader_id=c.id"
-            theSQL.eachRow(qstring) { ee->
+            theSQL.eachRow(qstring) { ee ->
                 println("${ee}")
                 def leader = Person.findByCode(ee.code)
                 def thing = Thing.findByName(ee.thingName)
@@ -97,7 +141,7 @@ class DatabaseController {
             def thing = Thing.findByName(e.name)
             def person = Person.findByCode(e.code)
             println("事情：${thing} 队长：${person}")
-            if (Team.countByThingAndLeader(thing, person)<1) {
+            if (Team.countByThingAndLeader(thing, person) < 1) {
                 def t = new Team(
                         thing: thing,
                         leader: person
@@ -130,10 +174,6 @@ class DatabaseController {
     }
 
     def index() {
-        def driverClassName = "com.mysql.cj.jdbc.Driver";//    #升级到这个版本是为了适应MySQL 8.X
-        def username = "sample";
-        def password = "sample@chuyun";
-        def url = "jdbc:mysql://10.1.16.50:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
         theSQL = Sql.newInstance(url, username, password, driverClassName);
 
         def webRoot = commonService.webRootPath

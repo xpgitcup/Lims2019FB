@@ -35,7 +35,7 @@
             </thead>
             <tbody>
             <tr>
-                <td><a href="database/updateProgress">同步进度</a></td>
+                <td><a href="#">同步进度</a></td>
                 <td>当前团队：${cn.edu.cup.lims.Progress.count()}</td>
             </tr>
             <tr>

@@ -27,7 +27,7 @@ class Progress {
     }
 
     String toString() {
-        return "${team}.${regDate}.${currentStatus}"
+        return "${regDate}.${currentStatus}"
     }
 
     Boolean checkSupportFile() {
