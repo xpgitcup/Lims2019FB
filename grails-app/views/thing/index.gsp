@@ -32,7 +32,7 @@
             </g:if>
             <f:table collection="${thingList}" />
 
-            <div class="paginationGrails">
+            <div class="pagination">
                 <g:paginate total="${thingCount ?: 0}" />
             </div>
         </div>

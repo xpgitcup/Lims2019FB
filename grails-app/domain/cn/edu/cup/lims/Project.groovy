@@ -11,7 +11,7 @@ class Project extends Thing {
         thingType()
         companyA(nullable: true)
         startDate(nullable: true)
-        duration(nullable: true)
+        endDate(nullable: true)
     }
 
 }

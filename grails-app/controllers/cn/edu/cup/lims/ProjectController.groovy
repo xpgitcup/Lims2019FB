@@ -1,11 +1,12 @@
 package cn.edu.cup.lims
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class ThingController extends cn.edu.cup.common.CommonController {
+class ProjectController extends cn.edu.cup.common.CommonController {
 
-    ThingService thingService
+    ProjectService projectService
     def commonService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -15,18 +16,18 @@ class ThingController extends cn.edu.cup.common.CommonController {
         def userResult = false
         params.max = Math.min(max ?: 10, 100)
         if (params.title) {
-            model.thingTitle = params.title
+            model.projectTitle = params.title
             userResult = true
         }
         if (params.jsRoutine) {
-            model.thingJsRoutine = params.jsRoutine
+            model.projectJsRoutine = params.jsRoutine
             userResult = true
         }
 
         if (userResult) {
             model
         } else {
-            respond thingService.list(params), model:[thingCount: thingService.count()]
+            respond projectService.list(params), model:[projectCount: projectService.count()]
         }
     }
 
@@ -36,12 +37,12 @@ class ThingController extends cn.edu.cup.common.CommonController {
             view = params.view
         }
 
-        def thing = thingService.get(id)
+        def project = projectService.get(id)
 
         if (request.xhr) {
-            render(template: view, model: [thing: thing])
+            render(template: view, model: [project: project])
         } else {
-            respond thing
+            respond project
         }
     }
 
@@ -51,18 +52,18 @@ class ThingController extends cn.edu.cup.common.CommonController {
             view = params.view
         }
 
-        def thing = new Thing(params)
+        def project = new Project(params)
 
         if (request.xhr) {
-            render(template: view, model: [thing: thing])
+            render(template: view, model: [project: project])
         } else {
-            respond thing
+            respond project
         }
     }
 
-    def save(Thing thing) {
+    def save(Project project) {
 
-        if (thing == null) {
+        if (project == null) {
             notFound()
             return
         }
@@ -78,10 +79,10 @@ class ThingController extends cn.edu.cup.common.CommonController {
         }
 
         try {
-            thingService.save(thing)
-            flash.message = message(code: 'default.created.message', args: [message(code: 'thing.label', default: 'Thing'), thing.id])
+            projectService.save(project)
+            flash.message = message(code: 'default.created.message', args: [message(code: 'project.label', default: 'Project'), project.id])
         } catch (ValidationException e) {
-            flash.message = thing.errors
+            flash.message = project.errors
         }
 
         if (params.url) {
@@ -97,17 +98,17 @@ class ThingController extends cn.edu.cup.common.CommonController {
             view = params.view
         }
 
-        def thing = thingService.get(id)
+        def project = projectService.get(id)
 
         if (request.xhr) {
-            render(template: view, model: [thing: thing])
+            render(template: view, model: [project: project])
         } else {
-            respond thing
+            respond project
         }
     }
 
-    def update(Thing thing) {
-        if (thing == null) {
+    def update(Project project) {
+        if (project == null) {
             notFound()
             return
         }
@@ -123,10 +124,10 @@ class ThingController extends cn.edu.cup.common.CommonController {
         }
 
         try {
-            thingService.save(thing)
-            flash.message = message(code: 'default.updated.message', args: [message(code: 'thing.label', default: 'Thing'), thing.id])
+            projectService.save(project)
+            flash.message = message(code: 'default.updated.message', args: [message(code: 'project.label', default: 'Project'), project.id])
         } catch (ValidationException e) {
-            flash.message = thing.errors
+            flash.message = project.errors
         }
 
         if (controller == "")
@@ -143,8 +144,8 @@ class ThingController extends cn.edu.cup.common.CommonController {
             return
         }
 
-        thingService.delete(id)
-        flash.message = message(code: 'default.deleted.message', args: [message(code: 'thing.label', default: 'Thing'), id])
+        projectService.delete(id)
+        flash.message = message(code: 'default.deleted.message', args: [message(code: 'project.label', default: 'Project'), id])
 
         def action = "index"
         if (params.nextAction) {
@@ -167,7 +168,7 @@ class ThingController extends cn.edu.cup.common.CommonController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'thing.label', default: 'Thing'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'project.label', default: 'Project'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

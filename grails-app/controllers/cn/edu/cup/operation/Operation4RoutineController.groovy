@@ -22,6 +22,7 @@ class Operation4RoutineController extends CommonController {
             case "我的课程":
                 break
             case "我的登录":
+                params.myself = myself.name
                 break
         }
     }

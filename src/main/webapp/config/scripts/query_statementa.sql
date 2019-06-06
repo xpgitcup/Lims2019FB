@@ -3,15 +3,15 @@
 
  Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 50725
+ Source Server Version : 80015
  Source Host           : localhost:3306
  Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 02/06/2019 18:57:54
+ Date: 06/06/2019 22:44:43
 */
 
 SET NAMES utf8mb4;
@@ -25,17 +25,17 @@ CREATE TABLE `query_statementa`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `version` bigint(20) NOT NULL,
   `update_time` datetime(0) NOT NULL,
-  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `controller_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `issql` bit(1) NOT NULL,
   `need_to_query` bit(1) NOT NULL,
   `action_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 110 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -127,5 +127,15 @@ INSERT INTO `query_statementa` VALUES (96, 0, '2019-06-02 18:46:53', NULL, 'oper
 INSERT INTO `query_statementa` VALUES (97, 0, '2019-06-02 18:46:54', NULL, 'operation4TeamStudentProject', b'0', b'1', 'list', '[currentThing, max, offset]', NULL, '相关团队', NULL);
 INSERT INTO `query_statementa` VALUES (98, 0, '2019-06-02 18:46:54', NULL, 'operation4TeamStudentProject', b'0', b'1', 'count', '[]', NULL, '队员列表', NULL);
 INSERT INTO `query_statementa` VALUES (99, 0, '2019-06-02 18:46:54', NULL, 'operation4TeamStudentProject', b'0', b'1', 'list', '[max, offset]', NULL, '队员列表', NULL);
+INSERT INTO `query_statementa` VALUES (100, 1, '2019-06-06 21:47:01', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself]', 'select count(*) from Progress progress where progress.contributor=:myself', '我的进展', NULL);
+INSERT INTO `query_statementa` VALUES (101, 1, '2019-06-06 21:47:01', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset]', 'from Progress progress where progress.contributor=:myself order by regDate desc', '我的进展', 'listProgress');
+INSERT INTO `query_statementa` VALUES (102, 1, '2019-06-06 21:47:03', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself]', 'select count(*) from Team team where team.leader=:myself', '我的项目', NULL);
+INSERT INTO `query_statementa` VALUES (103, 2, '2019-06-06 21:47:03', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset]', 'from Team team where team.leader=:myself  order by team.thing.startDate desc', '我的项目', 'listTeamAsLeader');
+INSERT INTO `query_statementa` VALUES (104, 0, '2019-06-06 21:47:04', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself]', NULL, '我参与的', NULL);
+INSERT INTO `query_statementa` VALUES (105, 0, '2019-06-06 21:47:04', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset]', NULL, '我参与的', NULL);
+INSERT INTO `query_statementa` VALUES (106, 0, '2019-06-06 21:47:05', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself]', NULL, '我的课程', NULL);
+INSERT INTO `query_statementa` VALUES (107, 0, '2019-06-06 21:47:05', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset]', NULL, '我的课程', NULL);
+INSERT INTO `query_statementa` VALUES (108, 4, '2019-06-06 21:47:05', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself]', 'select count(*) from SystemStatus systemStatus where systemStatus.userName=:myself', '我的登录', NULL);
+INSERT INTO `query_statementa` VALUES (109, 5, '2019-06-06 21:47:05', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset]', 'from SystemStatus systemStatus where systemStatus.userName=:myself', '我的登录', 'listSystemStatus');
 
 SET FOREIGN_KEY_CHECKS = 1;

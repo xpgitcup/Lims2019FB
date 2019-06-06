@@ -7,7 +7,7 @@ class Thing {
     String name
     Person sponsor
     Date startDate = new Date()
-    double duration
+    Date endDate = new Date()
 
     static belongsTo = [thingType: ThingType]
 
@@ -17,7 +17,7 @@ class Thing {
         name(unique: true)
         sponsor()
         startDate(nullable: true)
-        duration(nullable: true)
+        endDate(nullable: true)
     }
 
     String toString() {

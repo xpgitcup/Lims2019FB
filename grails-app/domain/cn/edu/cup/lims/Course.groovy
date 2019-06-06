@@ -6,8 +6,11 @@ class Course extends Thing {
     String school_year
 
     static constraints = {
-        name()
+        name(unique: true)
         code()
+        sponsor()
+        startDate(nullable: true)
+        endDate(nullable: true)
         school_year()
     }
 
