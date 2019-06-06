@@ -39,7 +39,7 @@
                 <td>当前团队：${cn.edu.cup.lims.Progress.count()}</td>
             </tr>
             <tr>
-                <td><a href="database/importTeamMember">队员导入</a></td>
+                <td><a href="#">队员导入</a></td>
                 <td>当前团队：${cn.edu.cup.lims.Team.count()}</td>
             </tr>
             <tr>
@@ -47,11 +47,11 @@
                 <td>当前人员：${cn.edu.cup.basic.Person.count()}</td>
             </tr>
             <tr>
-                <td><a href="database/importThing">事情导入</a></td>
+                <td><a href="#">事情导入</a></td>
                 <td>当前事情：${cn.edu.cup.lims.Thing.count()}</td>
             </tr>
             <tr>
-                <td><a href="database/importTeam">团队导入</a></td>
+                <td><a href="#">团队导入</a></td>
                 <td>当前团队：${cn.edu.cup.lims.Team.count()}</td>
             </tr>
             </tbody>

@@ -72,6 +72,7 @@
 
 <!--第二行-->
 <div class="container-fluid">
+    <div class="row m-2"></div>
     <g:render template="home"/>
 </div>
 

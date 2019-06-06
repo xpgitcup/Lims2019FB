@@ -24,6 +24,14 @@ class PersonTitle implements SelfCheck {
         return name
     }
 
+    String status() {
+        def s = "Student"
+        if (bePartOfByName("教师")) {
+            s = "Teacher"
+        }
+        return s
+    }
+
     boolean bePartOfByName(String aTitleName) {
         //println("检查归属：${this} ${aTitleName}")
         def aTitle = PersonTitle.findByName(aTitleName)
@@ -42,7 +50,7 @@ class PersonTitle implements SelfCheck {
     @Override
     void selfCheck() {
         if (subTitles) {
-            subTitles.each { e->
+            subTitles.each { e ->
                 e.upTitle = this
                 e.selfCheck()
             }

@@ -18,6 +18,9 @@
 
 <div align="center" class="container-fluid">
     <asset:image src="cup/${cn.edu.cup.basic.Caption.findByName("main详细介绍")?.logo}"/>
+    <div class="row">
+
+    </div>
 </div>
 
 <div class="container-fluid">

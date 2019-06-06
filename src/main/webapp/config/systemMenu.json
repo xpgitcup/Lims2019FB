@@ -21,13 +21,13 @@
         "menuContext": "用户维护",
         "menuAction": "Operation4SystemUser/index",
         "menuDescription": "对系统的用户进行用户友好的维护",
-        "menuOrder": 10
+        "menuOrder": 20
       },
       {
         "menuContext": "查询维护A",
         "menuAction": "operation4QueryStatementA/index",
         "menuDescription": "对系统底层的查询语句进行维护",
-        "menuOrder": 40
+        "menuOrder": 30
       },
       {
         "menuContext": "路径维护",
@@ -39,13 +39,13 @@
         "menuContext": "底层维护",
         "menuAction": "home/basic",
         "menuDescription": "底层的数据维护",
-        "menuOrder": 40
+        "menuOrder": 50
       },
       {
         "menuContext": "数据整合",
         "menuAction": "database/index",
         "menuDescription": "整合其他数据库",
-        "menuOrder": 40
+        "menuOrder": 60
       }
     ]
   },
@@ -89,34 +89,14 @@
   },
   {
     "menuContext": "用户服务",
-    "menuAction": "#",
+    "menuAction": "operation4Routine/index",
     "menuDescription": "所有用户统一的",
-    "menuOrder": 0,
-    "menuItems": [
-      {
-        "menuContext": "动态菜单",
-        "menuAction": "userDefinedFunction/index",
-        "menuDescription": "动态的菜单",
-        "menuOrder": 0
-      },
-      {
-        "menuContext": "科研任务",
-        "menuAction": "Operation4Team/index?currentTask=科研任务",
-        "menuDescription": "各种项目的基础数据",
-        "menuOrder": 0
-      },
-      {
-        "menuContext": "教学任务",
-        "menuAction": "Operation4Team/index?currentTask=教学任务",
-        "menuDescription": "各种项目的基础数据",
-        "menuOrder": 0
-      }
-    ]
+    "menuOrder": 0
   },
   {
     "menuContext": "教师服务",
     "menuAction": "#",
-    "menuDescription": "所有用户统一的",
+    "menuDescription": "针对教师的服务",
     "menuOrder": 0,
     "menuItems": [
       {

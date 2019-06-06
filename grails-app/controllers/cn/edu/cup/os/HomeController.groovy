@@ -200,8 +200,11 @@ class HomeController extends CommonController {
             //println("找到了：${systemUser}")
             session.layout = Caption.findByName("main").layout
             session.systemUser = systemUser
-            session.userTitle = systemUser.personTitle()
             session.userName = systemUser.personName()
+            session.userTitle = systemUser.personTitle()
+            if (session.userTitle) {
+                session.userStatus = systemUser.personTitle().status()
+            }
             systemCommonService.updateSystemStatus(request, params)
             redirect(uri: "/home")
             //redirect(uri: "/")

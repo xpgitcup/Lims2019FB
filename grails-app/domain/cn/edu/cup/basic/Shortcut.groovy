@@ -9,6 +9,9 @@ class Shortcut {
     String iconFilename
 
     static constraints = {
+        personTitle()
+        systemMenu()
+        iconFilename(nullable: true)
     }
 
     String toString() {
