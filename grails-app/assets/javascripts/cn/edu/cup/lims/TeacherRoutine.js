@@ -1,13 +1,13 @@
 bootStrapPaginationSetting.identifier = "Routine"
 bootStrapPaginationSetting.controller = "operation4Routine"
 
-var tabs统一显示Div;
+var tabs教师服务Div;
 
 $(function(){
     console.info(document.title + "加载了...")
-    tabs统一显示Div = $("#tabs统一显示Div");
-    //setupPaginationBootStrap(tabs统一显示Div);
-    setupTabsBootStrap(tabs统一显示Div);
+    tabs教师服务Div = $("#tabs教师服务Div");
+    //setupPaginationBootStrap(tabs教师服务Div);
+    setupTabsBootStrap(tabs教师服务Div);
 })
 
 
@@ -17,4 +17,3 @@ $(function(){
 function appendParamsBootStrap(title) {
     return "";
 }
-

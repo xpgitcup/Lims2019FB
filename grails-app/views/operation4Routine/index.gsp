@@ -29,6 +29,6 @@
 </head>
 
 <body>
-    <g:render template="Routine"/>
+    <g:render template="${session.userStatus}Routine"/>
 </body>
 </html>

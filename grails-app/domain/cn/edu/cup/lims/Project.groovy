@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat
 class Project extends Thing {
 
     String companyA
-    Date startDate
-    double duration
 
     static constraints = {
         name(unique: true)
