@@ -90,6 +90,12 @@
         "menuAction": "operation4Plan/index",
         "menuDescription": "通用计划管理",
         "menuOrder": 5
+      },
+      {
+        "menuContext": "团队计划",
+        "menuAction": "operation4ProjectPlan/index",
+        "menuDescription": "团队计划管理",
+        "menuOrder": 5
       }
     ]
   },

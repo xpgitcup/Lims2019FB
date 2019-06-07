@@ -5,6 +5,7 @@ import cn.edu.cup.basic.PersonTitle
 import cn.edu.cup.lims.Course
 import cn.edu.cup.lims.Progress
 import cn.edu.cup.lims.Project
+import cn.edu.cup.lims.ProjectPlan
 import cn.edu.cup.lims.Team
 import cn.edu.cup.lims.Thing
 import cn.edu.cup.lims.ThingType
@@ -20,12 +21,68 @@ class DatabaseController {
     def teamService
     def progressService
     def dataSource
+    def projectPlanService
 
     def driverClassName = "com.mysql.cj.jdbc.Driver";//    #升级到这个版本是为了适应MySQL 8.X
     def username = "sample";
     def password = "sample@chuyun";
     //def url = "jdbc:mysql://10.1.16.50:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
     def url = "jdbc:mysql://localhost:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+
+    def importProjectPlanDetail() {
+        def qstring = "SELECT\n" +
+                "thing.name as thingName,\n" +
+                "person.code,\n" +
+                "person.name,\n" +
+                "project_plan_progress.progress_id,\n" +
+                "project_plan.description\n" +
+                "FROM\n" +
+                "project_plan_progress\n" +
+                "INNER JOIN project_plan ON project_plan_progress.project_plan_progresses_id = project_plan.id\n" +
+                "INNER JOIN team ON project_plan.team_id = team.id\n" +
+                "INNER JOIN person ON team.leader_id = person.id\n" +
+                "INNER JOIN thing ON team.thing_id = thing.id"
+        //def plist = []
+        theSQL.eachRow(qstring) { e ->
+            println("${e}")
+            def leader = Person.findByCode(e.code)
+            def thing = Thing.findByName(e.thingName)
+            def team = Team.findByThingAndLeader(thing, leader)
+            def description = e.description
+            def pid = e.progress_id
+            def progress = Progress.get(pid)
+            def projectPlan = ProjectPlan.findByTeamAndDescription(team, description)
+            if (projectPlan) {
+                if (!projectPlan.progresses) {
+                    projectPlan.progresses = []
+                }
+                projectPlan.progresses.add(progress)
+                projectPlanService.save(projectPlan)
+            } else {
+                println("找不到：${team},${leader}")
+            }
+        }
+        redirect(action: "index")
+    }
+
+    def importProjectPlan() {
+        def qstring = "SELECT\n" +
+                "thing.name as thingName,\n" +
+                "person.code as leaderCode,\n" +
+                "project_plan.id,\n" +
+                "project_plan.status,\n" +
+                "project_plan.description\n" +
+                "FROM\n" +
+                "project_plan\n" +
+                "INNER JOIN team ON project_plan.team_id = team.id\n" +
+                "INNER JOIN person ON team.leader_id = person.id\n" +
+                "INNER JOIN thing ON team.thing_id = thing.id"
+        //def plist = []
+        theSQL.eachRow(qstring) { e ->
+            println("${e}")
+        }
+        redirect(action: "index")
+    }
 
     def updateProgress() {
         def qstring = ""

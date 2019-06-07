@@ -35,6 +35,10 @@
             </thead>
             <tbody>
             <tr>
+                <td><a href="database/importProjectPlanDetail">同步团队计划进度</a></td>
+                <td>当前团队计划进度：${cn.edu.cup.lims.ProjectPlan.count()}</td>
+            </tr>
+            <tr>
                 <td><a href="#">同步进度</a></td>
                 <td>当前团队：${cn.edu.cup.lims.Progress.count()}</td>
             </tr>
