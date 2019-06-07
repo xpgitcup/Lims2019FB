@@ -32,15 +32,16 @@ class CommonQueryAService {
                 if (queryStatement.queryString) {
                     // 执行查询
                     def queryString = queryStatement.queryString
-                    println("列表查询：${queryString}")
+                    //println("列表查询：${queryString}")
                     if (queryStatement.isSQL) {
                         objectList = processParameters4SQL(queryString, leftParams)
                     } else {
                         (queryString, leftParams) = processSpecailParameter(queryString, leftParams)
+                        println("列表：${queryString} ${leftParams}")
                         objectList = QueryStatementA.executeQuery(queryString, leftParams)
                     }
                     result.objectList = objectList
-                    println("查询结果：${objectList}")
+                    //println("查询结果：${objectList}")
                 }
             }
         }

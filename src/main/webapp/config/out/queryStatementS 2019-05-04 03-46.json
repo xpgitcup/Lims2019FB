@@ -1,0 +1,414 @@
+[
+	{
+		"actionName":"list",
+		"controllerName":"operation4DataRootPath",
+		"isSQL":false,
+		"keyString":"DataRootPath",
+		"paramsString":"[max, offset]",
+		"queryString":"from DataRootPath dataRootPath",
+		"version":0,
+		"viewName":"listDataRootPath"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4DataRootPath",
+		"isSQL":false,
+		"keyString":"DataRootPath",
+		"paramsString":"[]",
+		"queryString":"select count(*) from DataRootPath dataRootPath",
+		"version":0
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Plan",
+		"isSQL":false,
+		"keyString":"Plan",
+		"paramsString":"[thingType]",
+		"queryString":"select count(*) from Plan plan \r\nwhere plan.thingType.id=cast(:thingType as integer) and plan.upPlan is null",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Plan",
+		"isSQL":false,
+		"keyString":"Plan",
+		"paramsString":"[max, offset, thingType]",
+		"queryString":"from Plan plan  \r\nwhere plan.thingType.id=cast(:thingType as integer) and plan.upPlan is null \r\norder by updateDate desc",
+		"version":1,
+		"viewName":"listPlan"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4QueryStatementA",
+		"isSQL":false,
+		"keyString":"QueryStatementA",
+		"paramsString":"[]",
+		"queryString":"select count(*) from QueryStatementA queryStatementA",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4QueryStatementA",
+		"isSQL":false,
+		"keyString":"QueryStatementA",
+		"paramsString":"[max, offset]",
+		"queryString":"from QueryStatementA queryStatementA\r\norder by controllerName, actionName,keyString",
+		"version":3,
+		"viewName":"listQueryStatementA"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4QueryStatementA",
+		"isSQL":false,
+		"keyString":"QueryStatementA",
+		"paramsString":"[like]",
+		"queryString":"select count(*) from QueryStatementA queryStatementA\r\nwhere queryStatementA.keyString like :like",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4QueryStatementA",
+		"isSQL":false,
+		"keyString":"QueryStatementA",
+		"paramsString":"[like, max, offset]",
+		"queryString":"from QueryStatementA queryStatementA \r\nwhere queryStatementA.keyString like :like\r\norder by controllerName, actionName,keyString",
+		"version":2,
+		"viewName":"listQueryStatementA"
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4QueryStatementA",
+		"isSQL":false,
+		"keyString":"QueryStatementA待编辑",
+		"paramsString":"[max, offset]",
+		"queryString":"from QueryStatementA queryStatementA \r\nwhere queryStatementA.queryString=null\r\norder by controllerName, actionName,keyString",
+		"version":6,
+		"viewName":"listQueryStatementA"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4QueryStatementA",
+		"isSQL":false,
+		"keyString":"QueryStatementA待编辑",
+		"paramsString":"[]",
+		"queryString":"select count(*) from QueryStatementA queryStatementA\r\nwhere queryStatementA.queryString=null",
+		"version":2
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4SystemUser",
+		"isSQL":false,
+		"keyString":"SystemUser",
+		"paramsString":"[max, offset]",
+		"queryString":"from SystemUser systemUser",
+		"version":0,
+		"viewName":"listSystemUser"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4SystemUser",
+		"isSQL":false,
+		"keyString":"SystemUser",
+		"paramsString":"[]",
+		"queryString":"select count(*) from SystemUser systemUser",
+		"version":0
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4ThingTypeCircle",
+		"isSQL":false,
+		"keyString":"ThingTypeCircle",
+		"paramsString":"[]",
+		"queryString":"select count(*) from ThingTypeCircle thingTypeCircle",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4ThingTypeCircle",
+		"isSQL":false,
+		"keyString":"ThingTypeCircle",
+		"paramsString":"[max, offset]",
+		"queryString":"from ThingTypeCircle thingTypeCircle order by thingType",
+		"version":1,
+		"viewName":"listThingTypeCircle"
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Person",
+		"isSQL":false,
+		"keyString":"专业",
+		"paramsString":"[max, offset]",
+		"queryString":"from Major major order by name",
+		"version":1,
+		"viewName":"listMajor"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Person",
+		"isSQL":false,
+		"keyString":"专业",
+		"paramsString":"[]",
+		"queryString":"select count(*) from Major major",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"可选题目",
+		"paramsString":"[max, offset, thingTypeList]",
+		"queryString":"from Thing thing where thing.thingType in :thingTypeList",
+		"version":1,
+		"viewName":"listThing"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"可选题目",
+		"paramsString":"[thingTypeList]",
+		"queryString":"select count(*) from Thing thing where thing.thingType in :thingTypeList",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Person",
+		"isSQL":false,
+		"keyString":"学生",
+		"paramsString":"[max, offset]",
+		"queryString":"from Student student \r\norder by personTitle, supervisor, gradeName,  major, code",
+		"version":2,
+		"viewName":"listStudent"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Person",
+		"isSQL":false,
+		"keyString":"学生",
+		"paramsString":"[]",
+		"queryString":"select count(*)\r\nfrom Student student",
+		"version":1
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Person",
+		"isSQL":true,
+		"keyString":"年级",
+		"paramsString":"[]",
+		"queryString":"SELECT Count(DISTINCT person.grade_name) FROM person WHERE person.grade_name IS NOT NULL",
+		"version":2
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Person",
+		"isSQL":true,
+		"keyString":"年级",
+		"paramsString":"[max, offset]",
+		"queryString":"SELECT DISTINCT person.grade_name FROM person WHERE person.grade_name IS NOT NULL limit %d,%d",
+		"version":1,
+		"viewName":"listGradeName"
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":true,
+		"keyString":"我参与的",
+		"paramsString":"[max, myself, offset, thingTypeList]",
+		"queryString":"SELECT team_person.team_members_id FROM team_person\r\nINNER JOIN team ON team_person.team_members_id = team.id\r\nINNER JOIN thing ON team.thing_id = thing.id\r\nINNER JOIN thing_type ON thing.thing_type_id = thing_type.id\r\nWHERE team_person.person_id=myself AND\r\nthing.thing_type_id IN (thingTypeList) \r\nlimit %d,%d",
+		"version":1,
+		"viewName":"listTeamRightAsMember"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":true,
+		"keyString":"我参与的",
+		"paramsString":"[myself, thingTypeList]",
+		"queryString":"SELECT count(*) FROM team_person\r\nINNER JOIN team ON team_person.team_members_id = team.id\r\nINNER JOIN thing ON team.thing_id = thing.id\r\nINNER JOIN thing_type ON thing.thing_type_id = thing_type.id\r\nWHERE\r\nteam_person.person_id=myself  AND\r\nthing.thing_type_id IN (thingTypeList)",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"我领导的",
+		"paramsString":"[max, myself, offset, thingTypeList]",
+		"version":0
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"我领导的",
+		"paramsString":"[myself, thingTypeList]",
+		"version":0
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Thing",
+		"isSQL":false,
+		"keyString":"教学",
+		"paramsString":"[max, offset]",
+		"queryString":"from Course course order by name",
+		"version":1,
+		"viewName":"listCourse"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Thing",
+		"isSQL":false,
+		"keyString":"教学",
+		"paramsString":"[]",
+		"queryString":"select count(*) from Course course",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Person",
+		"isSQL":false,
+		"keyString":"教师",
+		"paramsString":"[max, offset]",
+		"queryString":"from Teacher teacher\r\norder by name",
+		"version":1,
+		"viewName":"listTeacher"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Person",
+		"isSQL":false,
+		"keyString":"教师",
+		"paramsString":"[]",
+		"queryString":"select count(*) \r\nfrom Teacher teacher",
+		"version":2
+	},
+	{
+		"actionName":"list",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"登录-登录前",
+		"paramsString":"[max, offset]",
+		"queryString":"from SystemStatus systemStatus\r\norder by loginTime desc",
+		"version":1,
+		"viewName":"listSystemStatus"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"登录-登录前",
+		"paramsString":"[]",
+		"queryString":"select count(*) from SystemStatus systemStatus",
+		"version":2
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"相关团队",
+		"paramsString":"[currentThing, max, offset, thingTypeList]",
+		"queryString":"from Team team where team.thing=:currentThing and team.thing.thingType in :thingTypeList",
+		"version":1,
+		"viewName":"listTeamLeft"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"相关团队",
+		"paramsString":"[currentThing, thingTypeList]",
+		"queryString":"select count(*) from Team team where team.thing=:currentThing and team.thing.thingType in :thingTypeList",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4Thing",
+		"isSQL":false,
+		"keyString":"科研",
+		"paramsString":"[max, offset]",
+		"queryString":"from Project project order by name",
+		"version":1,
+		"viewName":"listProject"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4Thing",
+		"isSQL":false,
+		"keyString":"科研",
+		"paramsString":"[]",
+		"queryString":"select count(*) from Project project",
+		"version":1
+	},
+	{
+		"actionName":"count",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"近7天登录-登录前",
+		"paramsString":"[startDate]",
+		"queryString":"select count(*) from SystemStatus systemStatus\r\nwhere loginTime>:startDate",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"近7天登录-登录前",
+		"paramsString":"[max, offset, startDate]",
+		"queryString":"from SystemStatus systemStatus where loginTime>:startDate\r\norder by loginTime desc",
+		"version":1,
+		"viewName":"listSystemStatus"
+	},
+	{
+		"actionName":"list",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"近7天进度-登录前",
+		"paramsString":"[max, offset, startDate]",
+		"queryString":"from Progress progress where progress.regDate>:startDate\r\norder by regDate desc",
+		"version":2,
+		"viewName":"listProgressHome"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"近7天进度-登录前",
+		"paramsString":"[startDate]",
+		"queryString":"select count(*) from Progress progress\r\nwhere progress.regDate>:startDate",
+		"version":3
+	},
+	{
+		"actionName":"list",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"进度-登录前",
+		"paramsString":"[max, offset]",
+		"queryString":"from Progress progress \r\norder by regDate desc",
+		"version":2,
+		"viewName":"listProgressHome"
+	},
+	{
+		"actionName":"count",
+		"controllerName":"home",
+		"isSQL":false,
+		"keyString":"进度-登录前",
+		"paramsString":"[]",
+		"queryString":"select count(*) from Progress progress",
+		"version":1
+	},
+	{
+		"actionName":"list",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"队员列表",
+		"paramsString":"[currentTeam, max, offset]",
+		"version":0
+	},
+	{
+		"actionName":"count",
+		"controllerName":"operation4TeamTeacherProject",
+		"isSQL":false,
+		"keyString":"队员列表",
+		"paramsString":"[currentTeam]",
+		"version":0
+	}
+]

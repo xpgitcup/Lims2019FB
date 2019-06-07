@@ -6,12 +6,55 @@ var bootStrapPaginationSetting = {
 /*
 * 设置标签页的翻页属性
 * */
+function setupPagination4Card(theCardDiv) {
+    var pageSize = 10;
+    var pageSizeName;
+    var total;
+    var totalPageName;
+    var totalPage;
+    var totalCountName;
+    var currentPageName;
+    var currentPage = 1;
+    var title = theCardDiv.attr("title");
+    console.info("处理：" + bootStrapPaginationSetting.identifier + title + "!");
+    // 页长度
+    pageSizeName = "pageSize" + bootStrapPaginationSetting.identifier + title;
+    if (localStorage.hasOwnProperty(pageSizeName)) {
+        pageSize = parseInt(localStorage.getItem(pageSizeName))
+    } else {
+        localStorage.setItem(pageSizeName, pageSize);
+    }
+    $("#" + pageSizeName).html(pageSize);
+    // 总页数
+    total = countDataBootStrap(title);
+    totalPageName = "totalPage" + bootStrapPaginationSetting.identifier + title;
+    totalCountName = "totalCount" + bootStrapPaginationSetting.identifier + title;
+    totalPage = Math.ceil(total / pageSize)
+    $("#" + totalPageName).html(totalPage)
+    $("#" + totalCountName).html(total)
+    // 当前页
+    currentPageName = "currentPage" + bootStrapPaginationSetting.identifier + title;
+    currentPage = 1;
+    if (localStorage.hasOwnProperty(currentPageName)) {
+        currentPage = parseInt(localStorage.getItem(currentPageName));
+    }
+    // 如果当前页大于总页数，跳到开头
+    if (currentPage > totalPage) {
+        currentPage = 1
+    }
+    $("#" + currentPageName).html(currentPage);
+}
+
+/*
+* 设置标签页的翻页属性
+* */
 function setupPagination4Tab(theTab) {
     var pageSize = 10;
     var pageSizeName;
     var total;
     var totalPageName;
     var totalPage;
+    var totalCountName;
     var currentPageName;
     var currentPage = 1;
     var title = theTab.text.trim();
@@ -27,8 +70,10 @@ function setupPagination4Tab(theTab) {
     // 总页数
     total = countDataBootStrap(title);
     totalPageName = "totalPage" + bootStrapPaginationSetting.identifier + title;
+    totalCountName = "totalCount" + bootStrapPaginationSetting.identifier + title;
     totalPage = Math.ceil(total / pageSize)
     $("#" + totalPageName).html(totalPage)
+    $("#" + totalCountName).html(total)
     // 当前页
     currentPageName = "currentPage" + bootStrapPaginationSetting.identifier + title;
     currentPage = 1;

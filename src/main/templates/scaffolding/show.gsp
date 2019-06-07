@@ -18,6 +18,7 @@
         <title><g:message code="default.show.label" args="[entityName]" /></title>
     </head>
     <body>
+    <div class="card">
         <a href="#show-${propertyName}" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
@@ -29,7 +30,7 @@
         <div id="show-${propertyName}" class="content scaffold-show" role="main">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
             <g:if test="\${flash.message}">
-            <div class="message" role="status">\${flash.message}</div>
+                <div class="message" role="status">\${flash.message}</div>
             </g:if>
             <f:display bean="${propertyName}" />
             <g:form id="\${this.${propertyName}.id}" controller="\${params.controller}" action="delete" method="DELETE">
@@ -41,5 +42,6 @@
                 </fieldset>
             </g:form>
         </div>
+    </div>
     </body>
 </html>

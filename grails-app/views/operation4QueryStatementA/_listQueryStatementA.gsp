@@ -1,5 +1,6 @@
 <table class="table table-striped table-sm m-0 p-0">
     <thead>
+    <th>id</th>
     <th>Controller</th>
     <th>Action</th>
     <th>关键字</th>
@@ -12,6 +13,7 @@
     <tbody>
     <g:each in="${objectList}" var="item" status="i">
         <tr>
+            <td>${item.id}</td>
             <td>
                 <a href="operation4QueryStatementA/edit/${item.id}">${item.controllerName}</a>
                 <a href="javascript: deleteItem(${item.id})">删除</a>
@@ -20,8 +22,8 @@
             <td>${item.keyString}</td>
             <td>${item.paramsString}</td>
             <td>
-                <g:if test="${item.queryString?.length() > 90}">
-                    ${item.queryString.substring(0, 90)}...
+                <g:if test="${item.queryString?.length() > 60}">
+                    ${item.queryString.substring(0, 60)}...
                 </g:if>
                 <g:else>
                     ${item.queryString}

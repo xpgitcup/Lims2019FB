@@ -30,7 +30,7 @@
 
 <body>
 
-<div class="container-fluid ">
+<div class="container-fluid m-0 p-0">
     <ul id="operation4QueryStatementUl" class="nav navbar bg-light">
         <li>
             <a href="operation4QueryStatementA/exportToJsonFileName?fileName=config/out/queryStatementS"
@@ -39,17 +39,16 @@
         <li>
             <a href="operation4QueryStatementA/backup2file" class="save">备份SQL文件</a>
         </li>
-        <li>
+        <!--li>
             <a href="operation4QueryStatementA/importFromJsonFile?fileName=config/queryStatement.json"
                class="create">从Json文件导入</a>
-        </li>
+        </li-->
         <li>
             <a id="filter" href="javascript: listToDo()">待编辑&完成</a>
         </li>
-        <li>当前筛选条件</li>
-        <li id="currentFilter" style="color: red">${keyString}</li>
+        <li><span class="form-inline">筛选:<div id="currentFilter" class="text-danger">${keyString}</div></span></li>
         <li>
-            <a href="javascript: clearFilter()">清除筛选条件</a>
+            <a href="javascript: clearFilter()">清除筛选</a>
         </li>
         <li>
             <g:form onsubmit="return queryStatement()">
@@ -58,10 +57,18 @@
                 <input type="submit" name="查询" value="查询">
             </g:form>
         </li>
+        <li>
+            <g:form controller="operation4QueryStatementA" action="copyStatement">
+                <label>源->目标id</label>
+                <input type="text" id="sourceId" name="sourceId" value=""/>
+                <input type="text" id="targetId" name="targetId" value=""/>
+                <input type="submit" name="复制" value="复制">
+            </g:form>
+        </li>
     </ul>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid m-0 p-0">
     <!-- 具体卡片-->
     <div class="card">
         <!--具体的查询维护标签-->

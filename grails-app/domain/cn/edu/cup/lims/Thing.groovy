@@ -11,7 +11,7 @@ class Thing {
 
     static belongsTo = [thingType: ThingType]
 
-    static hasMany = [progresses: Progress]
+    static hasMany = [contacts: Person]
 
     static constraints = {
         name(unique: true)
@@ -24,4 +24,12 @@ class Thing {
         return "${name}"
     }
 
+    def relatedProgress() {
+        def tlist = Team.findAllByThing(this)
+        def c = 0
+        if (tlist.size()>0) {
+            c = Progress.countByTeamInList(tlist)
+        }
+        return c
+    }
 }

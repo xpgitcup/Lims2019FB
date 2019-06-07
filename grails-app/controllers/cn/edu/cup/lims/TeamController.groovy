@@ -1,6 +1,6 @@
 package cn.edu.cup.lims
 
-import grails.converters.JSON
+import grails.gorm.transactions.Transactional
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
@@ -27,7 +27,7 @@ class TeamController extends cn.edu.cup.common.CommonController {
         if (userResult) {
             model
         } else {
-            respond teamService.list(params), model:[teamCount: teamService.count()]
+            respond teamService.list(params), model: [teamCount: teamService.count()]
         }
     }
 
@@ -130,14 +130,14 @@ class TeamController extends cn.edu.cup.common.CommonController {
             flash.message = team.errors
         }
 
-        if (controller == "")
-        {
+        if (controller == "") {
             redirect(action: action)
         } else {
             redirect(controller: controller, action: action)
         }
     }
 
+    @Transactional(readOnly = false)
     def delete(Long id) {
         if (id == null) {
             notFound()
@@ -157,8 +157,7 @@ class TeamController extends cn.edu.cup.common.CommonController {
             controller = params.nextController
         }
 
-        if (controller == "")
-        {
+        if (controller == "") {
             redirect(action: action)
         } else {
             redirect(controller: controller, action: action)
@@ -171,7 +170,7 @@ class TeamController extends cn.edu.cup.common.CommonController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'team.label', default: 'Team'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

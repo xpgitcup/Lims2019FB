@@ -20,7 +20,7 @@ function setupPaginationQueryStatementA () {
     $("#" + currentPageName).html(currentPage);
     // 页长度
     var pageSizeName = "pageSizeQueryStatementA" + titleQueryStatementA;
-    var pageSize = 5;
+    var pageSize = 10;
     if (localStorage.hasOwnProperty(pageSizeName)) {
         pageSize = parseInt(localStorage.getItem(pageSizeName))
     } else {
@@ -209,7 +209,6 @@ function clearFilter() {
     sessionStorage.setItem("filter" + document.title, false)
     location.reload();
 }
-
 
 /*
 * 查询

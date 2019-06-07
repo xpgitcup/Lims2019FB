@@ -1,13 +1,29 @@
 bootStrapPaginationSetting.identifier = "Team"
 bootStrapPaginationSetting.controller = "operation4Team"
+var tipsOperation4Team;
+var leftTabsDiv;
+var rightTabDiv;
+var operation4TeamLeft;
+var operation4TeamRight;
 
-var card团队维护Div;
-
-$(function(){
+$(function () {
     console.info(document.title + "加载了...")
-    card团队维护Div = $("#card团队维护Div");
-    setupPagination4Card(card团队维护Div);
-    loadCurrentPageBootStrap("团队维护")
+
+    operation4TeamLeft = $("#operation4TeamLeft");
+    setupPaginationBootStrap(operation4TeamLeft);
+    setupTabsBootStrap(operation4TeamLeft);
+
+    operation4TeamRight = $("#operation4TeamRight");
+    setupPaginationBootStrap(operation4TeamRight);
+    setupTabsBootStrap(operation4TeamRight);
+
+    tipsOperation4Team = $("#tipsOperation4Team");
+
+    var ttt = $("#左边");
+    console.info(ttt);
+    console.info(ttt.children());
+    console.info(ttt.find("a.nav-link"));
+
 })
 
 
@@ -15,16 +31,47 @@ $(function(){
 * 生成附加参数
 * */
 function appendParamsBootStrap(title) {
-    return "";
+    var param = "";
+    var key = "currentKey";
+    var id = 0;
+    tipsOperation4Team = $("#tipsOperation4Team");
+
+    switch (title) {
+        case "可选项目":
+            tipsOperation4Team.html("可以创建团队，也可以查看团队！");
+            break
+        case "相关团队":
+            key += "可选项目";
+            id = readStorage(key, 0);
+            console.info("当前id:" + key + "=" + id);
+            if (id > 0) {
+                param = "&currentThing=" + id;
+                tipsOperation4Team.html("查看当前任务相关团队：" + id);
+            } else {
+                tipsOperation4Team.html("请先选择任务！");
+            }
+            break
+        case "队员列表":
+            key += "相关团队";
+            id = readStorage(key, 0);
+            console.info("当前id:" + key + "=" + id);
+            if (id > 0) {
+                param = "&currentTeam=" + id;
+                tipsOperation4Team.html("查看当前团队：" + id);
+            } else {
+                tipsOperation4Team.html("请先选择团队！");
+            }
+            break
+    }
+    return param;
 }
 
-function deleteTeam(id) {
-    console.info("删除教学任务：" + id);
-    ajaxExecuteWithMethod("operation4Team/delete?id=" + id, 'DELETE');
-    console.log("删除：" + id + "了！");
-    //location.reload();
+var tabsTitleRightCase = {
+    "科研任务.教师": ["我领导的", "我参与的"],
+    "科研任务.学生": ["我领导的", "我参与的"],
+    "教学任务.教师": ["我的课程"],
+    "教学任务.学生": ["我领导的", "我参与的"]
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*

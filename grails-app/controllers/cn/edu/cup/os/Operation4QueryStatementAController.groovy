@@ -6,6 +6,20 @@ import java.text.SimpleDateFormat
 
 class Operation4QueryStatementAController extends QueryStatementAController {
 
+    def copyStatement() {
+        def source = queryStatementAService.get(params.sourceId)
+        def target = queryStatementAService.get(params.targetId)
+        if (source.queryString) {
+            target.queryString = source.queryString
+            target.isSQL = source.isSQL
+        }
+        if (source.viewName) {
+            target.viewName = source.viewName
+        }
+        queryStatementAService.save(target)
+        redirect(action: "index")
+    }
+
     def backup2file() {
         def now = new Date()
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm")

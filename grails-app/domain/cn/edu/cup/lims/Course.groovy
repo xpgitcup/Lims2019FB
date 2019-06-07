@@ -3,7 +3,7 @@ package cn.edu.cup.lims
 class Course extends Thing {
 
     String code
-    String school_year
+    String schoolYear
 
     static constraints = {
         name(unique: true)
@@ -11,7 +11,7 @@ class Course extends Thing {
         sponsor()
         startDate(nullable: true)
         endDate(nullable: true)
-        school_year()
+        schoolYear()
     }
 
     String toString() {
