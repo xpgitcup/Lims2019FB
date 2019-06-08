@@ -54,12 +54,6 @@ class HomeController extends CommonController {
         }
     }
 
-    protected def processResult(result, params) {
-        println("Home ${params}")
-        println("Home ${result}")
-        return result
-    }
-
     /*
     修改密码
     * */

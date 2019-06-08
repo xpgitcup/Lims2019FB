@@ -8,6 +8,8 @@ import cn.edu.cup.lims.ThingType
 import cn.edu.cup.system.QueryStatementA
 import groovy.sql.Sql
 
+import java.text.SimpleDateFormat
+
 class Operation4RoutineController extends ProgressController {
 
     def dataSource
@@ -39,6 +41,7 @@ class Operation4RoutineController extends ProgressController {
         def myself = session.systemUser.person()
         def projectList = ThingType.findByName("科研项目").relatedThingTypeList()
         def courseList = ThingType.findByName("教学任务").relatedThingTypeList()
+        def sql = new Sql(dataSource)
 
         switch (params.key) {
             case "领导的项目":
@@ -46,10 +49,9 @@ class Operation4RoutineController extends ProgressController {
                 params.thingTypeList = projectList
                 break
             case "参与的项目":
-                def sql = new Sql(dataSource)
                 def c = []
-                sql.eachRow("select team_members_id from team_person where person_id=2") { e->
-                    println("${e}")
+                sql.eachRow("select team_members_id from team_person where person_id=${myself.id}") { e ->
+                    //println("${e}")
                     def t = Team.get(e.team_members_id)
                     c.add(t)
                 }
@@ -64,9 +66,18 @@ class Operation4RoutineController extends ProgressController {
                 params.thingTypeList = courseList
                 break
             case "本周进展统计":
-
+                params.myself = myself.id
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(new Date());
+                //System.out.println(calendar.get(Calendar.DAY_OF_MONTH));//今天的日期
+                calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) - 7);//让日期加1
+                //System.out.println(calendar.get(Calendar.DATE));//加1之后的日期Top
+                //println("日期：${calendar.getTime()}")
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+                params.startDate = sf.format(calendar.getTime())
                 break
             case "进展统计":
+                params.myself = myself.id
                 break
             case "带队的课程":
                 params.myself = myself
