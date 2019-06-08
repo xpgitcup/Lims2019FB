@@ -17,3 +17,10 @@ $(function(){
 function appendParamsBootStrap(title) {
     return "";
 }
+
+/*
+* 评估、交流
+* */
+function createNextProgress4Teacher(pid) {
+    var div = getCurrentTab()
+}

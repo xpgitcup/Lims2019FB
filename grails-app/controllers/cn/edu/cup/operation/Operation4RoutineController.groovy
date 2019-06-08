@@ -1,10 +1,35 @@
 package cn.edu.cup.operation
 
 import cn.edu.cup.common.CommonController
+import cn.edu.cup.lims.Progress
+import cn.edu.cup.lims.ProgressController
 import cn.edu.cup.lims.Team
 import cn.edu.cup.lims.ThingType
 
-class Operation4RoutineController extends CommonController {
+class Operation4RoutineController extends ProgressController {
+
+    def create() {
+        def view = "create"
+        if (params.view) {
+            view = params.view
+        }
+
+        def progress = new Progress(params)
+
+        //参数处理
+        def pre = progressService.get(params.preProgress)
+        if (pre) {
+            progress.prevProgress = pre
+            progress.team = pre.team
+        }
+        progress.contributor = session.systemUser.person()
+
+        if (request.xhr) {
+            render(template: view, model: [progress: progress])
+        } else {
+            respond progress
+        }
+    }
 
     protected void prepareParams() {
 
@@ -26,10 +51,10 @@ class Operation4RoutineController extends CommonController {
                 params.thingTypeList = courseList
                 break
             case "参与的项目":
-                params.myself = myself.id
-                def pidlist = []
-                projectList.each { e -> pidlist.add(e.id) }
-                params.thingTypeList = pidlist
+                //params.myself = myself.id
+                //def pidlist = []
+                //projectList.each { e -> pidlist.add(e.id) }
+                params.thingTypeList = projectList
                 break
             case "参与的课程":
                 params.myself = myself.id
@@ -47,6 +72,12 @@ class Operation4RoutineController extends CommonController {
     }
 
     protected def processResult(result, params) {
+
+        def myself = session.systemUser.person()
+        def currentTitle = session.systemUser.personTitle()
+        def projectList = ThingType.findByName("科研项目").relatedThingTypeList()
+        def courseList = ThingType.findByName("教学任务").relatedThingTypeList()
+
         switch (params.key) {
             case "队员列表":
                 def currentTeam = Team.get(params.currentTeam)
@@ -61,6 +92,13 @@ class Operation4RoutineController extends CommonController {
                 }
                 break
             case "参与的项目":
+                def q = Progress.createCriteria()
+                def c = q.list {
+                    myself in { progress.team.members }
+                    and { progress.team.thing.thingType in projectList }
+                }
+                result.objectList = c
+                break
             case "参与的课程":
                 def teams = []
                 println("结果：${result}")

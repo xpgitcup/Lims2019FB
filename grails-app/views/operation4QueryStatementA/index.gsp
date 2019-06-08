@@ -69,47 +69,8 @@
 </div>
 
 <div class="container-fluid m-0 p-0">
-    <!-- 具体卡片-->
-    <div class="card">
-        <!--具体的查询维护标签-->
-        <div id="display查询维护Div" class="card-body">
-            <br> 在这里显示查询维护所需的信息</br>
-        </div>
-
-        <div class="card-footer justify-content-center  m-0 pb-0">
-            <!-- 这里是分页设置-->
-            <ul class="pagination pagination-sm">
-                <li class="page-item">
-                    <a class="page-link">页长</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" id="pageSizeQueryStatementA查询维护"></a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript: loadQueryStatementAFirstPage()">首页</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="javascript: loadQueryStatementAPreviousPage()">&laquo</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" id="currentPageQueryStatementA查询维护"></a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link">/</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" id="totalPageQueryStatementA查询维护"></a>
-                </li>
-                <li>
-                    <a class="page-link" href="javascript: loadQueryStatementANextPage()">&raquo</a>
-                </li>
-                <li>
-                    <a class="page-link" href="javascript: loadQueryStatementALastPage()">末页</a>
-                </li>
-            </ul>
-        </div>
-        <!--具体的查询维护标签结束======-->
-    </div>
+    <g:render template="queryStatementAPanel"/>
+    <g:render template="queryDebug"/>
 </div>
 
 <g:if test="${flash.message}">

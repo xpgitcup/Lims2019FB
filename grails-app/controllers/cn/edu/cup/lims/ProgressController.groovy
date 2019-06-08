@@ -1,6 +1,5 @@
 package cn.edu.cup.lims
 
-import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 

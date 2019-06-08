@@ -26,8 +26,8 @@ class DatabaseController {
     def driverClassName = "com.mysql.cj.jdbc.Driver";//    #升级到这个版本是为了适应MySQL 8.X
     def username = "sample";
     def password = "sample@chuyun";
-    //def url = "jdbc:mysql://10.1.16.50:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
-    def url = "jdbc:mysql://localhost:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+    def url = "jdbc:mysql://10.1.16.50:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+    //def url = "jdbc:mysql://localhost:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
 
     def importProjectPlanDetail() {
         def qstring = "SELECT\n" +
@@ -43,11 +43,24 @@ class DatabaseController {
                 "INNER JOIN person ON team.leader_id = person.id\n" +
                 "INNER JOIN thing ON team.thing_id = thing.id"
         //def plist = []
+        def logFileName = "${commonService.webRootPath}/config/out/db.log"
+        def lofFile = new File(logFileName)
+        def printWriter = new PrintWriter(lofFile, "utf-8")
+
         theSQL.eachRow(qstring) { e ->
             println("${e}")
             def leader = Person.findByCode(e.code)
+            if (!leader) {
+                printWriter.println("找不到：${e.code} ${e.name}")
+            }
             def thing = Thing.findByName(e.thingName)
+            if (!thing) {
+                printWriter.println("找不到: ${e.thingName}")
+            }
             def team = Team.findByThingAndLeader(thing, leader)
+            if (!team) {
+                printWriter.println("找不到：${team},${leader}")
+            }
             def description = e.description
             def pid = e.progress_id
             def progress = Progress.get(pid)
@@ -60,8 +73,10 @@ class DatabaseController {
                 projectPlanService.save(projectPlan)
             } else {
                 println("找不到：${team},${leader}")
+                printWriter.println("找不到：${team},${description}")
             }
         }
+        printWriter.close()
         redirect(action: "index")
     }
 

@@ -22,12 +22,7 @@
             <td>${item.keyString}</td>
             <td>${item.paramsString}</td>
             <td>
-                <g:if test="${item.queryString?.length() > 60}">
-                    ${item.queryString.substring(0, 60)}...
-                </g:if>
-                <g:else>
-                    ${item.queryString}
-                </g:else>
+                <g:limitString source="${item.queryString}" length="60"></g:limitString>
             </td>
             <td>${item.viewName}</td>
             <td>${item.needToQuery}</td>

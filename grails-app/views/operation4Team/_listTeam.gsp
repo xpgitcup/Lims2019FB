@@ -22,6 +22,7 @@
         <th>id</th>
         <th>队长</th>
         <th>任务</th>
+        <th>任务类型</th>
         <th>队员</th>
         <th>计划</th>
         <th>进度数</th>
@@ -45,9 +46,8 @@
                         <a href="operation4Team/delete?id=${item.id}&method=DELETE">删除</a>
                     </g:if>
                 </td>
-                <td>
-                    ${item.thing}
-                </td>
+                <td>${item.thing}</td>
+                <td>${item.thing.thingType}</td>
                 <td>${item.members?.size()}</td>
                 <td>${cn.edu.cup.lims.ProjectPlan.countByTeam(item)}</td>
                 <td>

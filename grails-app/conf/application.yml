@@ -109,7 +109,7 @@ dataSource:
     driverClassName: com.mysql.cj.jdbc.Driver   #升级到这个版本是为了适应MySQL 8.X
     username: sample
     password: sample@chuyun
-    #logSql: true
+    logSql: true
 
 environments:
     development:

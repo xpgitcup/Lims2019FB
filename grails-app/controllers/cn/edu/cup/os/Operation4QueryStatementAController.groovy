@@ -1,10 +1,16 @@
 package cn.edu.cup.os
 
+import cn.edu.cup.system.QueryStatementA
 import cn.edu.cup.system.QueryStatementAController
 
 import java.text.SimpleDateFormat
 
 class Operation4QueryStatementAController extends QueryStatementAController {
+
+    def queryDebug() {
+        def result = QueryStatementA.executeQuery(params.hql)
+        render(template: "debugLog", model: [result: result])
+    }
 
     def copyStatement() {
         def source = queryStatementAService.get(params.sourceId)
