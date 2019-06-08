@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 08/06/2019 17:35:16
+ Date: 08/06/2019 20:14:45
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `query_statementa`  (
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 165 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 168 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -114,8 +114,8 @@ INSERT INTO `query_statementa` VALUES (112, 2, '2019-06-07 08:49:41', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (113, 2, '2019-06-07 08:49:41', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset, thingTypeList]', 'from Team team where team.leader=:myself and team.thing.thingType in :thingTypeList\r\norder by team.thing.startDate desc', '我的项目', 'listTeamAsLeader');
 INSERT INTO `query_statementa` VALUES (114, 1, '2019-06-07 08:53:57', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself, thingTypeList]', 'select count(*) from Team team where team.leader=:myself  and team.thing.thingType in :thingTypeList', '我的课程', NULL);
 INSERT INTO `query_statementa` VALUES (115, 1, '2019-06-07 08:53:58', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset, thingTypeList]', 'from Team team where team.leader=:myself and team.thing.thingType in :thingTypeList\r\norder by team.thing.startDate desc', '我的课程', 'listTeamAsLeader');
-INSERT INTO `query_statementa` VALUES (116, 0, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '登录情况', NULL);
-INSERT INTO `query_statementa` VALUES (117, 0, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'list', '[max, offset]', NULL, '登录情况', NULL);
+INSERT INTO `query_statementa` VALUES (116, 2, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'count', '[]', 'select count(*) from SystemStatus systemStatus', '登录情况', NULL);
+INSERT INTO `query_statementa` VALUES (117, 2, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'list', '[max, offset]', 'from SystemStatus systemStatus  \r\norder by systemStatus.loginTime', '登录情况', 'listSystemStatus');
 INSERT INTO `query_statementa` VALUES (130, 2, '2019-06-07 11:35:18', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself, thingTypeList]', 'select count(*) from Progress progress \r\nwhere progress.team.leader=:myself  \r\nand progress.team.thing.thingType in :thingTypeList', '领导的项目', NULL);
 INSERT INTO `query_statementa` VALUES (131, 3, '2019-06-07 11:35:18', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset, thingTypeList]', 'from Progress progress \r\nwhere progress.team.leader=:myself  \r\nand progress.team.thing.thingType in :thingTypeList\r\norder by progress.regDate desc,\r\nprogress.contributor', '领导的项目', 'listProgressAsLeader4Teacher');
 INSERT INTO `query_statementa` VALUES (134, 1, '2019-06-07 11:45:22', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself, thingTypeList]', 'select count(*) from Team team where team.leader=:myself  and team.thing.thingType in :thingTypeList', '带队的课程', NULL);
@@ -142,9 +142,12 @@ INSERT INTO `query_statementa` VALUES (157, 0, '2019-06-08 17:08:39', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (158, 0, '2019-06-08 17:08:39', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, offset]', NULL, '本周进展统计', NULL);
 INSERT INTO `query_statementa` VALUES (159, 0, '2019-06-08 17:08:40', NULL, 'operation4Routine', b'0', b'1', 'count', '[]', NULL, '进展统计', NULL);
 INSERT INTO `query_statementa` VALUES (160, 0, '2019-06-08 17:08:40', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, offset]', NULL, '进展统计', NULL);
-INSERT INTO `query_statementa` VALUES (161, 0, '2019-06-08 17:31:15', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '进展统计', NULL);
-INSERT INTO `query_statementa` VALUES (162, 0, '2019-06-08 17:31:15', NULL, 'home', b'0', b'1', 'list', '[max, offset]', NULL, '进展统计', NULL);
-INSERT INTO `query_statementa` VALUES (163, 0, '2019-06-08 17:31:19', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '登录统计', NULL);
-INSERT INTO `query_statementa` VALUES (164, 0, '2019-06-08 17:31:19', NULL, 'home', b'0', b'1', 'list', '[max, offset]', NULL, '登录统计', NULL);
+INSERT INTO `query_statementa` VALUES (161, 3, '2019-06-08 17:31:15', NULL, 'home', b'1', b'1', 'count', '[]', 'SELECT \r\nCount(DISTINCT progress.contributor_id)\r\nFROM\r\nprogress\r\nINNER JOIN person ON progress.contributor_id = person.id', '进展统计', NULL);
+INSERT INTO `query_statementa` VALUES (162, 6, '2019-06-08 17:31:15', NULL, 'home', b'1', b'1', 'list', '[max, offset]', 'SELECT\r\nperson.`code`,\r\nperson.`name`,\r\ncount(*) AS cc\r\nFROM\r\nprogress\r\nINNER JOIN person ON progress.contributor_id = person.id\r\nGROUP BY\r\nprogress.contributor_id\r\nORDER BY cc desc\r\nlimit %d,%d', '进展统计', 'listContribution');
+INSERT INTO `query_statementa` VALUES (163, 2, '2019-06-08 17:31:19', NULL, 'home', b'1', b'1', 'count', '[]', 'SELECT \r\nCount(DISTINCT system_status.user_name)\r\nFROM\r\nsystem_status', '登录统计', NULL);
+INSERT INTO `query_statementa` VALUES (164, 2, '2019-06-08 17:31:19', NULL, 'home', b'1', b'1', 'list', '[max, offset]', 'SELECT DISTINCT\r\nCount(system_status.user_name) as cc,\r\nsystem_status.user_name\r\nFROM\r\nsystem_status\r\nGROUP BY\r\nsystem_status.user_name\r\nORDER BY cc desc', '登录统计', 'listLoginTimes');
+INSERT INTO `query_statementa` VALUES (165, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '我的进展', NULL);
+INSERT INTO `query_statementa` VALUES (166, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '我的登录', NULL);
+INSERT INTO `query_statementa` VALUES (167, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'list', '[max, offset]', NULL, '我的进展', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

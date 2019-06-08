@@ -98,8 +98,8 @@ function setupTabsBootStrap(tabsDiv) {
     // 每个标签绑定数据加载函数---
     var title;
     tabsDiv.find("a.nav-link").on("click", function (e) {
-        //console.info("激活事件：");
-        //console.info(e);
+        console.info("激活事件：");
+        console.info(e);
         //console.info(e.target);
         setupPagination4Tab(e.target);
         title = $(e.target).text().trim();
@@ -258,7 +258,7 @@ function loadDataBootStrap(title, currentPage) {
     var pageParams = getParams(currentPage, pageSize)
     var append = appendParamsBootStrap(title)
     var url = bootStrapPaginationSetting.controller + "/list" + pageParams + "&key=" + title + append;
-    //console.info("列表：" + url);
+    console.info("列表：" + url);
     ajaxRun(url, 0, "display" + title + "Div");
 }
 

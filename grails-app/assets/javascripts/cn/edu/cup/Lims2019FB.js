@@ -9,7 +9,6 @@ $(function(){
     tabs登录前Div = $("#tabs登录前Div");
     //setupPaginationBootStrap(tabs登录前Div);
     setupTabsBootStrap(tabs登录前Div);
-    console.log(bootStrapPaginationSetting.defaultPageSize)
 })
 
 

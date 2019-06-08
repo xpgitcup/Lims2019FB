@@ -8,12 +8,12 @@ class CommonController {
     def commonQueryAService
 
     def list() {
-        println("原始参数：${params}")
+        //println("原始参数：${params}")
         prepareParams()
-        println("处理后的参数：${params}")
+        //println("处理后的参数：${params}")
         def result = commonQueryAService.listFunction(params)
         result = processResult(result, params)
-        println("list查询结果：${result}")
+        //println("list查询结果：${result}")
         def view = result.view
         flash.message = result.message
         if (request.xhr) {

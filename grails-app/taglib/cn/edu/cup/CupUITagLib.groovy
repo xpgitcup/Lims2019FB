@@ -7,7 +7,7 @@ class CupUITagLib {
         def outString
         def tmp = attr.source.toString()//"${attr.source}"
         def len = Integer.parseInt(attr.length)
-        println("-->${tmp}  ${tmp.length()}")
+        //println("-->${tmp}  ${tmp.length()}")
         if (tmp.length() > len) {
             outString = tmp.substring(0, len - 3) + "..."
         } else {

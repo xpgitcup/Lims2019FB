@@ -37,7 +37,7 @@ class CommonQueryAService {
                         objectList = processParameters4SQL(queryString, leftParams)
                     } else {
                         (queryString, leftParams) = processSpecailParameter(queryString, leftParams)
-                        println("列表：${queryString} ${leftParams}")
+                        //println("列表：${queryString} ${leftParams}")
                         objectList = QueryStatementA.executeQuery(queryString, leftParams)
                     }
                     result.objectList = objectList
@@ -60,7 +60,7 @@ class CommonQueryAService {
             if (queryStatement.needToQuery) {
                 if (queryStatement.queryString) {
                     def queryString = queryStatement.queryString
-                    println("统计语句：${queryString}")
+                    //println("统计语句：${queryString}")
                     if (queryStatement.isSQL) {
                         def c = processParameters4SQL(queryString, leftParams)
                         count = [c[0].values()[0]]
@@ -87,7 +87,7 @@ class CommonQueryAService {
              leftParams
         ) = genericKey(params)
 
-        println("查询参数：${paramsString}")
+        //println("查询参数：${paramsString}")
         def queryStatement =
                 QueryStatementA.findByControllerNameAndActionNameAndKeyStringAndParamsString(
                         controllerName, actionName, keyString, paramsString)
@@ -100,9 +100,9 @@ class CommonQueryAService {
                     paramsString: paramsString
             )
             queryStatementAService.save(queryStatement)
-            println("创建查询：${queryStatement}")
+            //println("创建查询：${queryStatement}")
         }
-        println("参数值：${leftParams}")
+        //println("参数值：${leftParams}")
         [queryStatement, leftParams]
     }
 
@@ -150,14 +150,14 @@ class CommonQueryAService {
     List<GroovyRowResult> processParameters4SQL(queryString, Map leftParams) {
         def objectList
         def db = new Sql(dataSource)
-        println("执行SQL ${queryString} 参数：${leftParams}")
+        //println("执行SQL ${queryString} 参数：${leftParams}")
         // 处理分页
         if (queryString.contains('limit')) {
-            println("开始处理分页参数:")
+            //println("开始处理分页参数:")
             queryString = String.format(queryString, Integer.parseInt(leftParams.offset), Integer.parseInt(leftParams.max))
             leftParams.remove("offset")
             leftParams.remove("max")
-            println("植入分页控制：${queryString}")
+            //println("植入分页控制：${queryString}")
         }
         // 剔除分页控制后
         if (leftParams.size() > 0) {
@@ -165,18 +165,18 @@ class CommonQueryAService {
             def realSql
             leftParams.keySet().each { e ->
                 def v = "${leftParams.get(e)}"
-                println("植入参数：${e} ${v}")
+                //println("植入参数：${e} ${v}")
                 v = v.replace("[", "")
                 v = v.replace("]", "")
                 realSql = queryString.replaceAll(e, v)
                 queryString = realSql
             }
-            println("植入参数后最终结果：${queryString}")
+            //println("植入参数后最终结果：${queryString}")
             objectList = db.rows(queryString)//, ps)
         } else {
             objectList = db.rows(queryString)
         }
-        println("列表SQL: ${objectList}")
+        //println("列表SQL: ${objectList}")
         objectList
     }
 
