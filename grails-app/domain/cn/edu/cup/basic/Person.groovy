@@ -2,6 +2,7 @@ package cn.edu.cup.basic
 
 import cn.edu.cup.common.DataExchangeInterface
 import cn.edu.cup.common.SelfCheck
+import cn.edu.cup.lims.Team
 
 class Person implements SelfCheck {
 

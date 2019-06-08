@@ -1,13 +1,15 @@
 bootStrapPaginationSetting.identifier = "Home"
 bootStrapPaginationSetting.controller = "home"
+bootStrapPaginationSetting.defaultPageSize = 5
 
-var tabs首页内容Div;
+var tabs登录前Div;
 
 $(function(){
     console.info(document.title + "加载了...")
-    tabs首页内容Div = $("#tabs首页内容Div");
-    //setupPaginationBootStrap(tabs首页内容Div);
-    setupTabsBootStrap(tabs首页内容Div);
+    tabs登录前Div = $("#tabs登录前Div");
+    //setupPaginationBootStrap(tabs登录前Div);
+    setupTabsBootStrap(tabs登录前Div);
+    console.log(bootStrapPaginationSetting.defaultPageSize)
 })
 
 

@@ -1,13 +1,14 @@
 var bootStrapPaginationSetting = {
     identifier: "",
-    controller: ""
+    controller: "",
+    defaultPageSize: 10
 }
 
 /*
 * 设置标签页的翻页属性
 * */
 function setupPagination4Card(theCardDiv) {
-    var pageSize = 10;
+    var pageSize = bootStrapPaginationSetting.defaultPageSize;
     var pageSizeName;
     var total;
     var totalPageName;
@@ -19,10 +20,10 @@ function setupPagination4Card(theCardDiv) {
     console.info("处理：" + bootStrapPaginationSetting.identifier + title + "!");
     // 页长度
     pageSizeName = "pageSize" + bootStrapPaginationSetting.identifier + title;
-    if (localStorage.hasOwnProperty(pageSizeName)) {
-        pageSize = parseInt(localStorage.getItem(pageSizeName))
+    if (sessionStorage.hasOwnProperty(pageSizeName)) {
+        pageSize = parseInt(sessionStorage.getItem(pageSizeName))
     } else {
-        localStorage.setItem(pageSizeName, pageSize);
+        sessionStorage.setItem(pageSizeName, pageSize);
     }
     $("#" + pageSizeName).html(pageSize);
     // 总页数
@@ -35,8 +36,8 @@ function setupPagination4Card(theCardDiv) {
     // 当前页
     currentPageName = "currentPage" + bootStrapPaginationSetting.identifier + title;
     currentPage = 1;
-    if (localStorage.hasOwnProperty(currentPageName)) {
-        currentPage = parseInt(localStorage.getItem(currentPageName));
+    if (sessionStorage.hasOwnProperty(currentPageName)) {
+        currentPage = parseInt(sessionStorage.getItem(currentPageName));
     }
     // 如果当前页大于总页数，跳到开头
     if (currentPage > totalPage) {
@@ -49,7 +50,7 @@ function setupPagination4Card(theCardDiv) {
 * 设置标签页的翻页属性
 * */
 function setupPagination4Tab(theTab) {
-    var pageSize = 10;
+    var pageSize = bootStrapPaginationSetting.defaultPageSize;
     var pageSizeName;
     var total;
     var totalPageName;
@@ -61,10 +62,10 @@ function setupPagination4Tab(theTab) {
     //console.info("处理：" + bootStrapPaginationSetting.identifier + title + "!");
     // 页长度
     pageSizeName = "pageSize" + bootStrapPaginationSetting.identifier + title;
-    if (localStorage.hasOwnProperty(pageSizeName)) {
-        pageSize = parseInt(localStorage.getItem(pageSizeName))
+    if (sessionStorage.hasOwnProperty(pageSizeName)) {
+        pageSize = parseInt(sessionStorage.getItem(pageSizeName))
     } else {
-        localStorage.setItem(pageSizeName, pageSize);
+        sessionStorage.setItem(pageSizeName, pageSize);
     }
     $("#" + pageSizeName).html(pageSize);
     // 总页数
@@ -77,8 +78,8 @@ function setupPagination4Tab(theTab) {
     // 当前页
     currentPageName = "currentPage" + bootStrapPaginationSetting.identifier + title;
     currentPage = 1;
-    if (localStorage.hasOwnProperty(currentPageName)) {
-        currentPage = parseInt(localStorage.getItem(currentPageName));
+    if (sessionStorage.hasOwnProperty(currentPageName)) {
+        currentPage = parseInt(sessionStorage.getItem(currentPageName));
     }
     // 如果当前页大于总页数，跳到开头
     if (currentPage > totalPage) {
@@ -103,12 +104,12 @@ function setupTabsBootStrap(tabsDiv) {
         setupPagination4Tab(e.target);
         title = $(e.target).text().trim();
         //console.info("点击事件..." + title + "!")
-        localStorage.setItem(currentTabName, title); //记录缺省标签
+        sessionStorage.setItem(currentTabName, title); //记录缺省标签
         loadCurrentPageBootStrap(title)
     })
     // 处理缺省标签
-    if (localStorage.hasOwnProperty(currentTabName)) {
-        var title = localStorage.getItem(currentTabName);
+    if (sessionStorage.hasOwnProperty(currentTabName)) {
+        var title = sessionStorage.getItem(currentTabName);
         //console.info("激活" + title);
         var url = "a.nav-link:contains('" + title + "')"
         var tab = tabsDiv.find(url);
@@ -162,16 +163,16 @@ function loadCurrentPageBootStrap(title) {
 }
 
 /*
-* 获取当前页---从localStorage中获取
+* 获取当前页---从sessionStorage中获取
 * */
 function getCurrentPageBootStrap(title) {
     var currentPageName = "currentPage" + bootStrapPaginationSetting.identifier + title;
     var currentPageNumber
-    if (localStorage.hasOwnProperty(currentPageName)) {
-        currentPageNumber = parseInt(localStorage.getItem(currentPageName))
+    if (sessionStorage.hasOwnProperty(currentPageName)) {
+        currentPageNumber = parseInt(sessionStorage.getItem(currentPageName))
     } else {
         currentPageNumber = 1
-        localStorage.setItem(currentPageName, currentPageNumber)
+        sessionStorage.setItem(currentPageName, currentPageNumber)
     }
     return currentPageNumber
 }
@@ -182,7 +183,7 @@ function getCurrentPageBootStrap(title) {
 function showCurrentPageNumberBootStrap(title, currentPageNumber) {
     var currentPageName = "currentPage" + bootStrapPaginationSetting.identifier + title
     $("#" + currentPageName).html(currentPageNumber);
-    localStorage.setItem(currentPageName, currentPageNumber);
+    sessionStorage.setItem(currentPageName, currentPageNumber);
 }
 
 
@@ -200,7 +201,7 @@ function getTotalPageBootStrap(title) {
 * */
 function getPageSizeBootStrap(title) {
     var pageSizeName = "pageSize" + bootStrapPaginationSetting.identifier + title;
-    var pageSize = parseInt(localStorage.getItem(pageSizeName))
+    var pageSize = parseInt(sessionStorage.getItem(pageSizeName))
     return pageSize
 }
 

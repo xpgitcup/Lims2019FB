@@ -13,6 +13,7 @@
             <thead>
             <th>前情</th>
             <th>状态</th>
+            <th>项目</th>
             <th>贡献者</th>
             <th>问题</th>
             <th>支撑文件</th>
@@ -24,14 +25,13 @@
                     <td>${item?.prevProgress?.currentStatus}.${item?.prevProgress?.contributor}</td>
                     <td>
                         ${item.currentStatus}
-                        <g:if test="${item.contributor!=session.systemUser.person()}">
+                        <g:if test="${item.contributor != session.systemUser.person()}">
                             <a class="create" href="operation4Routine/create?preProgress=${item?.id}">评估/交流</a>
                         </g:if>
                         <a class="create" href="operation4Routine/create?preProgress=${item?.id}">指导</a>
                     </td>
-                    <td>
-                        ${item.contributor}
-                    </td>
+                    <td>${item.team.thing}</td>
+                    <td>${item.contributor}</td>
                     <td>${item.problemEncounter}</td>
                     <td>${item.supportFileName}</td>
                     <td>${item.regDate}</td>

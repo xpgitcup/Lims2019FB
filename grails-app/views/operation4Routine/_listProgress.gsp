@@ -13,6 +13,7 @@
             <thead>
             <th>前情</th>
             <th>状态</th>
+            <th>项目</th>
             <th>贡献者</th>
             <th>问题</th>
             <th>支撑文件</th>
@@ -22,10 +23,8 @@
             <g:each in="${objectList}" var="item" status="i">
                 <tr class="${(i % 2 == 0 ? 'even' : 'odd')}">
                     <td>${item?.prevProgress?.currentStatus}</td>
-                    <td>
-                        ${item.currentStatus}
-                        <a class="create" href="javascript: createNextProgress(${item?.id})">上报进度</a>
-                    </td>
+                    <td>${item.currentStatus}</td>
+                    <td>${item.team.thing}</td>
                     <td>${item.contributor}</td>
                     <td>${item.problemEncounter}</td>
                     <td>${item.supportFileName}</td>

@@ -5,17 +5,19 @@ import cn.edu.cup.lims.Progress
 import cn.edu.cup.lims.ProgressController
 import cn.edu.cup.lims.Team
 import cn.edu.cup.lims.ThingType
+import cn.edu.cup.system.QueryStatementA
+import groovy.sql.Sql
 
 class Operation4RoutineController extends ProgressController {
+
+    def dataSource
 
     def create() {
         def view = "create"
         if (params.view) {
             view = params.view
         }
-
         def progress = new Progress(params)
-
         //参数处理
         def pre = progressService.get(params.preProgress)
         if (pre) {
@@ -35,26 +37,40 @@ class Operation4RoutineController extends ProgressController {
 
         // 首先获取当前任务
         def myself = session.systemUser.person()
-        def currentTitle = session.systemUser.personTitle()
         def projectList = ThingType.findByName("科研项目").relatedThingTypeList()
         def courseList = ThingType.findByName("教学任务").relatedThingTypeList()
 
-        params.myself = myself
-
         switch (params.key) {
-            case "我的进展":
-                break
             case "领导的项目":
+                params.myself = myself
                 params.thingTypeList = projectList
-                break
-            case "带队的课程":
-                params.thingTypeList = courseList
                 break
             case "参与的项目":
-                //params.myself = myself.id
-                //def pidlist = []
-                //projectList.each { e -> pidlist.add(e.id) }
+                def sql = new Sql(dataSource)
+                def c = []
+                sql.eachRow("select team_members_id from team_person where person_id=2") { e->
+                    println("${e}")
+                    def t = Team.get(e.team_members_id)
+                    c.add(t)
+                }
+                params.relatedTeams = c
                 params.thingTypeList = projectList
+                break
+            case "我的进展":
+                params.myself = myself
+                break
+            case "我的课程":    //课程需要单独处理
+                params.myself = myself
+                params.thingTypeList = courseList
+                break
+            case "本周进展统计":
+
+                break
+            case "进展统计":
+                break
+            case "带队的课程":
+                params.myself = myself
+                params.thingTypeList = courseList
                 break
             case "参与的课程":
                 params.myself = myself.id
@@ -62,55 +78,11 @@ class Operation4RoutineController extends ProgressController {
                 courseList.each { e -> pidlist.add(e.id) }
                 params.thingTypeList = pidlist
                 break
-            case "我的课程":    //课程需要单独处理
-                params.thingTypeList = courseList
-                break
             case "我的登录":
+                params.myself = myself
                 params.myself = myself.name
                 break
         }
-    }
-
-    protected def processResult(result, params) {
-
-        def myself = session.systemUser.person()
-        def currentTitle = session.systemUser.personTitle()
-        def projectList = ThingType.findByName("科研项目").relatedThingTypeList()
-        def courseList = ThingType.findByName("教学任务").relatedThingTypeList()
-
-        switch (params.key) {
-            case "队员列表":
-                def currentTeam = Team.get(params.currentTeam)
-                if (currentTeam) {
-                    result.objectList = [currentTeam]
-                    result.team = currentTeam
-                    result.members = currentTeam.members.sort() { a, b ->
-                        a.code.compareTo(b.code)
-                    }
-                    //result.view = "listMember"
-                    result.view = "listMemberLeft"
-                }
-                break
-            case "参与的项目":
-                def q = Progress.createCriteria()
-                def c = q.list {
-                    myself in { progress.team.members }
-                    and { progress.team.thing.thingType in projectList }
-                }
-                result.objectList = c
-                break
-            case "参与的课程":
-                def teams = []
-                println("结果：${result}")
-                result.objectList.each { e ->
-                    println("查找 ${e}")
-                    teams.add(Team.get(e.team_members_id))
-                }
-                println("转换后：${teams}")
-                result.objectList = teams
-                break
-        }
-        return result
     }
 
     def index() {}
