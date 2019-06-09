@@ -16,7 +16,6 @@
         <th>姓名</th>
         <th>工号</th>
         <th>职称</th>
-        <th>学生</th>
         </thead>
         <tbody>
         <g:each in="${objectList}" var="item" status="i">
@@ -34,7 +33,6 @@
                 </td>
                 <td>${item.code}</td>
                 <td>${item.personTitle}</td>
-                <td>${item.students?.size()}</td>
             </tr>
         </g:each>
         </tbody>

@@ -32,6 +32,18 @@ class PersonTitle implements SelfCheck {
         return s
     }
 
+    List relatedTitles() {
+        def list = []
+        if (subTitles) {
+            subTitles.each { e ->
+                list.addAll(e.relatedTitles())
+            }
+        } else {
+            list.add(this)
+        }
+        return list
+    }
+
     boolean bePartOfByName(String aTitleName) {
         //println("检查归属：${this} ${aTitleName}")
         def aTitle = PersonTitle.findByName(aTitleName)

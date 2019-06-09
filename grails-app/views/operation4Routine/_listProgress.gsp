@@ -23,7 +23,10 @@
             <g:each in="${objectList}" var="item" status="i">
                 <tr class="${(i % 2 == 0 ? 'even' : 'odd')}">
                     <td>${item?.prevProgress?.currentStatus}</td>
-                    <td>${item.currentStatus}</td>
+                    <td>
+                        ${item.currentStatus}
+                        <a class="create" href="operation4Routine/create?preProgress=${item?.id}">上报/交流</a>
+                    </td>
                     <td>${item.team.thing}</td>
                     <td>${item.contributor}</td>
                     <td>${item.problemEncounter}</td>

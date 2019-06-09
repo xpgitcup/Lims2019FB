@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<div class="card">
+    <div>统计区间：${result.scope[0]}——${result.scope[1]}</div>
+</div>
 <div id="list-progress" class="content scaffold-list" role="main">
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>

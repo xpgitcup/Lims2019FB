@@ -3,15 +3,15 @@
 
  Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 80015
+ Source Server Version : 50725
  Source Host           : localhost:3306
  Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 80015
+ Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 08/06/2019 23:29:59
+ Date: 09/06/2019 10:49:46
 */
 
 SET NAMES utf8mb4;
@@ -25,17 +25,17 @@ CREATE TABLE `query_statementa`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `version` bigint(20) NOT NULL,
   `update_time` datetime(0) NOT NULL,
-  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `controller_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `issql` bit(1) NOT NULL,
   `need_to_query` bit(1) NOT NULL,
   `action_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 168 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 183 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -49,10 +49,8 @@ INSERT INTO `query_statementa` VALUES (6, 1, '2019-05-24 10:05:21', NULL, 'opera
 INSERT INTO `query_statementa` VALUES (7, 1, '2019-05-24 10:05:21', NULL, 'operation4ThingTypeCircle', b'0', b'1', 'list', '[max, offset]', 'from ThingTypeCircle thingTypeCircle order by thingType', '任务类型', 'listThingTypeCircle');
 INSERT INTO `query_statementa` VALUES (8, 1, '2019-05-27 16:18:51', NULL, 'operation4Team', b'0', b'1', 'count', '[thingTypeList]', 'select count(*) from Thing thing where thing.thingType in :thingTypeList', '可选项目', NULL);
 INSERT INTO `query_statementa` VALUES (9, 1, '2019-05-27 16:18:51', NULL, 'operation4Team', b'0', b'1', 'list', '[max, offset, thingTypeList]', 'from Thing thing where thing.thingType in :thingTypeList', '可选项目', 'listThing');
-INSERT INTO `query_statementa` VALUES (10, 1, '2019-05-21 17:18:52', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from Student student  order by personTitle, supervisor, gradeName,  major, code', '学生', 'listStudent');
-INSERT INTO `query_statementa` VALUES (11, 1, '2019-05-21 17:53:26', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from Student student', '学生', NULL);
-INSERT INTO `query_statementa` VALUES (12, 1, '2019-05-21 17:18:53', NULL, 'operation4Person', b'1', b'1', 'list', '[max, offset]', 'SELECT DISTINCT person.grade_name FROM person WHERE person.grade_name IS NOT NULL limit %d,%d', '年级', 'listGradeName');
-INSERT INTO `query_statementa` VALUES (13, 1, '2019-05-21 17:53:26', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'SELECT Count(DISTINCT person.grade_name) FROM person WHERE person.grade_name IS NOT NULL', '年级', NULL);
+INSERT INTO `query_statementa` VALUES (12, 2, '2019-05-21 17:18:53', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from GradeInfo gradeInfo', '年级', 'listGradeName');
+INSERT INTO `query_statementa` VALUES (13, 2, '2019-05-21 17:53:26', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from GradeInfo gradeInfo', '年级', NULL);
 INSERT INTO `query_statementa` VALUES (14, 1, '2019-05-19 17:19:05', NULL, 'home', b'0', b'1', 'count', '[]', 'select count(*) from Progress progress', '当前进度', NULL);
 INSERT INTO `query_statementa` VALUES (15, 1, '2019-05-19 17:19:05', NULL, 'home', b'0', b'1', 'list', '[max, offset]', 'from Progress progress order by regDate desc', '当前进度', 'listProgressHome');
 INSERT INTO `query_statementa` VALUES (16, 2, '2019-05-19 22:10:07', NULL, 'home', b'0', b'1', 'count', '[myself]', 'select count(*) from SystemStatus systemStatus where systemStatus.userName=:myself', '我的登录', NULL);
@@ -61,8 +59,6 @@ INSERT INTO `query_statementa` VALUES (20, 3, '2019-05-19 22:10:07', NULL, 'home
 INSERT INTO `query_statementa` VALUES (21, 4, '2019-05-19 22:10:09', NULL, 'home', b'0', b'1', 'list', '[max, myself, offset]', 'from Progress progress where progress.contributor=:myself order by regDate desc', '我的进展', 'listProgressHome');
 INSERT INTO `query_statementa` VALUES (24, 1, '2019-05-23 21:42:44', NULL, 'operation4Thing', b'0', b'1', 'count', '[]', 'select count(*) from Course course', '教学', NULL);
 INSERT INTO `query_statementa` VALUES (25, 2, '2019-05-23 22:18:59', NULL, 'operation4Thing', b'0', b'1', 'list', '[max, offset]', 'from Course course order by name', '教学', 'listCourse');
-INSERT INTO `query_statementa` VALUES (26, 1, '2019-05-21 17:18:50', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from Teacher teacher order by name', '教师', 'listTeacher');
-INSERT INTO `query_statementa` VALUES (27, 1, '2019-05-21 17:53:26', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from Teacher teacher', '教师', NULL);
 INSERT INTO `query_statementa` VALUES (28, 1, '2019-05-19 22:42:44', NULL, 'operation4DataRootPath', b'0', b'1', 'count', '[]', 'select count(*) from DataRootPath dataRootPath', '数据根目录', NULL);
 INSERT INTO `query_statementa` VALUES (29, 1, '2019-05-19 22:42:44', NULL, 'operation4DataRootPath', b'0', b'1', 'list', '[max, offset]', 'from DataRootPath dataRootPath order by keyString', '数据根目录', 'listDataRootPath');
 INSERT INTO `query_statementa` VALUES (30, 1, '2019-05-19 00:00:00', NULL, 'operation4QueryStatementA', b'0', b'1', 'count', '[]', 'select count(*) from QueryStatementA queryStatementA', '查询维护', NULL);
@@ -145,5 +141,13 @@ INSERT INTO `query_statementa` VALUES (166, 0, '2019-06-08 19:29:56', NULL, 'hom
 INSERT INTO `query_statementa` VALUES (167, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'list', '[max, offset]', NULL, '我的进展', NULL);
 INSERT INTO `query_statementa` VALUES (173, 2, '2019-06-08 23:24:40', NULL, 'operation4Routine', b'1', b'1', 'count', '[myself, startDate]', 'SELECT\r\nCount(DISTINCT progress.contributor_id)\r\nFROM\r\nprogress\r\nINNER JOIN team ON progress.team_id = team.id\r\nWHERE\r\nteam.leader_id = myself\r\nand progress.reg_date >= startDate', '本周进展统计', NULL);
 INSERT INTO `query_statementa` VALUES (174, 2, '2019-06-08 23:24:40', NULL, 'operation4Routine', b'1', b'1', 'list', '[max, myself, offset, startDate]', 'SELECT\r\nCount(progress.contributor_id) AS cc,\r\nprogress.contributor_id,\r\nperson.code,\r\nperson.name\r\nFROM\r\nprogress\r\nINNER JOIN team ON progress.team_id = team.id\r\nINNER JOIN person ON progress.contributor_id = person.id\r\nWHERE\r\nteam.leader_id = myself\r\nand progress.reg_date >= startDate\r\nGROUP BY\r\nprogress.contributor_id\r\nORDER BY\r\ncc DESC\r\nlimit %d,%d', '本周进展统计', 'listContribution');
+INSERT INTO `query_statementa` VALUES (175, 1, '2019-06-09 09:54:35', NULL, 'operation4Person', b'0', b'1', 'count', '[titleList]', 'select count(*) from Person person where person.personTitle in (:titleList)', '教师', NULL);
+INSERT INTO `query_statementa` VALUES (176, 2, '2019-06-09 09:54:36', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)', '教师', 'listTeacher');
+INSERT INTO `query_statementa` VALUES (177, 1, '2019-06-09 09:54:37', NULL, 'operation4Person', b'0', b'1', 'count', '[titleList]', 'select count(*) from Person person where person.personTitle in (:titleList)', '学生', NULL);
+INSERT INTO `query_statementa` VALUES (178, 1, '2019-06-09 09:54:37', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)', '学生', 'listStudent');
+INSERT INTO `query_statementa` VALUES (179, 2, '2019-06-09 10:13:50', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from TutorInfo tutorInfo', '导师', NULL);
+INSERT INTO `query_statementa` VALUES (180, 3, '2019-06-09 10:13:50', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from TutorInfo tutorInfo order by teacher', '导师', 'listTutor');
+INSERT INTO `query_statementa` VALUES (181, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from GroupInfo groupInfo', '课题组', NULL);
+INSERT INTO `query_statementa` VALUES (182, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from GroupInfo groupInfo  order by leader', '课题组', 'listGroup');
 
 SET FOREIGN_KEY_CHECKS = 1;

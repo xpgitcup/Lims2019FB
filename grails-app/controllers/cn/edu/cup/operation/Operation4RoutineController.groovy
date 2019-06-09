@@ -96,5 +96,36 @@ class Operation4RoutineController extends ProgressController {
         }
     }
 
+    protected def processResult(result, params) {
+        switch (params.key) {
+            case "本周进展统计":
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(new Date());
+                calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) - 7);//让日期加1
+                def dscope = Progress.executeQuery("select min(progress.regDate), max(progress.regDate) from Progress progress")[0]
+                println("${dscope}")
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); //java.sql.Timestamp
+                def scope = []
+                dscope.each { e ->
+                    scope.add(sf.format(e))
+                }
+                scope[0] = sf.format(calendar.getTime())
+                result.scope = scope
+                break
+            case "进展统计":
+                def dscope = Progress.executeQuery("select min(progress.regDate), max(progress.regDate) from Progress progress")[0]
+                println("${dscope}")
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd"); //java.sql.Timestamp
+                def scope = []
+                dscope.each { e ->
+                    //def ee = sf.parse(e)
+                    scope.add(sf.format(e))
+                }
+                result.scope = scope
+                break
+        }
+        return result
+    }
+
     def index() {}
 }
