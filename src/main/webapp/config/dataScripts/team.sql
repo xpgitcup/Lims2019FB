@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 05/06/2019 19:11:00
+ Date: 09/06/2019 15:00:02
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `team`  (
   INDEX `FK4lrv984nrutn7xe5bwap2p1le`(`leader_id`) USING BTREE,
   CONSTRAINT `FK4lrv984nrutn7xe5bwap2p1le` FOREIGN KEY (`leader_id`) REFERENCES `person` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FKakp3oh8ul8hjcycd0aq8x9836` FOREIGN KEY (`thing_id`) REFERENCES `thing` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of team
@@ -94,16 +94,17 @@ INSERT INTO `team` VALUES (55, 0, 16, 49);
 INSERT INTO `team` VALUES (56, 0, 15, 34);
 INSERT INTO `team` VALUES (57, 0, 22, 35);
 INSERT INTO `team` VALUES (58, 1, 23, 2);
-INSERT INTO `team` VALUES (59, 0, 14, 263);
-INSERT INTO `team` VALUES (60, 0, 21, 50);
-INSERT INTO `team` VALUES (61, 0, 13, 57);
-INSERT INTO `team` VALUES (62, 0, 6, 263);
-INSERT INTO `team` VALUES (63, 0, 2, 242);
-INSERT INTO `team` VALUES (64, 0, 19, 35);
-INSERT INTO `team` VALUES (65, 0, 2, 91);
-INSERT INTO `team` VALUES (66, 0, 2, 68);
-INSERT INTO `team` VALUES (67, 1, 25, 2);
-INSERT INTO `team` VALUES (68, 1, 26, 2);
-INSERT INTO `team` VALUES (69, 1, 24, 2);
+INSERT INTO `team` VALUES (59, 0, 23, 267);
+INSERT INTO `team` VALUES (60, 0, 14, 263);
+INSERT INTO `team` VALUES (61, 0, 21, 50);
+INSERT INTO `team` VALUES (62, 0, 13, 57);
+INSERT INTO `team` VALUES (63, 0, 6, 263);
+INSERT INTO `team` VALUES (64, 0, 2, 242);
+INSERT INTO `team` VALUES (65, 0, 19, 35);
+INSERT INTO `team` VALUES (66, 0, 2, 91);
+INSERT INTO `team` VALUES (67, 0, 2, 68);
+INSERT INTO `team` VALUES (68, 1, 25, 2);
+INSERT INTO `team` VALUES (69, 1, 26, 2);
+INSERT INTO `team` VALUES (70, 1, 24, 2);
 
 SET FOREIGN_KEY_CHECKS = 1;

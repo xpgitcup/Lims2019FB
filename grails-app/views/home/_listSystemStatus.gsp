@@ -1,27 +1,7 @@
 <!DOCTYPE html>
-<html>
-<head>
-<!-- 实现可定制的布局 -->
-    <g:if test="${layout}">
-        <meta name="layout" content="${layout}"/>
-    </g:if>
-    <g:else>
-        <g:if test="${session.layout}">
-            <meta name="layout" content="${session.layout}"/>
-        </g:if>
-        <g:else>
-            <meta name="layout" content="main"/>
-        </g:else>
-    </g:else>
-<!-- end 实现可定制的布局 -->
-    <g:set var="entityName" value="${message(code: 'systemStatus.label', default: 'SystemStatus')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
-</head>
-
-<body>
-<div id="list-systemStatus" class="card">
+<div class="content scaffold-list" role="main">
     <!--f:table collection="${objectList}"/-->
-    <table class="table table-striped m-0 p-0">
+    <table>
         <thead>
         <th>用户名</th>
         <th>IP</th>
@@ -40,5 +20,3 @@
         </tbody>
     </table>
 </div>
-</body>
-</html>

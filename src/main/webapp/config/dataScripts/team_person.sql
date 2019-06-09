@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 05/06/2019 19:11:09
+ Date: 09/06/2019 15:00:08
 */
 
 SET NAMES utf8mb4;
@@ -45,8 +45,8 @@ INSERT INTO `team_person` VALUES (5, 75);
 INSERT INTO `team_person` VALUES (5, 69);
 INSERT INTO `team_person` VALUES (5, 64);
 INSERT INTO `team_person` VALUES (5, 224);
-INSERT INTO `team_person` VALUES (68, 95);
-INSERT INTO `team_person` VALUES (69, 97);
+INSERT INTO `team_person` VALUES (69, 95);
+INSERT INTO `team_person` VALUES (70, 97);
 INSERT INTO `team_person` VALUES (4, 2);
 INSERT INTO `team_person` VALUES (4, 224);
 INSERT INTO `team_person` VALUES (4, 6);
@@ -90,7 +90,7 @@ INSERT INTO `team_person` VALUES (39, 134);
 INSERT INTO `team_person` VALUES (39, 132);
 INSERT INTO `team_person` VALUES (48, 165);
 INSERT INTO `team_person` VALUES (49, 185);
-INSERT INTO `team_person` VALUES (67, 94);
+INSERT INTO `team_person` VALUES (68, 94);
 INSERT INTO `team_person` VALUES (33, 256);
 INSERT INTO `team_person` VALUES (33, 255);
 INSERT INTO `team_person` VALUES (40, 94);
@@ -130,6 +130,6 @@ INSERT INTO `team_person` VALUES (34, 246);
 INSERT INTO `team_person` VALUES (34, 56);
 INSERT INTO `team_person` VALUES (6, 48);
 INSERT INTO `team_person` VALUES (6, 61);
-INSERT INTO `team_person` VALUES (58, NULL);
+INSERT INTO `team_person` VALUES (58, 267);
 
 SET FOREIGN_KEY_CHECKS = 1;

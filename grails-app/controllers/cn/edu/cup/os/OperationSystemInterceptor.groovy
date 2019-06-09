@@ -25,7 +25,7 @@ class OperationSystemInterceptor {
             //systemCommonService.updateSystemUserList(request)
             if (params.size() > 0) {
                 //println("记录日志...") -- 放在这是可以的
-                systemCommonService.updateSystemStatus(request, params)
+                //systemCommonService.updateSystemStatus(request, params)
             }
         }
         //继续执行原来的命令

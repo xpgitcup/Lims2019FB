@@ -55,6 +55,7 @@ class Operation4RoutineController extends ProgressController {
                     def t = Team.get(e.team_members_id)
                     c.add(t)
                 }
+                println("相关团队：${c}")
                 params.relatedTeams = c
                 params.thingTypeList = projectList
                 break

@@ -217,7 +217,7 @@ class InitService {
      */
     def configureForProduction(ServletContext servletContext) {
         println "这是发布环境..."
-        processConfigFile(servletContext)
+        //processConfigFile(servletContext)
     }
 
     /*

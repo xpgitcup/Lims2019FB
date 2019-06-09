@@ -35,15 +35,19 @@
             </thead>
             <tbody>
             <tr>
-                <td><a href="#database/importProjectPlanDetail">同步团队计划进度</a></td>
+                <td><a href="database/importSystemStatus">登录统计</a></td>
+                <td>登录：${cn.edu.cup.system.SystemStatus.count()}</td>
+            </tr>
+            <tr>
+                <td><a href="database/importProjectPlanDetail">同步团队计划进度</a></td>
                 <td>当前团队计划进度：${cn.edu.cup.lims.ProjectPlan.count()}</td>
             </tr>
             <tr>
-                <td><a href="#">同步进度</a></td>
-                <td>当前团队：${cn.edu.cup.lims.Progress.count()}</td>
+                <td><a href="database/updateProgress">同步进度</a></td>
+                <td>当前进度：${cn.edu.cup.lims.Progress.count()}</td>
             </tr>
             <tr>
-                <td><a href="#">队员导入</a></td>
+                <td><a href="#database/importTeamMember">队员导入</a></td>
                 <td>当前团队：${cn.edu.cup.lims.Team.count()}</td>
             </tr>
             <tr>
@@ -55,7 +59,7 @@
                 <td>当前事情：${cn.edu.cup.lims.Thing.count()}</td>
             </tr>
             <tr>
-                <td><a href="#">团队导入</a></td>
+                <td><a href="#database/importTeam">团队导入</a></td>
                 <td>当前团队：${cn.edu.cup.lims.Team.count()}</td>
             </tr>
             </tbody>

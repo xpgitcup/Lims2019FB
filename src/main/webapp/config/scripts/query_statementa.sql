@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 09/06/2019 10:49:46
+ Date: 09/06/2019 17:54:01
 */
 
 SET NAMES utf8mb4;
@@ -130,12 +130,12 @@ INSERT INTO `query_statementa` VALUES (147, 1, '2019-06-07 21:21:30', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (148, 2, '2019-06-07 21:21:30', NULL, 'operation4ProjectPlan', b'0', b'1', 'list', '[max, offset]', 'from ProjectPlan projectPlan\r\norder by team, upProjectPlan, serialNumber', '团队计划维护', 'listProjectPlan');
 INSERT INTO `query_statementa` VALUES (151, 3, '2019-06-08 09:48:24', NULL, 'operation4Routine', b'1', b'1', 'count', '[myself]', 'SELECT\r\nCount(DISTINCT progress.contributor_id)\r\nFROM\r\nprogress\r\nINNER JOIN team ON progress.team_id = team.id\r\nWHERE\r\nteam.leader_id = myself', '进展统计', NULL);
 INSERT INTO `query_statementa` VALUES (152, 4, '2019-06-08 09:48:24', NULL, 'operation4Routine', b'1', b'1', 'list', '[max, myself, offset]', 'SELECT\r\nCount(progress.contributor_id) AS cc,\r\nprogress.contributor_id,\r\nperson.code,\r\nperson.name\r\nFROM\r\nprogress\r\nINNER JOIN team ON progress.team_id = team.id\r\nINNER JOIN person ON progress.contributor_id = person.id\r\nWHERE\r\nteam.leader_id = myself\r\nGROUP BY\r\nprogress.contributor_id\r\nORDER BY\r\ncc DESC\r\nlimit %d,%d', '进展统计', 'listContribution');
-INSERT INTO `query_statementa` VALUES (155, 2, '2019-06-08 16:52:16', NULL, 'operation4Routine', b'0', b'1', 'count', '[relatedTeams, thingTypeList]', 'select count(*) from Progress progress\r\nwhere \r\nprogress.team in (:relatedTeams)\r\nand \r\nprogress.team.thing in (:thingTypeList)', '参与的项目', NULL);
-INSERT INTO `query_statementa` VALUES (156, 4, '2019-06-08 16:52:16', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, offset, relatedTeams, thingTypeList]', 'from Progress progress\r\nwhere \r\nprogress.team in (:relatedTeams)\r\nand \r\nprogress.team.thing in (:thingTypeList)\r\norder by progress.regDate desc, progress.team.thing', '参与的项目', 'listProgressAsMember');
+INSERT INTO `query_statementa` VALUES (155, 3, '2019-06-08 16:52:16', NULL, 'operation4Routine', b'0', b'1', 'count', '[relatedTeams, thingTypeList]', 'select count(*) from Progress progress\r\nwhere \r\nprogress.team in (:relatedTeams)\r\nand \r\nprogress.team.thing.thingType in (:thingTypeList)', '参与的项目', NULL);
+INSERT INTO `query_statementa` VALUES (156, 5, '2019-06-08 16:52:16', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, offset, relatedTeams, thingTypeList]', 'from Progress progress\r\nwhere \r\nprogress.team in (:relatedTeams)\r\nand \r\nprogress.team.thing.thingType in (:thingTypeList)\r\norder by progress.regDate desc, progress.team.thing', '参与的项目', 'listProgressAsMember');
 INSERT INTO `query_statementa` VALUES (161, 3, '2019-06-08 17:31:15', NULL, 'home', b'1', b'1', 'count', '[]', 'SELECT \r\nCount(DISTINCT progress.contributor_id)\r\nFROM\r\nprogress\r\nINNER JOIN person ON progress.contributor_id = person.id', '进展统计', NULL);
 INSERT INTO `query_statementa` VALUES (162, 6, '2019-06-08 17:31:15', NULL, 'home', b'1', b'1', 'list', '[max, offset]', 'SELECT\r\nperson.`code`,\r\nperson.`name`,\r\ncount(*) AS cc\r\nFROM\r\nprogress\r\nINNER JOIN person ON progress.contributor_id = person.id\r\nGROUP BY\r\nprogress.contributor_id\r\nORDER BY cc desc\r\nlimit %d,%d', '进展统计', 'listContribution');
 INSERT INTO `query_statementa` VALUES (163, 2, '2019-06-08 17:31:19', NULL, 'home', b'1', b'1', 'count', '[]', 'SELECT \r\nCount(DISTINCT system_status.user_name)\r\nFROM\r\nsystem_status', '登录统计', NULL);
-INSERT INTO `query_statementa` VALUES (164, 2, '2019-06-08 17:31:19', NULL, 'home', b'1', b'1', 'list', '[max, offset]', 'SELECT DISTINCT\r\nCount(system_status.user_name) as cc,\r\nsystem_status.user_name\r\nFROM\r\nsystem_status\r\nGROUP BY\r\nsystem_status.user_name\r\nORDER BY cc desc', '登录统计', 'listLoginTimes');
+INSERT INTO `query_statementa` VALUES (164, 3, '2019-06-08 17:31:19', NULL, 'home', b'1', b'1', 'list', '[max, offset]', 'SELECT DISTINCT\r\nCount(system_status.user_name) as cc,\r\nsystem_status.user_name\r\nFROM\r\nsystem_status\r\nGROUP BY\r\nsystem_status.user_name\r\nORDER BY cc desc\r\nlimit %d,%d', '登录统计', 'listLoginTimes');
 INSERT INTO `query_statementa` VALUES (165, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '我的进展', NULL);
 INSERT INTO `query_statementa` VALUES (166, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'count', '[]', NULL, '我的登录', NULL);
 INSERT INTO `query_statementa` VALUES (167, 0, '2019-06-08 19:29:56', NULL, 'home', b'0', b'1', 'list', '[max, offset]', NULL, '我的进展', NULL);

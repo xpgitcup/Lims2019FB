@@ -9,6 +9,7 @@ import cn.edu.cup.lims.ProjectPlan
 import cn.edu.cup.lims.Team
 import cn.edu.cup.lims.Thing
 import cn.edu.cup.lims.ThingType
+import cn.edu.cup.system.SystemStatus
 import groovy.sql.Sql
 
 class DatabaseController {
@@ -28,6 +29,30 @@ class DatabaseController {
     def password = "sample@chuyun";
     def url = "jdbc:mysql://10.1.16.50:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
     //def url = "jdbc:mysql://localhost:3306/lims2019db?zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=Asia/Shanghai"
+
+    def importSystemStatus() {
+        def logFileName = "${commonService.webRootPath}/config/out/db_status.log"
+        def lofFile = new File(logFileName)
+        def printWriter = new PrintWriter(lofFile, "utf-8")
+
+        def qstring = "select * from system_status order by login_time"
+        theSQL.eachRow(qstring) { e->
+            println("${e}")
+            if (SystemStatus.countBySessionId(e.session_id)<1) {
+                def ss = new SystemStatus(
+                        userName: e.user_name,
+                        loginTime: e.login_time,
+                        logoutTime: e.logout_time,
+                        sessionId: e.session_id,
+                        userRole: e.user_role
+                )
+                ss.save()
+            }
+        }
+
+        printWriter.close()
+        redirect(action: "index")
+    }
 
     def importProjectPlanDetail() {
         def qstring = "SELECT\n" +
@@ -100,6 +125,10 @@ class DatabaseController {
     }
 
     def updateProgress() {
+        def logFileName = "${commonService.webRootPath}/config/out/db_progress.log"
+        def lofFile = new File(logFileName)
+        def printWriter = new PrintWriter(lofFile, "utf-8")
+
         def qstring = ""
         def otherSql = new Sql(dataSource)
         def updateSql = new Sql(dataSource)
@@ -107,15 +136,25 @@ class DatabaseController {
         otherSql.eachRow("select id, team_id, current_status, contributor_id from progress order by id") { e ->
             println("新数据库：${e}")
 
-            def progress = Progress.get(e.id)
-
-            qstring = "select a.thing_id, a.leader_id, b.name as thingName, c.code, c.name from team a, thing b, person c where a.id=${e.team_id} and b.id=a.thing_id and c.id=a.leader_id"
+            def progress = Progress.get(e.id)   //进度的id
+            // 这个时候e.team_id还是旧的团队编号。
+            qstring = "select a.id, a.thing_id, a.leader_id, b.name as thingName, c.code, c.name from team a, thing b, person c where a.id=${e.team_id} and b.id=a.thing_id and c.id=a.leader_id"
             theSQL.eachRow(qstring) { ee ->
                 println("老数据库：${ee}")
                 def person = Person.findByCode(ee.code)
                 def thing = Thing.findByName(ee.thingName)
                 def team = Team.findByThingAndLeader(thing, person)
                 println("新库：${team.id} ${team}")
+                if (!thing) {
+                    printWriter.println("找不到事情：${ee.thingName}")
+                }
+                if (!person) {
+                    printWriter.println("找不到人：${ee.code}")
+                }
+                if (!team) {
+                    printWriter.println("找不到团队：${thing} ${person}")
+                }
+                printWriter.println("团队：${e.id} (${ee.code},${ee.thingName}) ${ee.id} -->${team.id}  ${team}")
                 //progress.team = team
                 updateSql.executeUpdate("update progress set team_id=${team.id} where id=${e.id}")
             }
@@ -125,12 +164,13 @@ class DatabaseController {
                 println("${ee}")
                 def cperson = Person.findByCode(ee.code)
                 println("贡献者 ${cperson.id} ${cperson}")
+                printWriter.println("${e.contributor_id} ${ee.code} ${ee.name} --> ${cperson.id} ${cperson}")
                 progress.contributor = cperson
             }
             println("=================================================================================================")
             progressService.save(progress)
         }
-
+        printWriter.close()
         redirect(action: "index")
     }
 
@@ -173,6 +213,10 @@ class DatabaseController {
     }
 
     def importTeamMember() {
+        def logFileName = "${commonService.webRootPath}/config/out/db_team_members.log"
+        def lofFile = new File(logFileName)
+        def printWriter = new PrintWriter(lofFile, "utf-8")
+
         def qstring = "select a.team_members_id, d.name, c.code from team_person a, team b, person c, thing d where a.team_members_id=b.id and a.person_id=c.id and b.thing_id=d.id"
         def mlist = []
         theSQL.eachRow(qstring) { e ->
@@ -195,6 +239,14 @@ class DatabaseController {
                 def thing = Thing.findByName(ee.thingName)
                 def t = Team.findByThingAndLeader(thing, leader)
                 println("找到团队：${t} ${t.members.size()} ${e.person}")
+
+                if (!thing) {
+                    printWriter.println("找不到事情：${thing} ${ee.thingName}")
+                }
+                if (!leader) {
+                    printWriter.println("找不到人：${thing} ${ee.code}")
+                }
+
                 if (!(t.members.contains(e.person))) {
                     t.members.add(e.person)
                     teamService.save(t)
@@ -207,11 +259,21 @@ class DatabaseController {
     }
 
     def importTeam() {
+        def logFileName = "${commonService.webRootPath}/config/out/db_team.log"
+        def lofFile = new File(logFileName)
+        def printWriter = new PrintWriter(lofFile, "utf-8")
+
         def qstring = "select a.thing_id, a.leader_id,  b.code, c.name from team a, person b, thing c where a.leader_id=b.id and a.thing_id=c.id order by a.id"
         theSQL.eachRow(qstring) { e ->
             println("${e} ${e.code} ${e.name}")
             def thing = Thing.findByName(e.name)
             def person = Person.findByCode(e.code)
+            if (!thing) {
+                printWriter.println("找不到事情：${thing} ${e.name}")
+            }
+            if (!person) {
+                printWriter.println("找不到人：${thing} ${e.code}")
+            }
             println("事情：${thing} 队长：${person}")
             if (Team.countByThingAndLeader(thing, person) < 1) {
                 def t = new Team(
@@ -221,6 +283,8 @@ class DatabaseController {
                 t.save()
             }
         }
+
+        printWriter.close()
 
         redirect(action: "index")
     }

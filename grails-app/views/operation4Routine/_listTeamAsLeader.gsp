@@ -31,7 +31,6 @@
             <tr class="${(i % 2 == 0 ? 'even' : 'odd')}">
                 <td>
                     ${item.leader}
-                    <a href="operation4ProjectPlan/index?currentTeam=${item.id}">进度维护</a>
                 </td>
                 <td>
                     ${item.thing}

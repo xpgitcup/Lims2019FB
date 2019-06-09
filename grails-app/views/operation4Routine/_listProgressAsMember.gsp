@@ -5,12 +5,13 @@
         <div class="message" role="status">${flash.message}</div>
     </g:if>
     <g:if test="${objectList.size() < 1}">
-        <a class="create" href="javascript: createCurrentProgress()">上报进度[${team}]</a>
+        <a class="create" href="operation4Routine/create">上报进度</a>
     </g:if>
     <g:else>
         <!--f:table collection="${objectList}"/-->
         <table>
             <thead>
+            <th>id</th>
             <th>前情</th>
             <th>状态</th>
             <th>项目</th>
@@ -22,7 +23,8 @@
             <tbody>
             <g:each in="${objectList}" var="item" status="i">
                 <tr class="${(i % 2 == 0 ? 'even' : 'odd')}">
-                    <td>${item?.prevProgress?.currentStatus}.${item?.prevProgress?.contributor}</td>
+                    <td>${item.id}</td>
+                    <td>${item?.prevProgress?.currentStatus}</td>
                     <td>
                         ${item.currentStatus}
                         <a class="create" href="operation4Routine/create?preProgress=${item?.id}">上报/交流</a>
@@ -31,7 +33,7 @@
                     <td>${item.contributor}</td>
                     <td>${item.problemEncounter}</td>
                     <td>${item.supportFileName}</td>
-                    <td>${item.regDate}</td>
+                    <td><g:limitString source="${item.regDate}" length="16"></g:limitString> </td>
                 </tr>
             </g:each>
             </tbody>
