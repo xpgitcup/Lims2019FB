@@ -37,7 +37,7 @@ class CommonQueryAService {
                         objectList = processParameters4SQL(queryString, leftParams)
                     } else {
                         (queryString, leftParams) = processSpecailParameter(queryString, leftParams)
-                        //println("列表：${queryString} ${leftParams}")
+                        println("列表：${queryString} ${leftParams}")
                         objectList = QueryStatementA.executeQuery(queryString, leftParams)
                     }
                     result.objectList = objectList
@@ -60,7 +60,7 @@ class CommonQueryAService {
             if (queryStatement.needToQuery) {
                 if (queryStatement.queryString) {
                     def queryString = queryStatement.queryString
-                    //println("统计语句：${queryString}")
+                    println("统计语句：${queryString}")
                     if (queryStatement.isSQL) {
                         def c = processParameters4SQL(queryString, leftParams)
                         count = [c[0].values()[0]]

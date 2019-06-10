@@ -18,6 +18,10 @@
         <a href="#div我的进展" class="nav-link" data-toggle="tab">
             我的进展
         </a>
+    </li><li class="nav-item">
+        <a href="#div待启动项目" class="nav-link" data-toggle="tab">
+            待启动项目
+        </a>
     </li>
     </ul>
 
@@ -195,6 +199,49 @@
             </ul>
         </div>
         <!--具体的我的进展标签结束======-->
+        <!--具体的待启动项目标签-->
+        <div id="div待启动项目" class="tab-pane">
+            <div id="display待启动项目Div">
+                <br> 在这里显示待启动项目所需的信息</br>
+            </div>
+            <!-- 这里是分页设置-->
+            <ul class="pagination pagination-sm">
+                <li class="page-item">
+                    <a class="page-link">页长</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" id="pageSizeRoutine待启动项目"></a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript: loadFirstPageBootStrap('待启动项目')">首页</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript: loadPreviousPageBootStrap('待启动项目')">&laquo</a>
+                </li>
+                <li class="page-item" >
+                    <a class="page-link" id="currentPageRoutine待启动项目"></a>
+                </li>
+                <li class="page-item" >
+                    <a class="page-link">/</a>
+                </li>
+                <li class="page-item" >
+                    <a class="page-link" id="totalPageRoutine待启动项目"></a>
+                </li>
+                <li>
+                    <a class="page-link" href="javascript: loadNextPageBootStrap('待启动项目')">&raquo</a>
+                </li>
+                <li>
+                    <a class="page-link" href="javascript: loadLastPageBootStrap('待启动项目')">尾页</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link">总记录数</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" id="totalCountRoutine待启动项目"></a>
+                </li>
+            </ul>
+        </div>
+        <!--具体的待启动项目标签结束======-->
 
     </div>
 </div>

@@ -3,15 +3,15 @@
 
  Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 50725
+ Source Server Version : 80015
  Source Host           : localhost:3306
  Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 09/06/2019 17:54:01
+ Date: 09/06/2019 21:03:32
 */
 
 SET NAMES utf8mb4;
@@ -25,17 +25,17 @@ CREATE TABLE `query_statementa`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `version` bigint(20) NOT NULL,
   `update_time` datetime(0) NOT NULL,
-  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `controller_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `issql` bit(1) NOT NULL,
   `need_to_query` bit(1) NOT NULL,
   `action_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 183 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 187 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -149,5 +149,7 @@ INSERT INTO `query_statementa` VALUES (179, 2, '2019-06-09 10:13:50', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (180, 3, '2019-06-09 10:13:50', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from TutorInfo tutorInfo order by teacher', '导师', 'listTutor');
 INSERT INTO `query_statementa` VALUES (181, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from GroupInfo groupInfo', '课题组', NULL);
 INSERT INTO `query_statementa` VALUES (182, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from GroupInfo groupInfo  order by leader', '课题组', 'listGroup');
+INSERT INTO `query_statementa` VALUES (185, 2, '2019-06-09 20:38:21', NULL, 'operation4Routine', b'0', b'1', 'count', '[allRelatedTeamList, startedTeams]', 'select count(*) from Team team\r\nwhere \r\n(team in (:allRelatedTeamList))\r\nand\r\n(team not in (:startedTeams))', '待启动项目', NULL);
+INSERT INTO `query_statementa` VALUES (186, 3, '2019-06-09 20:38:21', NULL, 'operation4Routine', b'0', b'1', 'list', '[allRelatedTeamList, max, offset, startedTeams]', 'from Team team\r\nwhere \r\n(team in (:allRelatedTeamList))                    \r\nand\r\n(team not in (:startedTeams))', '待启动项目', 'listTeamToStart');
 
 SET FOREIGN_KEY_CHECKS = 1;
