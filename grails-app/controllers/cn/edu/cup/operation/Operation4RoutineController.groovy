@@ -1,11 +1,13 @@
 package cn.edu.cup.operation
 
-import cn.edu.cup.common.CommonController
+
 import cn.edu.cup.lims.Progress
 import cn.edu.cup.lims.ProgressController
 import cn.edu.cup.lims.Team
 import cn.edu.cup.lims.ThingType
-import cn.edu.cup.system.QueryStatementA
+import cn.edu.cup.system.DataRootPath
+import grails.util.Environment
+import grails.validation.ValidationException
 import groovy.sql.Sql
 
 import java.text.SimpleDateFormat
@@ -13,6 +15,141 @@ import java.text.SimpleDateFormat
 class Operation4RoutineController extends ProgressController {
 
     def dataSource
+    def commonService
+
+    Boolean checkSupportFile(Progress progress) {
+        if (progress.supportFileName.isEmpty()) {
+            return true
+        } else {
+            def fileName = getRealFilePath(progress) + "${progress.supportFileName}"
+            def file = new File(fileName)
+            return file.exists()
+        }
+    }
+
+    def saveProgress(Progress progress) {
+        if (progress == null) {
+            notFound()
+            return
+        }
+        try {
+            progressService.save(progress)
+            flash.message = message(code: 'default.created.message', args: [message(code: 'progress.label', default: 'Progress'), progress.id])
+            if (!params.uploadedFile.empty) {
+                //处理文件上传
+                GString destDir = getRealFilePath(progress)
+                params.destDir = destDir
+                println("准备上传...")
+                println(destDir)
+                def sf = commonService.upload(params)
+                println("上传${sf}成功...")
+            }
+        } catch (ValidationException e) {
+            flash.message = e.message
+        }
+        redirect(action: "index")
+    }
+
+    private GString getRealFilePath(Progress progress) {
+        def key = "${Environment.current}.${params.controller}"
+        def target = DataRootPath.findByKeyString(key).rootPath;
+        println("当前环境：${key} ${target}")
+        def destDir = "${target}/documents/${progress.id}"
+        destDir
+    }
+
+    def doFixSupportFile() {
+
+        println("更新文件 ${params}")
+        def progress = progressService.get(params.id)
+        progress.supportFileName = params.supportFileName
+        progressService.save(progress)
+
+        uploadFile(params, progress)
+
+        def action = "index"
+        if (params.nextAction) {
+            action = params.nextAction
+        }
+
+        def controller = ""
+        if (params.nextController) {
+            controller = params.nextController
+        }
+
+        if (controller == "") {
+            redirect(action: action)
+        } else {
+            redirect(controller: controller, action: action)
+        }
+    }
+
+    def fixSupportFile(Long id) {
+
+        println("${params}")
+
+        def view = "fixSupportFile4Progress"
+        if (params.view) {
+            view = params.view
+        }
+
+        def progress = progressService.get(id)
+
+        println("编辑${progress}")
+
+        if (request.xhr) {
+            render(template: view, model: [progress: progress])
+        } else {
+            respond progress
+        }
+    }
+
+    def createNextProgress() {
+        def prevProgress = progressService.get(params.prevProgress)
+        def currentProjectPlan = ProjectPlan.get(params.currentProjectPlan)
+        def myself = session.systemUser.person()
+        def progress
+        if (prevProgress) {
+            progress = new Progress(
+                    team: prevProgress.team,
+                    prevProgress: prevProgress,
+                    contributor: myself
+            )
+            setupDate(prevProgress, progress)
+        } else {
+            progress = new Progress(
+                    team: currentProjectPlan.team,
+                    contributor: myself
+            )
+        }
+        def view = "createProgress"
+        if (request.xhr) {
+            render(template: view, model: [progress: progress, needToDo: params.needToDo])
+        } else {
+            respond progress
+        }
+    }
+
+    private void setupDate(Progress prevProgress, Progress progress) {
+        Date prev = prevProgress.regDate
+        Date now = progress.regDate
+        def dif = (now.getTime() - prev.getTime()) / 1000 / 60
+        println("时间差：${dif}")
+        if (dif < 1) {
+            def year = prevProgress.regDate[Calendar.YEAR]
+            def month = prevProgress.regDate[Calendar.MONTH]
+            def day = prevProgress.regDate[Calendar.DATE]
+            def hour = prevProgress.regDate[Calendar.HOUR_OF_DAY]
+            def minute = prevProgress.regDate[Calendar.MINUTE] + 1
+            println("时间没有错开！${year} ${month} ${day} ${hour} ${minute}")
+            //progress.regDate = new Date(year: year, month: month, date: day, hours: hour, minutes: minute)    //不对--完全是乱的
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm")
+            progress.regDate = df.parse("${year}-${month + 1}-${day} ${hour}:${minute}")    // 月份+1
+            println("修正后的时间：${progress.regDate}")
+        } else {
+            println("两个时间：${prevProgress.regDate} ${prevProgress.regDate}")
+        }
+    }
 
     def create() {
         def view = "create"

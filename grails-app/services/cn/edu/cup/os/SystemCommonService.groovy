@@ -1,5 +1,6 @@
 package cn.edu.cup.os
 
+import cn.edu.cup.basic.Person
 import cn.edu.cup.system.StatusParameter
 import cn.edu.cup.system.SystemAttribute
 import cn.edu.cup.system.SystemStatus
@@ -121,18 +122,16 @@ class SystemCommonService {
         }
     }
 
-    boolean addPersonToUser(person) {
+    boolean addPersonToUser(Person person) {
         def role = SystemAttribute.findByName("系统权限")
-        switch (person.class.simpleName) {
-            case "Teacher":
-                role = SystemAttribute.findByName("教师权限")
-                break
-            case "Student":
-                role = SystemAttribute.findByName("学生权限")
-                break
+        if (person.personTitle.bePartOfByName("教师")) {
+            role = SystemAttribute.findByName("教师权限")
+        }
+        if (person.personTitle.bePartOfByName("学生")) {
+            role = SystemAttribute.findByName("学生权限")
         }
         if (SystemUser.countByUserName(person.code) < 1) {
-            def app = person.class.simpleName
+            def app = person.personTitle.name
             def u = new SystemUser(
                     userName: person.code,
                     password: "12345678",

@@ -45,7 +45,7 @@
                 </g:eachError>
             </ul>
         </g:hasErrors>
-        <g:uploadForm id="${this.progress.id}" action="save" controller="${params.controller}" method="POST">
+        <g:uploadForm id="${this.progress.id}" action="saveProgress" controller="${params.controller}" method="POST">
             <fieldset class="form">
                 <!--f:all bean="progress"/-->
                 <div class="fieldcontain ${hasErrors(bean: this.progress, field: 'prevProgress', 'error')} ">

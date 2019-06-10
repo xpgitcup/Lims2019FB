@@ -6,5 +6,13 @@
   {
     "keyString": "PRODUCTION.operation4Progress",
     "rootPath": "/home/documents/lims2019dc"
+  },
+  {
+    "keyString": "DEVELOPMENT.operation4Routine",
+    "rootPath": "e:/home"
+  },
+  {
+    "keyString": "PRODUCTION.operation4Routine",
+    "rootPath": "/home/documents/lims2019dc"
   }
 ]

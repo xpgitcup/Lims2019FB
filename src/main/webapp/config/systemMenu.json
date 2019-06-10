@@ -107,22 +107,8 @@
   },
   {
     "menuContext": "教师服务",
-    "menuAction": "#",
+    "menuAction": "operation4TeacherRoutine/index",
     "menuDescription": "针对教师的服务",
-    "menuOrder": 0,
-    "menuItems": [
-      {
-        "menuContext": "科研任务",
-        "menuAction": "operation4TeamTeacherProject/index",
-        "menuDescription": "教师处理各种科研项目",
-        "menuOrder": 0
-      },
-      {
-        "menuContext": "教学任务",
-        "menuAction": "operation4TeamTeacherCourse/index",
-        "menuDescription": "教室处理各种教学任务",
-        "menuOrder": 0
-      }
-    ]
+    "menuOrder": 0
   }
 ]

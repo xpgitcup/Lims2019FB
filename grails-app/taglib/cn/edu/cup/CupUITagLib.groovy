@@ -3,6 +3,7 @@ package cn.edu.cup
 class CupUITagLib {
     static defaultEncodeAs = [taglib: 'html']
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
+
     def limitString = { attr, body ->
         def outString
         def tmp = attr.source.toString()//"${attr.source}"

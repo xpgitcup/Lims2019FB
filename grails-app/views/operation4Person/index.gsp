@@ -33,34 +33,38 @@
     <div class="card">
         <ul id="operation4PersonUl" class="nav navbar bg-light p-0">
             <li>
-                <a id="currentTemplate" href="">下载模板</a>
-            </li>
-            <li><a id="currentImport">导入数据</a></li>
-            <li>
-                <g:uploadForm method="post" action="importFromFile">
-                    <ul>
-                        <li>
-                            <input type="file" name="uploadedFile"/>
-                        </li>
-                        <li>
-                            <input type="hidden" name="key" value="" id="importKey"/>
-                        </li>
-                        <li>
-                            <input type="submit" value="ok">
-                        </li>
-                    </ul>
-                </g:uploadForm>
+                <div id="newPerson">
+                    <g:form controller="operation4Person" action="save">
+                        <ul>
+                            <li>编号</li>
+                            <li><input type="text" name="code"></li>
+                            <li>姓名</li>
+                            <li><input type="text" name="name"></li>
+                            <li>类型</li>
+                            <li>
+                                <g:select from="${cn.edu.cup.basic.PersonTitle.list()}" name="personTitle"
+                                          optionValue="name" optionKey="id">
+                                </g:select>
+                            </li>
+                            <li>
+                                <input type="submit" value="ok">
+                            </li>
+                        </ul>
+                    </g:form>
+                </div>
             </li>
         </ul>
     </div>
 
     <g:render template="personTabs"/>
+
+    <g:if test="${flash.message}">
+        <div class="card">
+            <div class="message" role="status">${flash.message}</div>
+        </div>
+    </g:if>
+
 </div>
-
-
-<g:if test="${flash.message}">
-    <div class="message" role="status">${flash.message}</div>
-</g:if>
 
 </body>
 </html>

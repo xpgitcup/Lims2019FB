@@ -1,11 +1,12 @@
 var bootStrapPaginationSetting = {
     identifier: "",
     controller: "",
-    defaultPageSize: 10
+    defaultPageSize: 10,
+    onTabShift: null
 }
 
 /*
-* 设置标签页的翻页属性
+* 设置Card的翻页属性
 * */
 function setupPagination4Card(theCardDiv) {
     var pageSize = bootStrapPaginationSetting.defaultPageSize;
@@ -106,6 +107,12 @@ function setupTabsBootStrap(tabsDiv) {
         //console.info("点击事件..." + title + "!")
         sessionStorage.setItem(currentTabName, title); //记录缺省标签
         loadCurrentPageBootStrap(title)
+        // 切换tab事件 ...
+        if (bootStrapPaginationSetting.onTabShift!=null) {
+            var todo = eval(bootStrapPaginationSetting.onTabShift);
+            console.log("切换标签...");
+            todo(title);
+        }
     })
     // 处理缺省标签
     if (sessionStorage.hasOwnProperty(currentTabName)) {
