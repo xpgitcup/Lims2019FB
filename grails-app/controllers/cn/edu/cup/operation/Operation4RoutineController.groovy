@@ -49,15 +49,15 @@ class Operation4RoutineController extends ProgressController {
                 params.thingTypeList = projectList
                 break
             case "参与的项目":
-                def c = []
-                sql.eachRow("select team_members_id from team_person where person_id=${myself.id}") { e ->
-                    //println("${e}")
-                    def t = Team.get(e.team_members_id)
-                    c.add(t)
-                }
-                println("相关团队：${c}")
+                List c = relatedTeamList(sql, myself)
                 params.relatedTeams = c
                 params.thingTypeList = projectList
+                break
+            case "待启动项目":
+                def startedTeamList = Progress.executeQuery("select distinct progress.team from Progress progress")
+                def allRelatedTeamList = allRelatedTeamList(sql, myself)
+                params.startedTeamList = startedTeamList
+                params.allRelatedTeamList = allRelatedTeamList
                 break
             case "我的进展":
                 params.myself = myself
@@ -95,6 +95,28 @@ class Operation4RoutineController extends ProgressController {
                 params.myself = myself.name
                 break
         }
+    }
+
+    private List allRelatedTeamList(Sql sql, myself) {
+        def c = Team.findAllByLeader(myself)    //先找到领导的团队
+        sql.eachRow("select team_members_id from team_person where person_id=${myself.id}") { e ->
+            //println("${e}")
+            def t = Team.get(e.team_members_id)
+            c.add(t)    // 再加入参与的团队
+        }
+        println("相关团队：${c}")
+        c
+    }
+
+    private List relatedTeamList(Sql sql, myself) {
+        def c = []
+        sql.eachRow("select team_members_id from team_person where person_id=${myself.id}") { e ->
+            //println("${e}")
+            def t = Team.get(e.team_members_id)
+            c.add(t)
+        }
+        println("相关团队：${c}")
+        c
     }
 
     protected def processResult(result, params) {

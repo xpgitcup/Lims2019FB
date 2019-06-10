@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 09/06/2019 17:54:01
+ Date: 10/06/2019 08:56:45
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `query_statementa`  (
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 183 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 187 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -149,5 +149,7 @@ INSERT INTO `query_statementa` VALUES (179, 2, '2019-06-09 10:13:50', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (180, 3, '2019-06-09 10:13:50', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from TutorInfo tutorInfo order by teacher', '导师', 'listTutor');
 INSERT INTO `query_statementa` VALUES (181, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'count', '[]', 'select count(*) from GroupInfo groupInfo', '课题组', NULL);
 INSERT INTO `query_statementa` VALUES (182, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from GroupInfo groupInfo  order by leader', '课题组', 'listGroup');
+INSERT INTO `query_statementa` VALUES (185, 1, '2019-06-10 08:46:56', NULL, 'operation4Routine', b'0', b'1', 'count', '[allRelatedTeamList, startedTeamList]', 'select count(*) from Team team\r\nwhere \r\n(team in (:allRelatedTeamList))\r\nand \r\n(team not in (:startedTeamList))', '待启动项目', NULL);
+INSERT INTO `query_statementa` VALUES (186, 3, '2019-06-10 08:46:57', NULL, 'operation4Routine', b'0', b'1', 'list', '[allRelatedTeamList, max, offset, startedTeamList]', 'from Team team\r\nwhere \r\n(team in (:allRelatedTeamList))\r\nand \r\n(team not in (:startedTeamList))', '待启动项目', 'listTeamToStart');
 
 SET FOREIGN_KEY_CHECKS = 1;
