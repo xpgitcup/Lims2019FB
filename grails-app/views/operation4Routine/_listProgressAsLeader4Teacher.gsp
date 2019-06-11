@@ -11,9 +11,9 @@
         <!--f:table collection="${objectList}"/-->
         <table>
             <thead>
-            <th>id</th>
+            <th width="5%">id</th>
             <th>前情</th>
-            <th>状态</th>
+            <th width="30%">状态</th>
             <th>项目</th>
             <th>贡献者</th>
             <th>问题</th>

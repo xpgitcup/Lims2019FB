@@ -4,7 +4,7 @@
   and open the template in the editor.
 -->
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="cn.edu.cup.basic.PersonTitle" contentType="text/html;charset=UTF-8" %>
 
 <html>
 <head>
@@ -29,41 +29,50 @@
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="card">
-        <ul id="operation4PersonUl" class="nav navbar bg-light p-0">
-            <li>
-                <div id="newPerson">
-                    <g:form controller="operation4Person" action="save">
-                        <ul>
-                            <li>编号</li>
-                            <li><input type="text" name="code"></li>
-                            <li>姓名</li>
-                            <li><input type="text" name="name"></li>
-                            <li>类型</li>
-                            <li>
-                                <g:select from="${cn.edu.cup.basic.PersonTitle.list()}" name="personTitle"
-                                          optionValue="name" optionKey="id">
-                                </g:select>
-                            </li>
-                            <li>
-                                <input type="submit" value="ok">
-                            </li>
-                        </ul>
-                    </g:form>
-                </div>
-            </li>
-        </ul>
-    </div>
+<div class="container-fluid m-0 p-0">
+    <ul id="operation4PersonUl" class="nav navbar bg-light">
+        <li>
+            <div id="newTeacher">
+                <g:form controller="operation4Person" action="save">
+                    <ul>
+                        <label>编号</label>
+                        <input type="text" name="code">
+                        <label>姓名</label>
+                        <input type="text" name="name">
+                        <lable>类型</lable>
+                        <g:select from="${cn.edu.cup.basic.PersonTitle.findAllByUpTitle(cn.edu.cup.basic.PersonTitle.findByName("教师"))}" name="personTitle"
+                                  optionValue="name" optionKey="id">
+                        </g:select>
+                        <input type="submit" value="ok">
+                    </ul>
+                </g:form>
+            </div>
+            <div id="newStudent">
+                <g:form controller="operation4Person" action="save">
+                    <ul>
+                        <label>编号</label>
+                        <input type="text" name="code">
+                        <label>姓名</label>
+                        <input type="text" name="name">
+                        <lable>类型</lable>
+                        <g:select from="${cn.edu.cup.basic.PersonTitle.findAllByUpTitle(cn.edu.cup.basic.PersonTitle.findByName("学生"))}" name="personTitle"
+                                  optionValue="name" optionKey="id">
+                        </g:select>
+                        <input type="submit" value="ok">
+                    </ul>
+                </g:form>
+            </div>
+        </li>
+    </ul>
+</div>
 
+<div class="container-fluid m-0 p-0">
     <g:render template="personTabs"/>
-
     <g:if test="${flash.message}">
         <div class="card">
             <div class="message" role="status">${flash.message}</div>
         </div>
     </g:if>
-
 </div>
 
 </body>

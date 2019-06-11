@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 10/06/2019 17:44:54
+ Date: 11/06/2019 10:43:04
 */
 
 SET NAMES utf8mb4;
@@ -111,7 +111,7 @@ INSERT INTO `query_statementa` VALUES (113, 2, '2019-06-07 08:49:41', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (114, 3, '2019-06-07 08:53:57', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself, thingTypeList]', 'select count(*) \r\nfrom \r\nProgress progress where progress.team.thing.sponsor=:myself  \r\nand \r\nprogress.team.thing.thingType in :thingTypeList', '我的课程', NULL);
 INSERT INTO `query_statementa` VALUES (115, 6, '2019-06-07 08:53:58', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset, thingTypeList]', 'from \r\nProgress progress where progress.team.thing.sponsor=:myself  \r\nand \r\nprogress.team.thing.thingType in :thingTypeList\r\norder by progress.regDate desc, progress.team.thing', '我的课程', 'listProgress4Course');
 INSERT INTO `query_statementa` VALUES (116, 2, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'count', '[]', 'select count(*) from SystemStatus systemStatus', '登录情况', NULL);
-INSERT INTO `query_statementa` VALUES (117, 2, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'list', '[max, offset]', 'from SystemStatus systemStatus  \r\norder by systemStatus.loginTime', '登录情况', 'listSystemStatus');
+INSERT INTO `query_statementa` VALUES (117, 3, '2019-06-07 09:43:48', NULL, 'home', b'0', b'1', 'list', '[max, offset]', 'from SystemStatus systemStatus  \r\norder by systemStatus.loginTime desc', '登录情况', 'listSystemStatus');
 INSERT INTO `query_statementa` VALUES (130, 2, '2019-06-07 11:35:18', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself, thingTypeList]', 'select count(*) from Progress progress \r\nwhere progress.team.leader=:myself  \r\nand progress.team.thing.thingType in :thingTypeList', '领导的项目', NULL);
 INSERT INTO `query_statementa` VALUES (131, 3, '2019-06-07 11:35:18', NULL, 'operation4Routine', b'0', b'1', 'list', '[max, myself, offset, thingTypeList]', 'from Progress progress \r\nwhere progress.team.leader=:myself  \r\nand progress.team.thing.thingType in :thingTypeList\r\norder by progress.regDate desc,\r\nprogress.contributor', '领导的项目', 'listProgressAsLeader4Teacher');
 INSERT INTO `query_statementa` VALUES (134, 2, '2019-06-07 11:45:22', NULL, 'operation4Routine', b'0', b'1', 'count', '[myself, thingTypeList]', 'select count(*) from Progress progress where progress.team.leader=:myself  and progress.team.thing.thingType in :thingTypeList', '带队的课程', NULL);

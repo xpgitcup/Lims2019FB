@@ -1,0 +1,9 @@
+table {
+  table-layout: fixed;
+}
+table tbody td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*# sourceMappingURL=tableConfig.css.map */

@@ -1,14 +1,16 @@
+<asset:stylesheet src="cup/tableConfig.css"/>
+
 <table class="table table-striped table-sm m-0 p-0">
     <thead>
-    <th>id</th>
-    <th>Controller</th>
-    <th>Action</th>
-    <th>关键字</th>
-    <th>参数</th>
-    <th>查询</th>
-    <th>视图</th>
-    <th>执行</th>
-    <th>isSQL</th>
+    <th width="5%">id</th>
+    <th width="10%">Controller</th>
+    <th width="5%">Action</th>
+    <th width="5%">关键字</th>
+    <th width="10%">参数</th>
+    <th width="45%">查询</th>
+    <th width="10%">视图</th>
+    <th width="5%">执行</th>
+    <th width="5%">isSQL</th>
     </thead>
     <tbody>
     <g:each in="${objectList}" var="item" status="i">
@@ -22,7 +24,7 @@
             <td>${item.keyString}</td>
             <td>${item.paramsString}</td>
             <td>
-                <g:limitString source="${item.queryString}" length="60"></g:limitString>
+                ${item.queryString}
             </td>
             <td>${item.viewName}</td>
             <td>${item.needToQuery}</td>

@@ -26,6 +26,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>${entityName}</title>
     <asset:javascript src="cn/edu/cup/lims/${entityName}.js"/>
+
+    <asset:stylesheet src="cup/tableConfig.css"/>
 </head>
 
 <body>
