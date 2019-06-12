@@ -53,7 +53,7 @@
     "menuContext": "基础维护",
     "menuAction": "#",
     "menuDescription": "维护基础数据",
-    "menuOrder": 0,
+    "menuOrder": 1,
     "menuItems": [
       {
         "menuContext": "人员类型",
@@ -100,15 +100,35 @@
     ]
   },
   {
+    "menuContext": "组织服务",
+    "menuAction": "#",
+    "menuDescription": "所有用户统一的",
+    "menuOrder": 2,
+    "menuItems": [
+      {
+        "menuContext": "课题组",
+        "menuAction": "operation4Organization/index",
+        "menuDescription": "课题组管理",
+        "menuOrder": 5
+      },
+      {
+        "menuContext": "学生班级",
+        "menuAction": "operation4Organization/index",
+        "menuDescription": "课题组管理",
+        "menuOrder": 5
+      }
+    ]
+  },
+  {
     "menuContext": "用户服务",
     "menuAction": "operation4Routine/index",
     "menuDescription": "所有用户统一的",
-    "menuOrder": 0
+    "menuOrder": 3
   },
   {
     "menuContext": "教师服务",
     "menuAction": "operation4TeacherRoutine/index",
     "menuDescription": "针对教师的服务",
-    "menuOrder": 0
+    "menuOrder": 4
   }
 ]

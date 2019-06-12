@@ -3,15 +3,15 @@
 
  Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 80015
+ Source Server Version : 50725
  Source Host           : localhost:3306
  Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 80015
+ Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 27/05/2019 22:29:33
+ Date: 12/06/2019 11:13:16
 */
 
 SET NAMES utf8mb4;
@@ -25,11 +25,11 @@ CREATE TABLE `system_attribute`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `version` bigint(20) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `up_attribute_id` bigint(20) DEFAULT NULL,
+  `up_attribute_id` bigint(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKa8ygck6uvyk4a6bb7ywe573xp`(`up_attribute_id`) USING BTREE,
   CONSTRAINT `FKa8ygck6uvyk4a6bb7ywe573xp` FOREIGN KEY (`up_attribute_id`) REFERENCES `system_attribute` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of system_attribute
@@ -49,5 +49,7 @@ INSERT INTO `system_attribute` VALUES (17, 0, '学生服务', 1);
 INSERT INTO `system_attribute` VALUES (18, 0, '用户服务', 1);
 INSERT INTO `system_attribute` VALUES (19, 0, '用户服务', 8);
 INSERT INTO `system_attribute` VALUES (20, 0, '用户服务', 9);
+INSERT INTO `system_attribute` VALUES (21, 0, '组织服务', 1);
+INSERT INTO `system_attribute` VALUES (22, 0, '组织服务', 8);
 
 SET FOREIGN_KEY_CHECKS = 1;
