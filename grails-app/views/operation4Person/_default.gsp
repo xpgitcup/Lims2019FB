@@ -12,6 +12,6 @@
         <title>Sample title</title>
     </head>
     <body>
-        <h1>${flash.message} <a href="operation4QueryStatement/index">列表&编辑</a></h1>
+        <h1>${flash.message} <a href="operation4QueryStatementA/index">列表&编辑</a></h1>
     </body>
 </html>

@@ -50,16 +50,15 @@ class Operation4PersonController extends PersonController {
 
     protected void prepareParams() {
 
-        // 首先获取当前任务
-        def teacher = PersonTitle.findByName("教师").relatedTitles()
-        def student = PersonTitle.findByName("学生").relatedTitles()
-
         switch (params.key) {
             case "教师":
-                params.titleList = teacher
+                params.titleList = PersonTitle.findByName("教师").relatedTitles()
                 break
-            case "学生":
-                params.titleList = student
+            case "本科生":
+                params.titleList = PersonTitle.findAllByName("本科生")
+                break
+            case "研究生":
+                params.titleList = PersonTitle.findByName("研究生").relatedTitles()
                 break
         }
     }

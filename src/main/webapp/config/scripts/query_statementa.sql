@@ -11,7 +11,7 @@
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 11/06/2019 10:43:04
+ Date: 12/06/2019 10:43:46
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `query_statementa`  (
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 187 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 203 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -151,5 +151,17 @@ INSERT INTO `query_statementa` VALUES (181, 1, '2019-06-09 10:13:51', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (182, 1, '2019-06-09 10:13:51', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset]', 'from GroupInfo groupInfo  order by leader', '课题组', 'listGroup');
 INSERT INTO `query_statementa` VALUES (185, 1, '2019-06-10 08:46:56', NULL, 'operation4Routine', b'0', b'1', 'count', '[allRelatedTeamList, startedTeamList]', 'select count(*) from Team team\r\nwhere \r\n(team in (:allRelatedTeamList))\r\nand \r\n(team not in (:startedTeamList))', '待启动项目', NULL);
 INSERT INTO `query_statementa` VALUES (186, 3, '2019-06-10 08:46:57', NULL, 'operation4Routine', b'0', b'1', 'list', '[allRelatedTeamList, max, offset, startedTeamList]', 'from Team team\r\nwhere \r\n(team in (:allRelatedTeamList))\r\nand \r\n(team not in (:startedTeamList))', '待启动项目', 'listTeamToStart');
+INSERT INTO `query_statementa` VALUES (187, 2, '2019-06-12 09:25:55', NULL, 'operation4Person', b'0', b'1', 'count', '[like, titleList]', 'select count(*) from Person person where person.personTitle in (:titleList)\r\nand \r\n((person.name like :like) or (person.code like :like))', '教师', NULL);
+INSERT INTO `query_statementa` VALUES (188, 3, '2019-06-12 09:25:55', NULL, 'operation4Person', b'0', b'1', 'list', '[like, max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)\r\nand \r\n((person.name like :like) or (person.code like :like))', '教师', 'listTeacher');
+INSERT INTO `query_statementa` VALUES (189, 0, '2019-06-12 09:30:53', NULL, 'operation4Person', b'0', b'1', 'count', '[like, titleList]', NULL, '学生', NULL);
+INSERT INTO `query_statementa` VALUES (190, 0, '2019-06-12 09:30:53', NULL, 'operation4Person', b'0', b'1', 'list', '[like, max, offset, titleList]', NULL, '学生', NULL);
+INSERT INTO `query_statementa` VALUES (195, 1, '2019-06-12 09:58:15', NULL, 'operation4Person', b'0', b'1', 'count', '[titleList]', 'select count(*) from Person person where person.personTitle in (:titleList)', '本科生', NULL);
+INSERT INTO `query_statementa` VALUES (196, 2, '2019-06-12 09:58:15', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)', '本科生', 'listStudent');
+INSERT INTO `query_statementa` VALUES (197, 1, '2019-06-12 09:58:18', NULL, 'operation4Person', b'0', b'1', 'count', '[titleList]', 'select count(*) from Person person \r\nwhere (person.personTitle in :titleList)', '研究生', NULL);
+INSERT INTO `query_statementa` VALUES (198, 2, '2019-06-12 09:58:18', NULL, 'operation4Person', b'0', b'1', 'list', '[max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)', '研究生', 'listStudent');
+INSERT INTO `query_statementa` VALUES (199, 1, '2019-06-12 10:28:36', NULL, 'operation4Person', b'0', b'1', 'count', '[like, titleList]', 'select count(*) from Person person where person.personTitle in (:titleList)\r\nand \r\n((person.name like :like) or (person.code like :like))', '本科生', NULL);
+INSERT INTO `query_statementa` VALUES (200, 2, '2019-06-12 10:28:36', NULL, 'operation4Person', b'0', b'1', 'list', '[like, max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)\r\nand \r\n((person.name like :like) or (person.code like :like))', '本科生', 'listStudent');
+INSERT INTO `query_statementa` VALUES (201, 1, '2019-06-12 10:34:42', NULL, 'operation4Person', b'0', b'1', 'count', '[like, titleList]', 'select count(*) from Person person where person.personTitle in (:titleList)\r\nand \r\n((person.name like :like) or (person.code like :like))', '研究生', NULL);
+INSERT INTO `query_statementa` VALUES (202, 2, '2019-06-12 10:34:42', NULL, 'operation4Person', b'0', b'1', 'list', '[like, max, offset, titleList]', 'from Person person where person.personTitle in (:titleList)\r\nand \r\n((person.name like :like) or (person.code like :like))', '研究生', 'listStudent');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -280,3 +280,23 @@ function countDataBootStrap(title) {
 function appendParamsBootStrap(title) {
     return "";
 }
+
+// 与搜索有关的代码---------------------------------------------------------
+/*
+* 清除过滤条件
+* */
+function clearFilterBootStrap() {
+    sessionStorage.setItem("filter" + document.title, false)
+    location.reload();
+}
+
+/*
+* 查询
+* */
+function queryStatementBootStrap() {
+    var keyString = document.getElementById("keyString");
+    console.info("查询..." + keyString.value);
+    sessionStorage.setItem("filter" + document.title, "like")
+    sessionStorage.setItem("keyString" + document.title, keyString.value)
+    location.reload();
+}

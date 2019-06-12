@@ -31,13 +31,38 @@ function listToDo() {
 }
 
 function shiftDisplay(title) {
+    sessionStorage.setItem("filter" + document.title, false)
+    $("#newTeacher").attr("class", "d-none")
+    $("#newStudent").attr("class", "d-none")
+    $("#newMaster").attr("class", "d-none")
+
     switch (title) {
         case "教师":
-        case "学生":
-            $("#newPerson").attr("class", "")
+            $("#newTeacher").attr("class", "")
             break
-        default:
-            $("#newPerson").attr("class", "d-none")
+        case "本科生":
+            $("#newStudent").attr("class", "")
+            break
+        case "研究生":
+            $("#newMaster").attr("class", "")
+            break
     }
+}
+
+/*
+* 生成附加参数
+* */
+function appendParamsBootStrap(title) {
+    // 根据sessionStorage的参数，设置相应的附加参数，不同的标签的--都在各自页面考虑，所以不带参数
+    var append = ""
+    var filter = readStorage("filter" + document.title, "false");
+    var keyString = readStorage("keyString" + document.title, "");
+    switch (filter) {
+        case "like":
+            append = "&like=" + keyString;
+            $("#currentFilter人员维护").html(keyString)
+            break
+    }
+    return  append;
 }
 
