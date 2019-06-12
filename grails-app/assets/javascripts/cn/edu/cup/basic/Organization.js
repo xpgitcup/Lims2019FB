@@ -5,11 +5,18 @@ var tabs课题组维护Div;
 
 $(function () {
     console.info(document.title + "加载了...")
+
     tabs课题组维护Div = $("#tabs课题组维护Div");
     setupTabsBootStrap(tabs课题组维护Div);
 
     var filter = readStorage("filter" + document.title, "false");
     $("#currentFilter").html("当前：" + filter);
+    if (filter!="false") {
+        var keyString = readStorage("keyString" + document.title, "");
+        $("#currentFilter课题组维护").html(keyString)
+    } else {
+        $("#currentFilter课题组维护").html("")
+    }
 })
 
 
@@ -21,21 +28,36 @@ function appendParamsBootStrap(title) {
     var append = ""
     var filter = readStorage("filter" + document.title, "false");
     var keyString = readStorage("keyString" + document.title, "");
+    $("#currentFilter课题组维护").html(keyString)
     switch (filter) {
-        case "like":
-            append = "&like=" + keyString;
-            $("#currentFilter课题组维护").html(keyString)
-            break
         case "教师":
             switch (title) {
+                case "教师":
+                    append = "&like=" + keyString;
+                    break
                 case "课题组":
-                    var currentTeacher = readStorage("currentKey" + "教师", 0);
-                    append = "&currentTeacher=" + currentTeacher;
+                    append = "&leader=" + keyString;
+                    break
+                case "课题组成员列表":
+                    append = "&leader=" + keyString;
                     break
             }
             break
         case "课题组":
+            switch (title) {
+                case "教师":
+                    append = "&leader=" + keyString;
+                    break
+                case "课题组":
+                    append = "&like=" + keyString;
+                    break
+                case "课题组成员列表":
+                    append = "&like=" + keyString;
+                    break
+            }
             break
+        default:
+            break;
     }
 
     return append;
@@ -45,15 +67,10 @@ function selectCurrentItem(id) {
     var title = getCurrentTabTitle(tabs课题组维护Div);
     sessionStorage.setItem("filter" + document.title, title);
     $("#currentFilter").html("当前：" + title);
-
+    sessionStorage.setItem("keyString" + document.title, id);
     switch (title) {
         case "教师":
-            sessionStorage.setItem("currentKey" + title, id);
-            selectTabByTitle("课题组");
-            break
-        case "课题组":
-            sessionStorage.setItem("keyString" + document.title, id);
-            sessionStorage.setItem("filter" + document.title, "like");
+            selectTabByTitle("课题组")
             break
     }
 }

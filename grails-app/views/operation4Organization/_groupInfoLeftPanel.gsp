@@ -6,7 +6,7 @@
         <a href="javascript: clearFilterBootStrap()">清除筛选</a>
     </li>
     <li>
-        <g:form onsubmit="return queryStatementBootStrap()">
+        <g:form onsubmit="return queryStatementBootStrap(tabs课题组维护Div)">
             <label>关键字</label>
             <input type="text" id="keyString" name="keyString" value=""/>
             <input type="submit" name="查询" value="查询">

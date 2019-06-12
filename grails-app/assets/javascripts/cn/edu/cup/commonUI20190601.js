@@ -108,7 +108,7 @@ function setupTabsBootStrap(tabsDiv) {
         sessionStorage.setItem(currentTabName, title); //记录缺省标签
         loadCurrentPageBootStrap(title)
         // 切换tab事件 ...
-        if (bootStrapPaginationSetting.onTabShift!=null) {
+        if (bootStrapPaginationSetting.onTabShift != null) {
             var todo = eval(bootStrapPaginationSetting.onTabShift);
             console.log("切换标签...");
             todo(title);
@@ -291,12 +291,13 @@ function clearFilterBootStrap() {
 }
 
 /*
-* 查询
+* 查询--需要各个页面自定义
 * */
-function queryStatementBootStrap() {
+function queryStatementBootStrap(tabsDiv) {
     var keyString = document.getElementById("keyString");
+    var title = getCurrentTabTitle(tabsDiv);
     console.info("查询..." + keyString.value);
-    sessionStorage.setItem("filter" + document.title, "like")
-    sessionStorage.setItem("keyString" + document.title, keyString.value)
+    sessionStorage.setItem("filter" + document.title, title);
+    sessionStorage.setItem("keyString" + document.title, keyString.value);
     location.reload();
 }

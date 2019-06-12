@@ -3,15 +3,15 @@
 
  Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 50725
+ Source Server Version : 80015
  Source Host           : localhost:3306
  Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 12/06/2019 18:09:05
+ Date: 13/06/2019 00:12:39
 */
 
 SET NAMES utf8mb4;
@@ -25,17 +25,17 @@ CREATE TABLE `query_statementa`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `version` bigint(20) NOT NULL,
   `update_time` datetime(0) NOT NULL,
-  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `format_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `controller_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `issql` bit(1) NOT NULL,
   `need_to_query` bit(1) NOT NULL,
   `action_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `params_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `query_string` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `key_string` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `view_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 219 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 233 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of query_statementa
@@ -171,5 +171,15 @@ INSERT INTO `query_statementa` VALUES (213, 3, '2019-06-12 15:27:59', NULL, 'ope
 INSERT INTO `query_statementa` VALUES (214, 4, '2019-06-12 15:27:59', NULL, 'operation4Organization', b'0', b'1', 'list', '[currentTeacher, max, offset]', 'from GroupInfo groupInfo where groupInfo.leader.id =cast( :currentTeacher as integer)', '课题组', 'listGroupInfo');
 INSERT INTO `query_statementa` VALUES (215, 1, '2019-06-12 16:33:20', NULL, 'operation4Organization', b'0', b'1', 'count', '[]', 'select count(*) from GroupInfo groupInfo', '课题组', NULL);
 INSERT INTO `query_statementa` VALUES (216, 2, '2019-06-12 16:33:20', NULL, 'operation4Organization', b'0', b'1', 'list', '[max, offset]', 'from GroupInfo groupInfo\r\norder by groupInfo.leader', '课题组', 'listGroupInfo');
+INSERT INTO `query_statementa` VALUES (219, 1, '2019-06-12 21:08:24', NULL, 'operation4Organization', b'0', b'1', 'count', '[leader]', 'select count(*) from GroupInfo groupInfo\r\nwhere \r\n(groupInfo.leader.name like :leader)\r\nor\r\n(groupInfo.leader.code like :leader)', '课题组', NULL);
+INSERT INTO `query_statementa` VALUES (220, 2, '2019-06-12 21:08:24', NULL, 'operation4Organization', b'0', b'1', 'list', '[leader, max, offset]', 'from GroupInfo groupInfo\r\nwhere \r\n(groupInfo.leader.name like :leader)\r\nor\r\n(groupInfo.leader.code like :leader)\r\norder by groupInfo.leader', '课题组', 'listGroupInfo');
+INSERT INTO `query_statementa` VALUES (221, 1, '2019-06-12 21:15:18', NULL, 'operation4Organization', b'0', b'1', 'count', '[leader, titleList]', 'select count(*) from Person person\r\nwhere (person.code like :leader)                    \r\nand \r\n(person.personTitle in (:titleList))', '教师', NULL);
+INSERT INTO `query_statementa` VALUES (222, 2, '2019-06-12 21:15:18', NULL, 'operation4Organization', b'0', b'1', 'list', '[leader, max, offset, titleList]', 'select count(*) from Person person\r\nwhere (person.code like :leader)                    \r\nand \r\n(person.personTitle in (:titleList))', '教师', 'listTeacher');
+INSERT INTO `query_statementa` VALUES (227, 0, '2019-06-12 22:32:11', NULL, 'operation4Organization', b'0', b'1', 'count', '[]', NULL, '课题组成员列表', NULL);
+INSERT INTO `query_statementa` VALUES (228, 0, '2019-06-12 22:32:11', NULL, 'operation4Organization', b'0', b'1', 'list', '[max, offset]', NULL, '课题组成员列表', NULL);
+INSERT INTO `query_statementa` VALUES (229, 0, '2019-06-12 22:32:35', NULL, 'operation4Organization', b'0', b'1', 'count', '[like]', NULL, '课题组成员列表', NULL);
+INSERT INTO `query_statementa` VALUES (230, 0, '2019-06-12 22:32:35', NULL, 'operation4Organization', b'0', b'1', 'list', '[like, max, offset]', NULL, '课题组成员列表', NULL);
+INSERT INTO `query_statementa` VALUES (231, 0, '2019-06-13 00:00:39', NULL, 'operation4Organization', b'0', b'1', 'count', '[leader]', NULL, '课题组成员列表', NULL);
+INSERT INTO `query_statementa` VALUES (232, 0, '2019-06-13 00:00:39', NULL, 'operation4Organization', b'0', b'1', 'list', '[leader, max, offset]', NULL, '课题组成员列表', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

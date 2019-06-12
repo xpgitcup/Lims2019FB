@@ -23,12 +23,13 @@
         <g:each in="${objectList}" var="item" status="i">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                 <td>
-                    <a href="javascript: selectCurrentItem(${item.id})">${item.name}</a>
+                    <a href="javascript: selectCurrentItem('${item.name}')">${item.name}</a>
                     <a href="operation4Organization/create/?leader=${item.id}">创建小组</a>
                 </td>
                 <td>${item.code}</td>
                 <td>${item.personTitle}</td>
                 <td>${cn.edu.cup.basic.GroupInfo.countByLeader(item)}</td>
+                <td>${result.memberCountList.get(item)}</td>
             </tr>
         </g:each>
         </tbody>
