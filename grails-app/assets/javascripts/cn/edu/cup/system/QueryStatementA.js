@@ -32,36 +32,6 @@ function appendParamsBootStrap(title) {
 }
 
 /*
-* 统计函数
-* */
-function countQueryStatementA(title) {
-    //console.info(document.title + "+统计......");
-    var append = setupAppendParamsQueryStatementA();
-    var url = "operation4QueryStatementA/count?key=" + title + append
-    //console.info(document.title + " : " + url);
-    var total = ajaxCalculate(url);
-    console.info(document.title + "+统计......" + total);
-    return total
-}
-
-/*
-* 数据加载函数
-* */
-function loadQueryStatementA(title, page, pageSize) {
-    console.info("数据加载：" + title + " 第" + page + "页/" + pageSize);
-    var append = setupAppendParamsQueryStatementA();
-    var params = getParams(page, pageSize);    //getParams必须是放在最最前面！！
-    var url = "operation4QueryStatementA/list" + params + "&key=" + title + append;
-    console.info(document.title + " : " + url);
-    ajaxRun(url, 0, "list" + title + "Div");
-}
-
-function setupAppendParamsQueryStatementA() {
-
-    return append;
-}
-
-/*
 * 定位到需要编辑的记录
 * */
 function listToDo() {

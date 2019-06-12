@@ -193,7 +193,6 @@ function showCurrentPageNumberBootStrap(title, currentPageNumber) {
     sessionStorage.setItem(currentPageName, currentPageNumber);
 }
 
-
 /*
 * 获取页码上限
 * */
@@ -231,7 +230,6 @@ function loadFirstPageBootStrap(title) {
     showCurrentPageNumberBootStrap(title, currentPage);
     loadDataBootStrap(title, currentPage);
 }
-
 
 /*
 * 向前翻页
@@ -277,6 +275,27 @@ function countDataBootStrap(title) {
     return total;
 }
 
+/*
+* 清除过滤条件
+* */
+function clearFilterBootStrap() {
+    sessionStorage.setItem("filter" + document.title, false)
+    location.reload();
+}
+
+/*
+* 查询
+* */
+function queryStatementBootStrap() {
+    var keyString = document.getElementById("keyString");
+    console.info("查询..." + keyString.value);
+    sessionStorage.setItem("filter" + document.title, "like")
+    sessionStorage.setItem("keyString" + document.title, keyString.value)
+    location.reload();
+}
+
 function appendParamsBootStrap(title) {
-    return "";
+    // 根据sessionStorage的参数，设置相应的附加参数，不同的标签的--都在各自页面考虑，所以不带参数
+    var append = ""
+    return  append;
 }
