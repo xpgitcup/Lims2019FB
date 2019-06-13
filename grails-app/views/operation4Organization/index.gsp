@@ -34,7 +34,9 @@
     <div class="row">
         <div class="col-6">
             <g:render template="groupInfoLeftPanel"/>
+
         </div>
+
         <div class="col-6">
             <g:render template="groupInfoMembersPanel"/>
         </div>

@@ -10,6 +10,17 @@ class Operation4OrganizationController extends GroupInfoController {
 
     def dataSource
 
+    def showDetail() {
+        println("${params}")
+        def groupInfo = groupInfoService.get(params.id)
+        println("${groupInfo}")
+        if (request.xhr) {
+            render(template: "listMembers", model: [groupInfo: groupInfo])
+        } else {
+            model: [groupInfo: groupInfo]
+        }
+    }
+
     /*
      * 招聘
      * */

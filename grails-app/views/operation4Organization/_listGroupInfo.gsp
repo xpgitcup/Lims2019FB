@@ -14,7 +14,10 @@
             <td>
                 <a href="javascript: selectCurrentItem('${item.name}')">${item.name}</a>
             </td>
-            <td>${item.leader}</td>
+            <td>
+                ${item.leader}
+                <a href="javascript: showDetail(${item.id})">详情</a>
+            </td>
             <td>${item.members?.size()}</td>
             <td>
                 <g:form controller="operation4Organization" action="recruit">

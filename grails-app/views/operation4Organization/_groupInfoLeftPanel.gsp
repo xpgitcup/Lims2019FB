@@ -50,13 +50,13 @@
                 <li class="page-item">
                     <a class="page-link" href="javascript: loadPreviousPageBootStrap('教师')">&laquo</a>
                 </li>
-                <li class="page-item" >
+                <li class="page-item">
                     <a class="page-link" id="currentPageGroupInfo教师"></a>
                 </li>
-                <li class="page-item" >
+                <li class="page-item">
                     <a class="page-link">/</a>
                 </li>
-                <li class="page-item" >
+                <li class="page-item">
                     <a class="page-link" id="totalPageGroupInfo教师"></a>
                 </li>
                 <li>
@@ -93,13 +93,13 @@
                 <li class="page-item">
                     <a class="page-link" href="javascript: loadPreviousPageBootStrap('课题组')">&laquo</a>
                 </li>
-                <li class="page-item" >
+                <li class="page-item">
                     <a class="page-link" id="currentPageGroupInfo课题组"></a>
                 </li>
-                <li class="page-item" >
+                <li class="page-item">
                     <a class="page-link">/</a>
                 </li>
-                <li class="page-item" >
+                <li class="page-item">
                     <a class="page-link" id="totalPageGroupInfo课题组"></a>
                 </li>
                 <li>
@@ -117,7 +117,7 @@
             </ul>
         </div>
         <!--具体的课题组标签结束======-->
-
     </div>
 </div>
 <!--自动生成的代码结束-->
+

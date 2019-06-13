@@ -74,3 +74,8 @@ function selectCurrentItem(id) {
             break
     }
 }
+
+function showDetail(id) {
+    var url="operation4Organization/showDetail"
+    ajaxRun(url, id, "display课题组成员列表Div");
+}
