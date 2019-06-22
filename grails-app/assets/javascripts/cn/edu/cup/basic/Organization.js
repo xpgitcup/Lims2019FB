@@ -10,7 +10,14 @@ $(function () {
     setupTabsBootStrap(tabs课题组维护Div);
 
     var filter = readStorage("filter" + document.title, "false");
-    $("#currentFilter").html("当前：" + filter);
+    switch (filter) {
+        case "false":
+            $("#currentFilter").html("没有筛选");
+            break
+        default:
+            $("#currentFilter").html("当前：" + filter);
+            break
+    }
     if (filter!="false") {
         var keyString = readStorage("keyString" + document.title, "");
         $("#currentFilter课题组维护").html(keyString)

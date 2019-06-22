@@ -82,6 +82,9 @@ class Operation4OrganizationController extends GroupInfoController {
                 }
                 result.memberCountList = memberCountList
                 break
+            case "课题组":
+
+                break
         }
         return result
     }

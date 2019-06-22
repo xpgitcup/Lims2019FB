@@ -32,13 +32,8 @@
 
 <div class="container-fluid m-0 p-0">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <g:render template="groupInfoLeftPanel"/>
-
-        </div>
-
-        <div class="col-6">
-            <g:render template="groupInfoMembersPanel"/>
         </div>
     </div>
 
