@@ -71,6 +71,7 @@ class InitService {
     * */
 
     private void processConfigFile(ServletContext servletContext) {
+        // 获取Web的根目录
         def webRootDir = servletContext.getRealPath("/")
 
         // 先处理数据库脚本文件
