@@ -1,4 +1,4 @@
-<g:if test="${groupInfo?.members.size() > 0}">
+<g:if test="${groupInfo?.members?.size() > 0}">
     <table>
         <thead>
         <th>姓名</th>
@@ -14,4 +14,4 @@
         </tbody>
     </table>
 </g:if>
-<g:else>请选择课题组!</g:else>
+<g:else>尚未组建课题组!</g:else>

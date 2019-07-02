@@ -3,15 +3,15 @@
 
  Source Server         : sample
  Source Server Type    : MySQL
- Source Server Version : 50725
+ Source Server Version : 80016
  Source Host           : localhost:3306
  Source Schema         : lims2019dba
 
  Target Server Type    : MySQL
- Target Server Version : 50725
+ Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 09/06/2019 15:22:25
+ Date: 29/06/2019 09:46:19
 */
 
 SET NAMES utf8mb4;

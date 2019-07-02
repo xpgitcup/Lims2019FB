@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         <g:each in="${objectList}" var="item" status="i">
-            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <tr class="${(i % 2) == 0 ? 'even' : 'odd'}" onclick="javascript: showDetail(${item.id})">
                 <td>
                     <a href="javascript: selectCurrentItem('${item.name}')">${item.name}</a>
                     <a href="operation4Organization/create/?leader=${item.id}">创建小组</a>

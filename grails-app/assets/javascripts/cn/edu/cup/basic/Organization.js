@@ -84,5 +84,5 @@ function selectCurrentItem(id) {
 
 function showDetail(id) {
     var url="operation4Organization/showDetail"
-    ajaxRun(url, id, "display课题组成员列表Div");
+    ajaxRun(url, id, "showDetails");
 }
