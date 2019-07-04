@@ -32,16 +32,16 @@ class CommonQueryAService {
                 if (queryStatement.queryString) {
                     // 执行查询
                     def queryString = queryStatement.queryString
-                    //println("列表查询：${queryString}")
+                    println("列表查询：${queryString}")
                     if (queryStatement.isSQL) {
                         objectList = processParameters4SQL(queryString, leftParams)
                     } else {
                         (queryString, leftParams) = processSpecailParameter(queryString, leftParams)
-                        //println("列表：${queryString} ${leftParams}")
+                        println("列表：${queryString} ${leftParams}")
                         objectList = QueryStatementA.executeQuery(queryString, leftParams)
                     }
                     result.objectList = objectList
-                    //println("查询结果：${objectList}")
+                    println("查询结果：${objectList}")
                 }
             }
         }
@@ -87,20 +87,49 @@ class CommonQueryAService {
              leftParams
         ) = genericKey(params)
 
-        //println("查询参数：${paramsString}")
+        println("查询参数：${paramsString}")
         def queryStatement =
                 QueryStatementA.findByControllerNameAndActionNameAndKeyStringAndParamsString(
                         controllerName, actionName, keyString, paramsString)
         if (!queryStatement) {
-            queryStatement = new QueryStatementA(
-                    controllerName: controllerName,
-                    actionName: actionName,
-                    keyString: keyString,
-                    formatString: formatString,
-                    paramsString: paramsString
-            )
+            if (controllerName.contains("operation4")) {
+                def queryString = ""
+                def domainName = ""
+                def instanceName = ""
+                def view = ""
+                domainName = controllerName - "operation4"
+                instanceName = domainName[0].toLowerCase() + domainName.substring(1)
+                println("域类：${domainName} ${instanceName}")
+                //
+                switch (actionName) {
+                    case "list":
+                        queryString = "from ${domainName} ${instanceName}"
+                        view = "list${domainName}"
+                        break
+                    case "count":
+                        queryString = "select count(*) from ${domainName} ${instanceName}"
+                        break
+                }
+                queryStatement = new QueryStatementA(
+                        controllerName: controllerName,
+                        actionName: actionName,
+                        keyString: keyString,
+                        formatString: formatString,
+                        paramsString: paramsString,
+                        queryString: queryString,
+                        viewName: view
+                )
+            } else {
+                queryStatement = new QueryStatementA(
+                        controllerName: controllerName,
+                        actionName: actionName,
+                        keyString: keyString,
+                        formatString: formatString,
+                        paramsString: paramsString
+                )
+            }
             queryStatementAService.save(queryStatement)
-            //println("创建查询：${queryStatement}")
+            println("创建查询：${queryStatement}")
         }
         //println("参数值：${leftParams}")
         [queryStatement, leftParams]

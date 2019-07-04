@@ -13,6 +13,6 @@
 </head>
 
 <body>
-<h4>${flash.message} <a href="operation4QueryStatementA/index">请完善查询语句</a></h4>
+<h4 class="text-blck">${flash.message} <a href="operation4QueryStatementA/index">请完善查询语句</a></h4>
 </body>
 </html>

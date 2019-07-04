@@ -135,7 +135,7 @@ class InitService {
 
         // 处理SQL数据
         def queryStatementAFileName = "${webRootDir}/config/queryStatementa.json"
-        if (queryStatementAService.count() < 1) {
+        if ((queryStatementAService.count() < 1) && (new File(queryStatementAFileName).exists())) {
             def queryStatementAs = importObjects(queryStatementAFileName, QueryStatementA.class, null)
             queryStatementAs.each { e ->
                 queryStatementAService.save(e)
