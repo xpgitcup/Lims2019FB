@@ -9,10 +9,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sample title</title>
+    <title>缺省页面，提示完善查询语句。</title>
 </head>
 
 <body>
-<h4>${flash.message} <a class="text-white" href="operation4QueryStatementA/index">请完善查询语句</a></h4>
+<h4>${flash.message} <a href="operation4QueryStatementA/index">请完善查询语句</a></h4>
 </body>
 </html>

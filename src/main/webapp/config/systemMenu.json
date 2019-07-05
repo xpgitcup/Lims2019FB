@@ -107,27 +107,27 @@
     "menuItems": [
       {
         "menuContext": "课题组",
-        "menuAction": "operation4Organization/index",
+        "menuAction": "operation4GroupInfo/index",
         "menuDescription": "课题组管理",
         "menuOrder": 5
       },
       {
         "menuContext": "学生班级",
-        "menuAction": "operation4Organization/index",
+        "menuAction": "operation4GradeInfo/index",
         "menuDescription": "课题组管理",
         "menuOrder": 5
       }
     ]
   },
   {
-    "menuContext": "用户服务",
-    "menuAction": "operation4Routine/index",
+    "menuContext": "科研维护",
+    "menuAction": "operation4Project/index",
     "menuDescription": "所有用户统一的",
     "menuOrder": 3
   },
   {
-    "menuContext": "教师服务",
-    "menuAction": "operation4TeacherRoutine/index",
+    "menuContext": "教学维护",
+    "menuAction": "operation4Course/index",
     "menuDescription": "针对教师的服务",
     "menuOrder": 4
   }

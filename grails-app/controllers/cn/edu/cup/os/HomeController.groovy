@@ -202,6 +202,7 @@ class HomeController extends CommonController {
             session.systemUser = systemUser
             session.userName = systemUser.personName()
             session.userTitle = systemUser.personTitle()
+            session.userStatus = systemUser.personTitle().status()
             if (session.userTitle) {
                 session.userStatus = systemUser.personTitle().status()
             }
