@@ -70,7 +70,6 @@
 
 <div class="container-fluid m-0 p-0">
     <g:render template="queryStatementAPanel"/>
-    <g:render template="queryDebug"/>
 </div>
 
 <g:if test="${flash.message}">

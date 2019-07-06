@@ -29,5 +29,16 @@
 
 <body>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <g:render template="listTeacherPanel"/>
+        </div>
+        <div class="col-6">
+            <div id="memberList">点击左边的某一行，显示课题组成员。</div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
