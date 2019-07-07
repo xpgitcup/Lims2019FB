@@ -11,8 +11,6 @@ class Thing {
 
     static belongsTo = [thingType: ThingType]
 
-    static hasMany = [contacts: Person]
-
     static constraints = {
         name(unique: true)
         sponsor()

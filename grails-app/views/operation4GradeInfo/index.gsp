@@ -32,7 +32,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <g:render template="listTeacherPanel"/>
+            <g:render template="gradeInfoPanel"/>
         </div>
         <div class="col-6">
             <div id="memberList">点击左边的某一行，显示课题组成员。</div>
