@@ -82,7 +82,3 @@ function selectCurrentItem(id) {
     }
 }
 
-function showDetail(id) {
-    var url="operation4Organization/showDetail"
-    ajaxRun(url, id, "showDetails");
-}

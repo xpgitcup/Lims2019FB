@@ -3,7 +3,7 @@ bootStrapPaginationSetting.controller = "operation4GroupInfo"
 
 var card课题组Div;
 
-$(function(){
+$(function () {
     console.info(document.title + "加载了...")
     card课题组Div = $("#card课题组Div");
     setupPagination4Card(card课题组Div);
@@ -16,4 +16,12 @@ $(function(){
 * */
 function appendParamsBootStrap(title) {
     return "";
+}
+
+/*
+* 队员列表
+* */
+function showDetail(id) {
+    var url = "operation4GroupInfo/showDetail"
+    ajaxRun(url, id, "memberList");
 }
