@@ -27,4 +27,16 @@ class Person implements SelfCheck {
             personTitle = p
         }
     }
+
+    /*
+    自定义的一些相关查询
+    * */
+
+    static List allTeachers() {
+        def pt = PersonTitle.findByName("教师")
+        def pts = pt.relatedTitles()
+        def ts = Person.executeQuery("from Person person where person.personTitle in (${pts})")
+        return ts
+    }
+
 }

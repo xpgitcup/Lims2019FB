@@ -24,6 +24,8 @@ class PersonTitle implements SelfCheck {
         return name
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     String status() {
         def s = "Student"
         if (bePartOfByName("教师")) {

@@ -37,11 +37,6 @@
         </div>
     </div>
 
-    <g:if test="${flash.message}">
-        <div class="card">
-            <div class="message" role="status">${flash.message}</div>
-        </div>
-    </g:if>
 </div>
 
 </body>

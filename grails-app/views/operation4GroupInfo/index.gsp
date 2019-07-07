@@ -36,7 +36,7 @@
             <g:form controller="operation4GroupInfo" action="save" method="POST">
                 <label>创建课题组</label>
                 <label>领导</label>
-                <g:select id="leader" name="groupInfo.leader" from="${cn.edu.cup.basic.Person.list()}" optionKey="id"
+                <g:select id="leader" name="groupInfo.leader" from="${cn.edu.cup.basic.Person.allTeachers()}" optionKey="id"
                           optionValue="name" noSelection="${['null': 'Select One...']}"/>
                 <label>课题组名称</label>
                 <input type="text" id="name" name="groupInfo.name" value=""/>
@@ -67,6 +67,13 @@
             <div id="memberList" class="card">点击左边的某一行，显示课题组成员。</div>
         </div>
     </div>
+
+    <g:if test="${flash.message}">
+        <div class="card">
+            <div class="message" role="status">${flash.message}</div>
+        </div>
+    </g:if>
+
 </div>
 
 </body>

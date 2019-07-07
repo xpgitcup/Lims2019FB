@@ -24,11 +24,15 @@ class Operation4GroupInfoController extends GroupInfoController {
         def person = Person.findByName(params.name)
         if (person) {
             def group = groupInfoService.get(params.group)
-            if (!group.members.contains(person)) {
-                group.members.add(person)
-                groupInfoService.save(group)
+            if (person.equals(group.leader)) {
+                flash.message = "自己不能招募自己!"
             } else {
-                flash.message = "已经加入了!"
+                if (!group.members.contains(person)) {
+                    group.members.add(person)
+                    groupInfoService.save(group)
+                } else {
+                    flash.message = "已经加入了!"
+                }
             }
         } else {
             flash.message = "找不到${params.name}！"
